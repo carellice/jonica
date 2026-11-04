@@ -70,6 +70,14 @@ import it.jonica.app.ui.season.SeasonScreen
 import it.jonica.app.ui.shops.ShopsScreen
 import it.jonica.app.ui.today.TodayScreen
 import kotlinx.coroutines.delay
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
+import it.jonica.app.update.UpdateController
+import it.jonica.app.update.UpdateSheet
 import kotlinx.coroutines.launch
 
 enum class Tab(val label: String, val icon: ImageVector) {
@@ -87,6 +95,8 @@ fun JonicaApp() {
     var location by remember { mutableStateOf<GeoPoint?>(null) }
     var permissionGranted by remember { mutableStateOf(hasLocationPermission(context)) }
     var selectedProduct by remember { mutableStateOf<Product?>(null) }
+    val scope = androidx.compose.runtime.rememberCoroutineScope()
+    val updates = remember { UpdateController(scope) }
 
     val permissionLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { res ->
         permissionGranted = res.values.any { it }
@@ -98,6 +108,7 @@ fun JonicaApp() {
     }
 
     LaunchedEffect(showSplash) {
+        if (!showSplash) updates.check(manual = false)
         if (!showSplash && !permissionGranted) {
             delay(600)
             permissionLauncher.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION))
@@ -129,7 +140,7 @@ fun JonicaApp() {
                         permissionLauncher.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION))
                     },
                 )
-                Tab.FILIERA -> AwareScreen()
+                Tab.FILIERA -> AwareScreen(updates)
             }
         }
 
@@ -141,14 +152,22 @@ fun JonicaApp() {
 
         selectedProduct?.let { p -> ProductSheet(p) { selectedProduct = null } }
 
+        if (!showSplash) UpdateSheet(updates)
+
         AnimatedVisibility(visible = showSplash, enter = fadeIn(), exit = fadeOut(tween(500))) {
             Splash(onDone = { showSplash = false })
         }
     }
 }
 
+/**
+ * Barra fluttuante con pillola "liquida": i due bordi della pillola si muovono con molle diverse,
+ * quello di testa scatta verso la destinazione e quello di coda lo insegue, così la pillola si
+ * allunga, si assottiglia e rimbalza come una goccia di slime.
+ */
 @Composable
 private fun BottomBar(selected: Int, onSelect: (Int) -> Unit, modifier: Modifier = Modifier) {
+    val pillColor = MaterialTheme.colorScheme.primary
     Box(
         modifier
             .fillMaxWidth()
@@ -156,56 +175,79 @@ private fun BottomBar(selected: Int, onSelect: (Int) -> Unit, modifier: Modifier
             .padding(horizontal = 20.dp, vertical = 12.dp),
     ) {
         Surface(
-            shape = RoundedCornerShape(28.dp),
+            shape = RoundedCornerShape(32.dp),
             color = MaterialTheme.colorScheme.surface,
             tonalElevation = 4.dp,
             modifier = Modifier
                 .fillMaxWidth()
-                .shadow(18.dp, RoundedCornerShape(28.dp), ambientColor = Color.Black.copy(alpha = 0.25f)),
+                .shadow(18.dp, RoundedCornerShape(32.dp), ambientColor = Color.Black.copy(alpha = 0.25f)),
         ) {
-            Row(Modifier.padding(horizontal = 6.dp, vertical = 8.dp)) {
-                Tab.entries.forEachIndexed { i, t ->
-                    val isSel = i == selected
-                    val bg by animateColorAsState(
-                        if (isSel) MaterialTheme.colorScheme.primary else Color.Transparent,
-                        tween(300), label = "bg",
+            BoxWithConstraints(Modifier.padding(6.dp)) {
+                val count = Tab.entries.size
+                val slot = constraints.maxWidth.toFloat() / count
+                val left = remember { Animatable(selected * slot) }
+                val right = remember { Animatable((selected + 1) * slot) }
+                LaunchedEffect(selected, slot) {
+                    val targetLeft = selected * slot
+                    val targetRight = (selected + 1) * slot
+                    val goingRight = targetLeft > left.value
+                    val lead = spring<Float>(dampingRatio = 0.6f, stiffness = 700f)
+                    val trail = spring<Float>(dampingRatio = 0.45f, stiffness = 160f)
+                    launch { left.animateTo(targetLeft, if (goingRight) trail else lead) }
+                    launch { right.animateTo(targetRight, if (goingRight) lead else trail) }
+                }
+                Canvas(Modifier.matchParentSize()) {
+                    val width = (right.value - left.value).coerceAtLeast(slot * 0.6f)
+                    // più si allunga, più si assottiglia (conservazione del "volume")
+                    val stretch = ((width - slot) / slot).coerceIn(-0.4f, 2f)
+                    val h = size.height * (1f - 0.22f * stretch).coerceIn(0.62f, 1.08f)
+                    val top = (size.height - h) / 2f
+                    drawRoundRect(
+                        color = pillColor,
+                        topLeft = Offset(left.value, top),
+                        size = Size(width, h),
+                        cornerRadius = CornerRadius(h / 2f),
                     )
-                    val fg by animateColorAsState(
-                        if (isSel) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
-                        tween(300), label = "fg",
-                    )
-                    val label by animateColorAsState(
-                        if (isSel) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
-                        tween(300), label = "lb",
-                    )
-                    val scale by androidx.compose.animation.core.animateFloatAsState(
-                        if (isSel) 1f else 0.6f,
-                        spring(dampingRatio = Spring.DampingRatioMediumBouncy),
-                        label = "ind",
-                    )
-                    Column(
-                        Modifier.weight(1f).bouncyClick { onSelect(i) },
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                    ) {
-                        Box(
-                            Modifier
-                                .width(56.dp)
-                                .height(32.dp)
-                                .graphicsLayer { scaleX = scale }
-                                .clip(RoundedCornerShape(16.dp))
-                                .background(bg),
-                            contentAlignment = Alignment.Center,
-                        ) {
-                            Icon(t.icon, contentDescription = t.label, tint = fg, modifier = Modifier.graphicsLayer { scaleX = 1f / scale })
-                        }
-                        Spacer(Modifier.height(4.dp))
-                        Text(
-                            t.label,
-                            color = label,
-                            fontWeight = if (isSel) FontWeight.ExtraBold else FontWeight.SemiBold,
-                            fontSize = 12.sp,
-                            maxLines = 1,
+                }
+                Row {
+                    Tab.entries.forEachIndexed { i, t ->
+                        val isSel = i == selected
+                        val fg by animateColorAsState(
+                            if (isSel) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
+                            tween(260, delayMillis = if (isSel) 90 else 0), label = "fg",
                         )
+                        val lift by animateFloatAsState(
+                            if (isSel) 1f else 0f,
+                            spring(dampingRatio = 0.4f, stiffness = 300f),
+                            label = "lift",
+                        )
+                        Column(
+                            Modifier
+                                .weight(1f)
+                                .height(58.dp)
+                                .bouncyClick { onSelect(i) },
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center,
+                        ) {
+                            Icon(
+                                t.icon,
+                                contentDescription = t.label,
+                                tint = fg,
+                                modifier = Modifier.graphicsLayer {
+                                    val s = 1f + 0.12f * lift
+                                    scaleX = s; scaleY = s
+                                    translationY = -2.dp.toPx() * lift
+                                },
+                            )
+                            Spacer(Modifier.height(2.dp))
+                            Text(
+                                t.label,
+                                color = fg,
+                                fontWeight = if (isSel) FontWeight.ExtraBold else FontWeight.SemiBold,
+                                fontSize = 12.sp,
+                                maxLines = 1,
+                            )
+                        }
                     }
                 }
             }
@@ -225,7 +267,7 @@ private fun Splash(onDone: () -> Unit) {
         onDone()
     }
     Box(
-        Modifier.fillMaxSize().background(MaterialTheme.colorScheme.primary),
+        Modifier.fillMaxSize().background(it.jonica.app.ui.theme.Olive),
         contentAlignment = Alignment.Center,
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -243,12 +285,12 @@ private fun Splash(onDone: () -> Unit) {
             Text(
                 "Jonica",
                 style = MaterialTheme.typography.displaySmall,
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = it.jonica.app.ui.theme.Cream,
                 modifier = Modifier.graphicsLayer { alpha = text.value; translationY = (1f - text.value) * 40f },
             )
             Text(
                 "Mangia di stagione. Compra vicino.",
-                color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.8f),
+                color = it.jonica.app.ui.theme.Cream.copy(alpha = 0.8f),
                 modifier = Modifier.graphicsLayer { alpha = text.value },
             )
         }

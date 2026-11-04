@@ -86,6 +86,9 @@ import it.jonica.app.ui.components.Pill
 import it.jonica.app.ui.components.ScreenPadding
 import it.jonica.app.ui.components.SectionTitle
 import it.jonica.app.ui.components.WavyHeader
+import it.jonica.app.ui.theme.Mustard
+import it.jonica.app.ui.theme.Olive
+import it.jonica.app.ui.theme.Terracotta
 import it.jonica.app.ui.components.bouncyClick
 import it.jonica.app.ui.components.staggeredEnter
 import kotlinx.coroutines.delay
@@ -170,9 +173,10 @@ private fun Hero(today: LocalDate, count: Int) {
     val bob by inf.animateFloat(-6f, 6f, infiniteRepeatable(tween(2200), RepeatMode.Reverse), label = "bob")
     val sway by inf.animateFloat(-6f, 6f, infiniteRepeatable(tween(3200), RepeatMode.Reverse), label = "sway")
 
-    val primary = MaterialTheme.colorScheme.primary
-    val secondary = MaterialTheme.colorScheme.secondary
-    val tertiary = MaterialTheme.colorScheme.tertiary
+    // colori del brand fissi: il testo bianco resta leggibile anche in tema scuro
+    val primary = Olive
+    val secondary = Terracotta
+    val tertiary = Mustard
     val floating = remember(today) {
         products.filter { it.inSeason(today.monthValue) }.shuffled(java.util.Random(today.toEpochDay())).take(6).map { it.icon }
     }

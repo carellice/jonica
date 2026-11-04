@@ -62,7 +62,8 @@ import androidx.compose.material.icons.rounded.Place
 import it.jonica.app.ui.components.MonthsBar
 import it.jonica.app.ui.components.Pill
 import it.jonica.app.ui.components.WavyHeader
-import it.jonica.app.ui.theme.OliveLight
+import it.jonica.app.ui.theme.Olive
+import it.jonica.app.ui.theme.OliveDeep
 import androidx.compose.ui.graphics.Color
 import it.jonica.app.ui.components.bouncyClick
 import it.jonica.app.ui.components.staggeredEnter
@@ -78,7 +79,7 @@ fun SeasonScreen(onProduct: (Product) -> Unit) {
 
     Column(Modifier.fillMaxSize()) {
         val floating = remember(month, category) { products.filter { it.category == category && it.inSeason(month) }.take(6).map { it.icon } }
-        WavyHeader(color = MaterialTheme.colorScheme.primary, secondColor = OliveLight, floating = floating) {
+        WavyHeader(color = Olive, secondColor = OliveDeep, floating = floating) {
             Column(Modifier.statusBarsPadding().padding(start = ScreenPadding, end = ScreenPadding, top = 20.dp, bottom = 44.dp)) {
                 Text("Calendario delle stagioni", style = MaterialTheme.typography.headlineMedium, color = Color.White)
                 Text(

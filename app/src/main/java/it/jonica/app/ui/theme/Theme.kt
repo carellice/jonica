@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.sp
 
 val Olive = Color(0xFF3E5A2C)
 val OliveLight = Color(0xFF7FA65A)
+val OliveDeep = Color(0xFF5C8240)
+val TerracottaDeep = Color(0xFFB0532F)
 val Terracotta = Color(0xFFC8643B)
 val Mustard = Color(0xFFE3A93B)
 val Cream = Color(0xFFFBF6EC)
@@ -97,12 +99,22 @@ private val AppTypography = Typography().let { t ->
     )
 }
 
+/** Colori di categoria leggibili anche su sfondo scuro: in dark mode vengono schiariti. */
+@Composable
+fun Color.readable(): Color =
+    if (isSystemInDarkTheme()) androidx.compose.ui.graphics.lerp(this, Color.White, 0.45f) else this
+
 @Composable
 fun JonicaTheme(content: @Composable () -> Unit) {
     MaterialTheme(
         colorScheme = if (isSystemInDarkTheme()) Dark else Light,
         typography = AppTypography,
     ) {
-        androidx.compose.material3.ProvideTextStyle(MaterialTheme.typography.bodyMedium, content)
+        // senza Surface il colore del testo di default sarebbe nero: in tema scuro diventerebbe illeggibile
+        androidx.compose.runtime.CompositionLocalProvider(
+            androidx.compose.material3.LocalContentColor provides MaterialTheme.colorScheme.onBackground,
+        ) {
+            androidx.compose.material3.ProvideTextStyle(MaterialTheme.typography.bodyMedium, content)
+        }
     }
 }

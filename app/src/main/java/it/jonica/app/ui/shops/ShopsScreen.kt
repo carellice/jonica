@@ -93,6 +93,7 @@ import androidx.compose.material.icons.rounded.Schedule
 import it.jonica.app.ui.components.Pill
 import it.jonica.app.ui.components.WavyHeader
 import it.jonica.app.ui.theme.Sky
+import it.jonica.app.ui.theme.readable
 import it.jonica.app.ui.components.bouncyClick
 import it.jonica.app.ui.components.staggeredEnter
 import android.graphics.ColorMatrix
@@ -310,7 +311,7 @@ private fun ShopRow(shop: Shop, dist: Float, modifier: Modifier, onClick: () -> 
             )
         }
         Spacer(Modifier.width(8.dp))
-        Pill(formatDistance(dist), shop.category.color.copy(alpha = 0.16f), shop.category.color, Modifier.width(76.dp))
+        Pill(formatDistance(dist), shop.category.color.copy(alpha = 0.16f), shop.category.color.readable(), Modifier.width(76.dp))
     }
 }
 
@@ -452,7 +453,7 @@ private fun ShopSheet(shop: Shop, dist: Float, fromUser: Boolean, context: Conte
                     Text(shop.name, style = MaterialTheme.typography.headlineSmall)
                     Spacer(Modifier.height(4.dp))
                     Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                        Pill(shop.category.label, shop.category.color.copy(alpha = 0.16f), shop.category.color)
+                        Pill(shop.category.label, shop.category.color.copy(alpha = 0.16f), shop.category.color.readable())
                         Pill(
                             formatDistance(dist) + if (fromUser) " da te" else " da 00138",
                             MaterialTheme.colorScheme.primaryContainer,

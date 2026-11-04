@@ -51,6 +51,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import it.jonica.app.ui.components.WavyHeader
+import it.jonica.app.ui.theme.readable
+import it.jonica.app.ui.theme.Terracotta
+import it.jonica.app.ui.theme.TerracottaDeep
+import it.jonica.app.update.UpdateCard
+import it.jonica.app.update.UpdateController
 import it.jonica.app.ui.components.IconBubble
 import it.jonica.app.R
 import androidx.annotation.DrawableRes
@@ -90,7 +95,7 @@ private val labelTips = listOf(
 )
 
 @Composable
-fun AwareScreen() {
+fun AwareScreen(updates: UpdateController) {
     val context = LocalContext.current
     val prefs = remember { context.getSharedPreferences("jonica", Context.MODE_PRIVATE) }
     var done by remember { mutableStateOf(prefs.getStringSet("pledges", emptySet())!!.toSet()) }
@@ -102,7 +107,8 @@ fun AwareScreen() {
     ) {
         item {
             WavyHeader(
-                color = MaterialTheme.colorScheme.secondary,
+                color = Terracotta,
+                secondColor = TerracottaDeep,
                 floating = listOf(R.drawable.ic_contadino, R.drawable.ic_grano, R.drawable.ic_olio, R.drawable.ic_camion, R.drawable.ic_pomodori),
             ) {
                 Column(Modifier.statusBarsPadding().padding(start = 24.dp, end = 24.dp, top = 24.dp, bottom = 56.dp)) {
@@ -155,6 +161,8 @@ fun AwareScreen() {
             }
         }
 
+        item { UpdateCard(updates) }
+
         item {
             Text(
                 "Le cifre sono stime indicative basate su studi ISMEA sulla catena del valore agroalimentare: variano per prodotto e canale di vendita.",
@@ -205,7 +213,7 @@ private fun EuroBreakdown() {
                         "${(slices[selected].cents * progress.value).toInt()}¢",
                         fontWeight = FontWeight.Bold,
                         fontSize = 22.sp,
-                        color = slices[selected].color,
+                        color = slices[selected].color.readable(),
                     )
                 }
             }
