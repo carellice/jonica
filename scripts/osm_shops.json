@@ -1,0 +1,710 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-11-04T19:29:36Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 248522829,
+  "lat": 41.9475457,
+  "lon": 12.5381443,
+  "tags": {
+    "created_by": "Potlatch 0.7b",
+    "description": "Compravendita dell'usato",
+    "name": "Il Barattolino",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 686158498,
+  "lat": 41.9419007,
+  "lon": 12.5540917,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "879",
+    "addr:street": "Via Nomentana",
+    "name": "Il Regno del Cornetto",
+    "shop": "pastry"
+  }
+},
+{
+  "type": "node",
+  "id": 1702694122,
+  "lat": 41.9628990,
+  "lon": 12.5349107,
+  "tags": {
+    "amenity": "marketplace",
+    "name": "Mercato Rionale Settimanale"
+  }
+},
+{
+  "type": "node",
+  "id": 1702694132,
+  "lat": 41.9621255,
+  "lon": 12.5353607,
+  "tags": {
+    "amenity": "marketplace",
+    "name": "Mercato Rionale Settimanale"
+  }
+},
+{
+  "type": "node",
+  "id": 1736184617,
+  "lat": 41.9466308,
+  "lon": 12.5513692,
+  "tags": {
+    "name": "GustaRè",
+    "shop": "deli"
+  }
+},
+{
+  "type": "node",
+  "id": 1925783623,
+  "lat": 41.9474625,
+  "lon": 12.5536800,
+  "tags": {
+    "amenity": "marketplace"
+  }
+},
+{
+  "type": "node",
+  "id": 3078183650,
+  "lat": 41.9694201,
+  "lon": 12.5351290,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "41",
+    "addr:postcode": "00139",
+    "addr:street": "Via Corrado Mantoni",
+    "name": "Vecchio Frack",
+    "shop": "wine"
+  }
+},
+{
+  "type": "node",
+  "id": 3388069412,
+  "lat": 41.9448907,
+  "lon": 12.5590133,
+  "tags": {
+    "shop": "greengrocer"
+  }
+},
+{
+  "type": "node",
+  "id": 3583028373,
+  "lat": 41.9462096,
+  "lon": 12.5474655,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "70",
+    "addr:street": "Via Luigi Capuana",
+    "name": "Alimentari e frutta",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 4669026063,
+  "lat": 41.9403033,
+  "lon": 12.5359418,
+  "tags": {
+    "shop": "bakery"
+  }
+},
+{
+  "type": "node",
+  "id": 5340455427,
+  "lat": 41.9845220,
+  "lon": 12.5139765,
+  "tags": {
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 5340455466,
+  "lat": 41.9835775,
+  "lon": 12.5133285,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "20",
+    "addr:postcode": "00138",
+    "addr:street": "Via Rapagnano",
+    "name": "Pasticceria Al 7º gusto",
+    "shop": "pastry"
+  }
+},
+{
+  "type": "node",
+  "id": 5571650732,
+  "lat": 41.9644560,
+  "lon": 12.5455688,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "663",
+    "addr:postcode": "00139",
+    "addr:street": "Via della Bufalotta",
+    "name": "MozzaRè",
+    "phone": "+39 0687200066",
+    "shop": "dairy",
+    "website": "http://www.mozzare.it"
+  }
+},
+{
+  "type": "node",
+  "id": 5592947638,
+  "lat": 41.9490913,
+  "lon": 12.5256980,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "109",
+    "addr:postcode": "00139",
+    "addr:street": "Via di Valle Melaina",
+    "name": "Milli",
+    "shop": "pastry"
+  }
+},
+{
+  "type": "node",
+  "id": 5796917257,
+  "lat": 41.9459621,
+  "lon": 12.5297319,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "310",
+    "addr:postcode": "00141",
+    "addr:street": "Viale Jonio",
+    "name": "La Piccola Capitale",
+    "opening_hours": "Mo-Su 11:00-15:00, 17:30-23:30",
+    "phone": "+39 06 8718 4131",
+    "shop": "deli"
+  }
+},
+{
+  "type": "node",
+  "id": 6483542285,
+  "lat": 41.9431705,
+  "lon": 12.5204481,
+  "tags": {
+    "name:ru": "Рынок",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 6816885529,
+  "lat": 41.9580983,
+  "lon": 12.5234911,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "8",
+    "addr:postcode": "00139",
+    "addr:street": "Piazza Ottaviano Vimercati",
+    "name": "Alimentari Campisano",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 6816885586,
+  "lat": 41.9735894,
+  "lon": 12.5146718,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "195/c",
+    "addr:postcode": "00138",
+    "addr:street": "Via Radicofani",
+    "name": "Fruttivendolo",
+    "shop": "greengrocer"
+  }
+},
+{
+  "type": "node",
+  "id": 7054912151,
+  "lat": 41.9562328,
+  "lon": 12.5232405,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "183",
+    "addr:postcode": "00139",
+    "addr:street": "Via Monte Cervialto",
+    "name": "Sapori di pane",
+    "operator": "Massi 2000 S.R.L.",
+    "phone": "+39 06 88643333",
+    "shop": "bakery"
+  }
+},
+{
+  "type": "node",
+  "id": 7095476065,
+  "lat": 41.9634941,
+  "lon": 12.5140709,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "13",
+    "addr:postcode": "00139",
+    "addr:street": "Via Gaspare Pacchiarotti",
+    "name": "Pasticceria Del Moro",
+    "shop": "pastry"
+  }
+},
+{
+  "type": "node",
+  "id": 7132487869,
+  "lat": 41.9718446,
+  "lon": 12.5163712,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "1",
+    "addr:postcode": "00138",
+    "addr:street": "Via Don Giustino Maria Russolillo",
+    "name": "L'Appetitosa",
+    "shop": "pasta"
+  }
+},
+{
+  "type": "node",
+  "id": 7140867463,
+  "lat": 41.9471331,
+  "lon": 12.5257289,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "20",
+    "addr:postcode": "00139",
+    "addr:street": "Via di Valle Melaina",
+    "name": "Bar Pasticceria Melaina",
+    "shop": "pastry"
+  }
+},
+{
+  "type": "node",
+  "id": 7140867500,
+  "lat": 41.9467898,
+  "lon": 12.5268360,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "7",
+    "addr:postcode": "00139",
+    "addr:street": "Via Scarpanto",
+    "name": "Pasta all'Uovo",
+    "shop": "pasta"
+  }
+},
+{
+  "type": "node",
+  "id": 7140867505,
+  "lat": 41.9469285,
+  "lon": 12.5266987,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "46",
+    "addr:postcode": "00139",
+    "addr:street": "Via Gorgona",
+    "name": "La fraschetta",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 7169414597,
+  "lat": 41.9776184,
+  "lon": 12.5316526,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "273/b",
+    "addr:postcode": "00138",
+    "addr:street": "Viale Carmelo Bene",
+    "name": "Forno Aurea",
+    "shop": "bakery"
+  }
+},
+{
+  "type": "node",
+  "id": 7175230073,
+  "lat": 41.9452941,
+  "lon": 12.5263542,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "12",
+    "addr:postcode": "00141",
+    "addr:street": "Piazzale Jonio",
+    "name": "Enoteca Dolciumi Di Biagio",
+    "shop": "wine"
+  }
+},
+{
+  "type": "node",
+  "id": 7197919814,
+  "lat": 41.9594733,
+  "lon": 12.5243045,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "44",
+    "addr:postcode": "00139",
+    "addr:street": "Piazza dell'Ateneo Salesiano",
+    "name": "Pasticceria Valà",
+    "shop": "pastry"
+  }
+},
+{
+  "type": "node",
+  "id": 7197919827,
+  "lat": 41.9595456,
+  "lon": 12.5238569,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "32",
+    "addr:postcode": "00139",
+    "addr:street": "Piazza dell'Ateneo Salesiano",
+    "name": "Celiachia Store",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 7296400009,
+  "lat": 41.9726053,
+  "lon": 12.5156422,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "223",
+    "addr:postcode": "00138",
+    "addr:street": "Via Radicofani",
+    "name": "Amici Carni",
+    "shop": "butcher"
+  }
+},
+{
+  "type": "node",
+  "id": 7296400029,
+  "lat": 41.9730588,
+  "lon": 12.5152495,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "207",
+    "addr:postcode": "00138",
+    "addr:street": "Via Radicofani",
+    "name": "Pan di casa",
+    "shop": "bakery"
+  }
+},
+{
+  "type": "node",
+  "id": 7296400031,
+  "lat": 41.9731454,
+  "lon": 12.5148339,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "202",
+    "addr:postcode": "00138",
+    "addr:street": "Via Radicofani",
+    "name": "Alimentari",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 7325084223,
+  "lat": 41.9745334,
+  "lon": 12.5137754,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "181",
+    "addr:postcode": "00138",
+    "addr:street": "Via Radicofani",
+    "name": "Minimarket di Maria",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 7325084229,
+  "lat": 41.9745014,
+  "lon": 12.5135297,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "172",
+    "addr:postcode": "00138",
+    "addr:street": "Via Radicofani",
+    "name": "Fruttivendolo",
+    "shop": "greengrocer"
+  }
+},
+{
+  "type": "node",
+  "id": 7332238532,
+  "lat": 41.9746026,
+  "lon": 12.5133678,
+  "tags": {
+    "shop": "greengrocer"
+  }
+},
+{
+  "type": "node",
+  "id": 7332238544,
+  "lat": 41.9747373,
+  "lon": 12.5127815,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "1",
+    "addr:postcode": "00138",
+    "addr:street": "Via San Gimignano",
+    "name": "Fruttivendolo",
+    "shop": "greengrocer"
+  }
+},
+{
+  "type": "node",
+  "id": 7474702237,
+  "lat": 41.9667884,
+  "lon": 12.5494584,
+  "tags": {
+    "addr:city": "La Cinquina",
+    "addr:housenumber": "761",
+    "addr:street": "Via della Bufalotta",
+    "name": "Tradizioni Di Campagna",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 7490522221,
+  "lat": 41.9410656,
+  "lon": 12.5281399,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "21",
+    "addr:postcode": "00141",
+    "addr:street": "Via Val di Lanzo",
+    "name": "Pescheria Michele",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "shop": "seafood"
+  }
+},
+{
+  "type": "node",
+  "id": 7501052173,
+  "lat": 41.9418300,
+  "lon": 12.5269360,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "61",
+    "addr:postcode": "00141",
+    "addr:street": "Via Val di Lanzo",
+    "name": "Mancini & Mannetti",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "shop": "bakery"
+  }
+},
+{
+  "type": "node",
+  "id": 10038518353,
+  "lat": 41.9402262,
+  "lon": 12.5294061,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "152",
+    "addr:postcode": "00141",
+    "addr:street": "Viale Tirreno",
+    "name": "Oriental Mini Market",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 11559493109,
+  "lat": 41.9640822,
+  "lon": 12.5360155,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:country": "IT",
+    "addr:housenumber": "666",
+    "addr:postcode": "00139",
+    "addr:street": "Via delle Vigne Nuove",
+    "name": "La bottega del gusto",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 12294033301,
+  "lat": 41.9426890,
+  "lon": 12.5524120,
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "35",
+    "addr:postcode": "00137",
+    "addr:street": "Via Arturo Graf",
+    "check_date:opening_hours": "2026-03-28",
+    "contact:facebook": "InsiemeAlPane",
+    "name": "Insieme al pane",
+    "opening_hours": "Mo-Sa 07:00-21:00",
+    "payment:cash": "yes",
+    "payment:debit_cards": "yes",
+    "phone": "+39 06 827 0582",
+    "shop": "bakery",
+    "website": "https://www.insiemealpane.it/"
+  }
+},
+{
+  "type": "node",
+  "id": 13243085240,
+  "lat": 41.9808541,
+  "lon": 12.5207737,
+  "tags": {
+    "name": "Frutta e verdura minimarket",
+    "opening_hours": "Mo-Su,PH 09:00-21:00",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 13272082801,
+  "lat": 41.9493799,
+  "lon": 12.5327065,
+  "tags": {
+    "addr:housenumber": "23",
+    "addr:postcode": "00139",
+    "addr:street": "Via Monte Sirino",
+    "amenity": "marketplace",
+    "name": "Mercato Rionale del Tufello"
+  }
+},
+{
+  "type": "node",
+  "id": 14313635552,
+  "lat": 41.9722860,
+  "lon": 12.5156817,
+  "tags": {
+    "name": "AMICO SUPER SHOP",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 14321426570,
+  "lat": 41.9451301,
+  "lon": 12.5384690,
+  "tags": {
+    "name": "Frutteria Montegennaro",
+    "shop": "greengrocer"
+  }
+},
+{
+  "type": "node",
+  "id": 14323305812,
+  "lat": 41.9406703,
+  "lon": 12.5360505,
+  "tags": {
+    "name": "Macelleria da Roberto",
+    "shop": "butcher"
+  }
+},
+{
+  "type": "way",
+  "id": 23035987,
+  "center": {
+    "lat": 41.9473281,
+    "lon": 12.5430160
+  },
+  "tags": {
+    "amenity": "marketplace",
+    "building": "yes",
+    "description": "mercato coperto",
+    "name": "Mercato Talenti"
+  }
+},
+{
+  "type": "way",
+  "id": 223975916,
+  "center": {
+    "lat": 41.9409726,
+    "lon": 12.5365046
+  },
+  "tags": {
+    "amenity": "marketplace",
+    "building": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 237998481,
+  "center": {
+    "lat": 41.9523806,
+    "lon": 12.5282955
+  },
+  "tags": {
+    "amenity": "marketplace",
+    "building": "yes",
+    "covered": "yes",
+    "name": "Mercato Coperto di Val Melaina"
+  }
+},
+{
+  "type": "way",
+  "id": 379373691,
+  "center": {
+    "lat": 41.9444963,
+    "lon": 12.5215895
+  },
+  "tags": {
+    "amenity": "marketplace"
+  }
+},
+{
+  "type": "way",
+  "id": 531107184,
+  "center": {
+    "lat": 41.9460046,
+    "lon": 12.5299783
+  },
+  "tags": {
+    "addr:city": "Roma",
+    "addr:housenumber": "296",
+    "addr:postcode": "00141",
+    "addr:street": "Viale Jonio",
+    "building": "yes",
+    "building:levels": "2",
+    "name": "Vintro bar & bites",
+    "opening_hours": "Mo-Su 06:30-02:00",
+    "phone": "+39 06 8775 0461",
+    "shop": "wine",
+    "website": "https://www.facebook.com/vintrobarandbites/"
+  }
+},
+{
+  "type": "way",
+  "id": 560754285,
+  "center": {
+    "lat": 41.9832618,
+    "lon": 12.5136595
+  },
+  "tags": {
+    "building": "yes",
+    "shop": "greengrocer"
+  }
+},
+{
+  "type": "relation",
+  "id": 12039637,
+  "center": {
+    "lat": 41.9654559,
+    "lon": 12.5208511
+  },
+  "tags": {
+    "amenity": "marketplace",
+    "building": "roof",
+    "name": "Mercato Serpentara",
+    "type": "multipolygon"
+  }
+}
+
+  ]
+}

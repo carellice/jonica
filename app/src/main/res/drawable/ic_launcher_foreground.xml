@@ -1,0 +1,19 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- sole -->
+    <path android:fillColor="#F2C14E"
+        android:pathData="M39,40a15,15 0,1 1,30 0a15,15 0,1 1,-30 0" />
+    <!-- colline -->
+    <path android:fillColor="#7FA65A"
+        android:pathData="M10,70 C28,58 44,60 58,66 C70,72 84,62 98,58 L98,100 L10,100 Z" />
+    <path android:fillColor="#5C8240"
+        android:pathData="M10,80 C30,70 50,74 66,80 C78,84 88,78 98,74 L98,100 L10,100 Z" />
+    <!-- foglia d'olivo -->
+    <path android:fillColor="#FBF6EC"
+        android:pathData="M40,78 C38,62 46,48 66,40 C68,58 60,72 40,78 Z" />
+    <path android:strokeColor="#3E5A2C" android:strokeWidth="1.8" android:strokeLineCap="round"
+        android:pathData="M42,76 C48,64 56,54 64,44" />
+</vector>
