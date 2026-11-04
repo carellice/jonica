@@ -80,7 +80,16 @@ import it.jonica.app.location.Default00138
 import it.jonica.app.location.GeoPoint
 import it.jonica.app.location.distanceMeters
 import it.jonica.app.location.formatDistance
-import it.jonica.app.ui.components.EmojiBubble
+import it.jonica.app.ui.components.IconBubble
+import it.jonica.app.ui.components.ScreenPadding
+import androidx.annotation.DrawableRes
+import android.graphics.BitmapFactory
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.material.icons.rounded.Lightbulb
+import androidx.compose.material.icons.rounded.LocationOn
+import androidx.compose.material.icons.rounded.Phone
+import androidx.compose.material.icons.rounded.Place
+import androidx.compose.material.icons.rounded.Schedule
 import it.jonica.app.ui.components.Pill
 import it.jonica.app.ui.components.WavyHeader
 import it.jonica.app.ui.theme.Sky
@@ -133,7 +142,7 @@ fun ShopsScreen(location: GeoPoint?, permissionGranted: Boolean, onRequestPermis
     val categories = remember { ShopCategory.entries.filter { c -> shops.any { it.category == c } } }
 
     Column(Modifier.fillMaxSize()) {
-        WavyHeader(color = Sky, secondColor = Color(0xFF5E93A6), floating = listOf("🥖", "🧀", "🥬", "🐟", "🍷", "🥩")) {
+        WavyHeader(color = Sky, secondColor = Color(0xFF5E93A6), floating = ShopCategory.entries.take(6).map { it.icon }) {
             Column(Modifier.statusBarsPadding().padding(start = 20.dp, end = 20.dp, top = 20.dp, bottom = 44.dp)) {
                 Text("Botteghe di quartiere", style = MaterialTheme.typography.headlineMedium, color = Color.White)
                 Text(
@@ -148,7 +157,7 @@ fun ShopsScreen(location: GeoPoint?, permissionGranted: Boolean, onRequestPermis
 
         Box(
             Modifier
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = ScreenPadding)
                 .offset(y = (-20).dp)
                 .fillMaxWidth()
                 .height(270.dp)
@@ -193,17 +202,17 @@ fun ShopsScreen(location: GeoPoint?, permissionGranted: Boolean, onRequestPermis
 
         Spacer(Modifier.height(12.dp))
         LazyRow(
-            contentPadding = PaddingValues(horizontal = 16.dp),
+            contentPadding = PaddingValues(horizontal = ScreenPadding),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            item { FilterChip("✨ Tutte", filter == null) { filter = null } }
-            items(categories) { c -> FilterChip("${c.emoji} ${c.label}", filter == c) { filter = if (filter == c) null else c } }
+            item { FilterChip(null, "Tutte", filter == null) { filter = null } }
+            items(categories) { c -> FilterChip(c.icon, c.label, filter == c) { filter = if (filter == c) null else c } }
         }
 
         if (!permissionGranted) {
             Row(
                 Modifier
-                    .padding(horizontal = 16.dp, vertical = 10.dp)
+                    .padding(horizontal = ScreenPadding, vertical = 10.dp)
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(20.dp))
                     .background(MaterialTheme.colorScheme.secondaryContainer)
@@ -211,7 +220,7 @@ fun ShopsScreen(location: GeoPoint?, permissionGranted: Boolean, onRequestPermis
                     .padding(14.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Text("📍", fontSize = 22.sp)
+                Icon(Icons.Rounded.LocationOn, null, tint = MaterialTheme.colorScheme.onSecondaryContainer)
                 Spacer(Modifier.width(10.dp))
                 Text(
                     "Attiva la posizione per vedere le botteghe più vicine a te",
@@ -223,7 +232,7 @@ fun ShopsScreen(location: GeoPoint?, permissionGranted: Boolean, onRequestPermis
         }
 
         LazyColumn(
-            contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 120.dp),
+            contentPadding = PaddingValues(start = ScreenPadding, end = ScreenPadding, top = 8.dp, bottom = 130.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             itemsIndexed(visible, key = { _, it -> it.first.id }) { i, (shop, dist) ->
@@ -249,22 +258,31 @@ fun ShopsScreen(location: GeoPoint?, permissionGranted: Boolean, onRequestPermis
 }
 
 @Composable
-private fun FilterChip(text: String, selected: Boolean, onClick: () -> Unit) {
+private fun FilterChip(@DrawableRes icon: Int?, text: String, selected: Boolean, onClick: () -> Unit) {
     val bg by animateColorAsState(
         if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceContainer,
         tween(250), label = "chip",
     )
-    Text(
-        text,
-        color = if (selected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 13.sp,
-        modifier = Modifier
+    Row(
+        Modifier
+            .height(40.dp)
             .clip(RoundedCornerShape(50))
             .background(bg)
             .bouncyClick(onClick)
-            .padding(horizontal = 14.dp, vertical = 9.dp),
-    )
+            .padding(start = if (icon != null) 6.dp else 16.dp, end = 16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        if (icon != null) {
+            androidx.compose.foundation.Image(androidx.compose.ui.res.painterResource(icon), null, Modifier.size(28.dp))
+            Spacer(Modifier.width(6.dp))
+        }
+        Text(
+            text,
+            color = if (selected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface,
+            fontWeight = FontWeight.Bold,
+            fontSize = 13.sp,
+        )
+    }
 }
 
 @Composable
@@ -272,25 +290,27 @@ private fun ShopRow(shop: Shop, dist: Float, modifier: Modifier, onClick: () -> 
     Row(
         modifier
             .fillMaxWidth()
+            .height(80.dp)
             .clip(RoundedCornerShape(24.dp))
             .background(MaterialTheme.colorScheme.surfaceContainer)
             .bouncyClick(onClick)
-            .padding(14.dp),
+            .padding(horizontal = 14.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        EmojiBubble(shop.category.emoji, 50.dp, shop.category.color.copy(alpha = 0.18f))
+        IconBubble(shop.category.icon, 52.dp, shop.category.color.copy(alpha = 0.16f))
         Spacer(Modifier.width(14.dp))
         Column(Modifier.weight(1f)) {
-            Text(shop.name, style = MaterialTheme.typography.titleMedium, maxLines = 1)
+            Text(shop.name, style = MaterialTheme.typography.titleMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
             Text(
                 shop.address ?: shop.category.label,
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
             )
         }
         Spacer(Modifier.width(8.dp))
-        Pill(formatDistance(dist), shop.category.color.copy(alpha = 0.16f), shop.category.color)
+        Pill(formatDistance(dist), shop.category.color.copy(alpha = 0.16f), shop.category.color, Modifier.width(76.dp))
     }
 }
 
@@ -352,7 +372,7 @@ private fun OsmMap(
                     Marker(m).apply {
                         position = OsmPoint(s.lat, s.lon)
                         setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
-                        icon = markerIcon(context, s.category.emoji, s.category.color.toArgb())
+                        icon = markerIcon(context, s.category.icon, s.category.color.toArgb())
                         title = s.name
                         setOnMarkerClickListener { _, _ -> onShopClick(s); true }
                     },
@@ -376,23 +396,21 @@ private fun OsmMap(
 
 private val iconCache = HashMap<String, BitmapDrawable>()
 
-private fun markerIcon(context: Context, emoji: String, color: Int): BitmapDrawable = iconCache.getOrPut(emoji) {
+private fun markerIcon(context: Context, @DrawableRes res: Int, color: Int): BitmapDrawable = iconCache.getOrPut("m$res") {
     val d = context.resources.displayMetrics.density
-    val size = (40 * d).toInt()
+    val size = (44 * d).toInt()
     val bmp = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
     val c = Canvas(bmp)
     val p = Paint(Paint.ANTI_ALIAS_FLAG)
     p.color = 0x33000000
     c.drawCircle(size / 2f, size / 2f + 2 * d, size / 2f - 2 * d, p)
-    p.color = android.graphics.Color.WHITE
-    c.drawCircle(size / 2f, size / 2f, size / 2f - 2 * d, p)
     p.color = color
-    c.drawCircle(size / 2f, size / 2f, size / 2f - 5 * d, p)
-    p.textSize = 18 * d
-    p.textAlign = Paint.Align.CENTER
+    c.drawCircle(size / 2f, size / 2f, size / 2f - 2 * d, p)
     p.color = android.graphics.Color.WHITE
-    val y = size / 2f - (p.descent() + p.ascent()) / 2f
-    c.drawText(emoji, size / 2f, y, p)
+    c.drawCircle(size / 2f, size / 2f, size / 2f - 5 * d, p)
+    val art = BitmapFactory.decodeResource(context.resources, res)
+    val inset = (10 * d).toInt()
+    c.drawBitmap(art, null, android.graphics.Rect(inset, inset, size - inset, size - inset), Paint(Paint.FILTER_BITMAP_FLAG))
     BitmapDrawable(context.resources, bmp)
 }
 
@@ -427,7 +445,7 @@ private fun ShopSheet(shop: Shop, dist: Float, fromUser: Boolean, context: Conte
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Box(Modifier.graphicsLayer { scaleX = pulse; scaleY = pulse }) {
-                    EmojiBubble(shop.category.emoji, 72.dp, shop.category.color.copy(alpha = 0.2f))
+                    IconBubble(shop.category.icon, 72.dp, shop.category.color.copy(alpha = 0.18f))
                 }
                 Spacer(Modifier.width(16.dp))
                 Column {
@@ -444,9 +462,9 @@ private fun ShopSheet(shop: Shop, dist: Float, fromUser: Boolean, context: Conte
                 }
             }
             Spacer(Modifier.height(20.dp))
-            InfoLine("📍", shop.address ?: "Indirizzo non indicato · Roma")
-            shop.hours?.let { InfoLine("🕒", it) }
-            shop.phone?.let { InfoLine("📞", it) }
+            InfoLine(Icons.Rounded.Place, shop.address ?: "Indirizzo non indicato · Roma")
+            shop.hours?.let { InfoLine(Icons.Rounded.Schedule, it) }
+            shop.phone?.let { InfoLine(Icons.Rounded.Phone, it) }
             Spacer(Modifier.height(8.dp))
             AnimatedVisibility(true, enter = fadeIn() + slideInVertically { it / 2 }, exit = fadeOut()) {
                 Box(
@@ -456,11 +474,15 @@ private fun ShopSheet(shop: Shop, dist: Float, fromUser: Boolean, context: Conte
                         .background(MaterialTheme.colorScheme.tertiaryContainer)
                         .padding(16.dp),
                 ) {
-                    Text(
-                        "💚 " + adviceFor(shop.category),
-                        color = MaterialTheme.colorScheme.onTertiaryContainer,
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
+                    Row {
+                        Icon(Icons.Rounded.Lightbulb, null, tint = MaterialTheme.colorScheme.onTertiaryContainer, modifier = Modifier.size(20.dp))
+                        Spacer(Modifier.width(10.dp))
+                        Text(
+                            adviceFor(shop.category),
+                            color = MaterialTheme.colorScheme.onTertiaryContainer,
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                    }
                 }
             }
             Spacer(Modifier.height(20.dp))
@@ -499,9 +521,9 @@ private fun ShopSheet(shop: Shop, dist: Float, fromUser: Boolean, context: Conte
 }
 
 @Composable
-private fun InfoLine(icon: String, text: String) {
+private fun InfoLine(icon: androidx.compose.ui.graphics.vector.ImageVector, text: String) {
     Row(Modifier.padding(vertical = 6.dp), verticalAlignment = Alignment.CenterVertically) {
-        Text(icon, fontSize = 18.sp)
+        Icon(icon, null, tint = MaterialTheme.colorScheme.secondary, modifier = Modifier.size(20.dp))
         Spacer(Modifier.width(12.dp))
         Text(text, style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onSurface)
     }

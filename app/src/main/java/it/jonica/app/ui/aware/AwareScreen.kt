@@ -51,28 +51,33 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import it.jonica.app.ui.components.WavyHeader
+import it.jonica.app.ui.components.IconBubble
+import it.jonica.app.R
+import androidx.annotation.DrawableRes
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import it.jonica.app.ui.components.bouncyClick
 import it.jonica.app.ui.components.staggeredEnter
 
-private data class Slice(val label: String, val cents: Int, val color: Color, val emoji: String)
+private data class Slice(val label: String, val cents: Int, val color: Color, @DrawableRes val icon: Int)
 
 // Ripartizione indicativa di 1 € di frutta e verdura fresca acquistata nella grande distribuzione.
 private val slices = listOf(
-    Slice("Agricoltore", 20, Color(0xFF5C8A3A), "👩‍🌾"),
-    Slice("Trasporto e logistica", 15, Color(0xFFE3A93B), "🚚"),
-    Slice("Intermediari e ingrosso", 15, Color(0xFF3E6B8C), "📦"),
-    Slice("Distribuzione e vendita", 40, Color(0xFFC8643B), "🏬"),
-    Slice("Imballaggi e altro", 10, Color(0xFF8C7A6B), "🧴"),
+    Slice("Agricoltore", 20, Color(0xFF5C8A3A), R.drawable.ic_contadino),
+    Slice("Trasporto e logistica", 15, Color(0xFFE3A93B), R.drawable.ic_camion),
+    Slice("Intermediari e ingrosso", 15, Color(0xFF3E6B8C), R.drawable.ic_cassetta),
+    Slice("Distribuzione e vendita", 40, Color(0xFFC8643B), R.drawable.ic_bancarella),
+    Slice("Imballaggi e altro", 10, Color(0xFF8C7A6B), R.drawable.ic_cesto),
 )
 
 private val pledges = listOf(
-    "🏪" to "Questa settimana faccio almeno una spesa in una bottega di quartiere",
-    "🍊" to "Compro solo frutta e verdura di stagione",
-    "❓" to "Chiedo da dove arrivano i prodotti che compro",
-    "🧺" to "Vado almeno una volta al mercato rionale",
-    "🏷️" to "Leggo l'origine in etichetta prima di mettere nel carrello",
-    "🥡" to "Non spreco: congelo, riuso gli avanzi, compro il giusto",
-    "🛍️" to "Porto la mia borsa e scelgo prodotti sfusi",
+    R.drawable.ic_pane to "Questa settimana faccio almeno una spesa in una bottega di quartiere",
+    R.drawable.ic_arance to "Compro solo frutta e verdura di stagione",
+    R.drawable.ic_contadino to "Chiedo da dove arrivano i prodotti che compro",
+    R.drawable.ic_bancarella to "Vado almeno una volta al mercato rionale",
+    R.drawable.ic_olio to "Leggo l'origine in etichetta prima di mettere nel carrello",
+    R.drawable.ic_pomodori to "Non spreco: congelo, riuso gli avanzi, compro il giusto",
+    R.drawable.ic_cesto to "Porto la mia borsa e scelgo prodotti sfusi",
 )
 
 private val labelTips = listOf(
@@ -98,7 +103,7 @@ fun AwareScreen() {
         item {
             WavyHeader(
                 color = MaterialTheme.colorScheme.secondary,
-                floating = listOf("👩‍🌾", "🚜", "🫒", "🌾", "🍅"),
+                floating = listOf(R.drawable.ic_contadino, R.drawable.ic_grano, R.drawable.ic_olio, R.drawable.ic_camion, R.drawable.ic_pomodori),
             ) {
                 Column(Modifier.statusBarsPadding().padding(start = 24.dp, end = 24.dp, top = 24.dp, bottom = 56.dp)) {
                     Text("Filiera giusta", style = MaterialTheme.typography.headlineLarge, color = Color.White)
@@ -118,14 +123,14 @@ fun AwareScreen() {
             Column(Modifier.padding(horizontal = 20.dp)) {
                 Text("Perché la stagionalità conta", style = MaterialTheme.typography.headlineSmall)
                 Spacer(Modifier.height(12.dp))
-                Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Reason("🔥", "Meno energia", "Niente serre riscaldate", Modifier.weight(1f))
-                    Reason("⛽", "Meno viaggi", "Meno gasolio, prezzi stabili", Modifier.weight(1f))
+                Row(Modifier.height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Reason(R.drawable.ic_estate, "Meno energia", "Niente serre riscaldate", Modifier.weight(1f))
+                    Reason(R.drawable.ic_camion, "Meno viaggi", "Meno gasolio, prezzi stabili", Modifier.weight(1f))
                 }
                 Spacer(Modifier.height(10.dp))
-                Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Reason("😋", "Più gusto", "Matura sulla pianta", Modifier.weight(1f))
-                    Reason("💶", "Prezzo giusto", "Abbondanza = costa meno", Modifier.weight(1f))
+                Row(Modifier.height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Reason(R.drawable.ic_fragole, "Più gusto", "Matura sulla pianta", Modifier.weight(1f))
+                    Reason(R.drawable.ic_cesto, "Prezzo giusto", "Abbondanza = costa meno", Modifier.weight(1f))
                 }
             }
         }
@@ -133,9 +138,9 @@ fun AwareScreen() {
         item {
             PledgeHeader(done.size, pledges.size)
         }
-        itemsIndexed(pledges) { i, (emoji, text) ->
+        itemsIndexed(pledges) { i, (icon, text) ->
             val checked = text in done
-            Pledge(emoji, text, checked, Modifier.staggeredEnter(i)) {
+            Pledge(icon, text, checked, Modifier.staggeredEnter(i)) {
                 done = if (checked) done - text else done + text
                 prefs.edit().putStringSet("pledges", done).apply()
             }
@@ -195,7 +200,7 @@ private fun EuroBreakdown() {
                     }
                 }
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text(slices[selected].emoji, fontSize = 26.sp)
+                    androidx.compose.foundation.Image(androidx.compose.ui.res.painterResource(slices[selected].icon), null, Modifier.size(34.dp))
                     Text(
                         "${(slices[selected].cents * progress.value).toInt()}¢",
                         fontWeight = FontWeight.Bold,
@@ -228,15 +233,16 @@ private fun EuroBreakdown() {
 }
 
 @Composable
-private fun Reason(emoji: String, title: String, subtitle: String, modifier: Modifier) {
+private fun Reason(@DrawableRes icon: Int, title: String, subtitle: String, modifier: Modifier) {
     Column(
         modifier
-            .clip(RoundedCornerShape(topStart = 28.dp, topEnd = 10.dp, bottomEnd = 28.dp, bottomStart = 10.dp))
+            .fillMaxHeight()
+            .clip(RoundedCornerShape(24.dp))
             .background(MaterialTheme.colorScheme.primaryContainer)
             .padding(16.dp),
     ) {
-        Text(emoji, fontSize = 28.sp)
-        Spacer(Modifier.height(6.dp))
+        IconBubble(icon, 48.dp, MaterialTheme.colorScheme.surface.copy(alpha = 0.6f))
+        Spacer(Modifier.height(10.dp))
         Text(title, style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onPrimaryContainer)
         Text(subtitle, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.8f))
     }
@@ -253,7 +259,7 @@ private fun PledgeHeader(done: Int, total: Int) {
             Text(
                 when {
                     done == 0 -> "Inizia da uno. Uno basta."
-                    done == total -> "Fantastico! Sei un esempio per il quartiere 🌟"
+                    done == total -> "Fantastico! Sei un esempio per il quartiere"
                     else -> "$done su $total: continua così!"
                 },
                 style = MaterialTheme.typography.bodyMedium,
@@ -271,7 +277,7 @@ private fun PledgeHeader(done: Int, total: Int) {
 }
 
 @Composable
-private fun Pledge(emoji: String, text: String, checked: Boolean, modifier: Modifier, onToggle: () -> Unit) {
+private fun Pledge(@DrawableRes icon: Int, text: String, checked: Boolean, modifier: Modifier, onToggle: () -> Unit) {
     val bg by animateColorAsState(
         if (checked) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceContainer,
         tween(300), label = "pbg",
@@ -287,9 +293,9 @@ private fun Pledge(emoji: String, text: String, checked: Boolean, modifier: Modi
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Text(emoji, fontSize = 24.sp)
+        IconBubble(icon, 44.dp, MaterialTheme.colorScheme.surface.copy(alpha = 0.7f))
         Spacer(Modifier.width(14.dp))
-        Text(text, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
+        Text(text, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold, maxLines = 2, minLines = 2, modifier = Modifier.weight(1f))
         Spacer(Modifier.width(10.dp))
         Box(
             Modifier

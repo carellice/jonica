@@ -54,7 +54,11 @@ import it.jonica.app.data.Category
 import it.jonica.app.data.Product
 import it.jonica.app.data.monthNames
 import it.jonica.app.data.products
-import it.jonica.app.ui.components.EmojiBubble
+import it.jonica.app.ui.components.IconBubble
+import it.jonica.app.ui.components.ScreenPadding
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.rounded.Lightbulb
+import androidx.compose.material.icons.rounded.Place
 import it.jonica.app.ui.components.MonthsBar
 import it.jonica.app.ui.components.Pill
 import it.jonica.app.ui.components.WavyHeader
@@ -73,9 +77,9 @@ fun SeasonScreen(onProduct: (Product) -> Unit) {
     LaunchedEffect(Unit) { monthState.scrollToItem((currentMonth - 3).coerceAtLeast(0)) }
 
     Column(Modifier.fillMaxSize()) {
-        val floating = remember(month, category) { products.filter { it.category == category && it.inSeason(month) }.take(6).map { it.emoji } }
+        val floating = remember(month, category) { products.filter { it.category == category && it.inSeason(month) }.take(6).map { it.icon } }
         WavyHeader(color = MaterialTheme.colorScheme.primary, secondColor = OliveLight, floating = floating) {
-            Column(Modifier.statusBarsPadding().padding(start = 20.dp, end = 20.dp, top = 20.dp, bottom = 44.dp)) {
+            Column(Modifier.statusBarsPadding().padding(start = ScreenPadding, end = ScreenPadding, top = 20.dp, bottom = 44.dp)) {
                 Text("Calendario delle stagioni", style = MaterialTheme.typography.headlineMedium, color = Color.White)
                 Text(
                     "Scegli un mese e scopri cosa offre la terra (e il mare) del Centro-Sud.",
@@ -86,7 +90,7 @@ fun SeasonScreen(onProduct: (Product) -> Unit) {
         }
         LazyRow(
             state = monthState,
-            contentPadding = PaddingValues(horizontal = 20.dp),
+            contentPadding = PaddingValues(horizontal = ScreenPadding),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             items((1..12).toList()) { m ->
@@ -101,21 +105,29 @@ fun SeasonScreen(onProduct: (Product) -> Unit) {
                 )
                 Column(
                     Modifier
-                        .clip(RoundedCornerShape(20.dp))
+                        .size(width = 96.dp, height = 56.dp)
+                        .clip(RoundedCornerShape(18.dp))
                         .background(bg)
-                        .bouncyClick { month = m }
-                        .padding(horizontal = 16.dp, vertical = 10.dp),
+                        .bouncyClick { month = m },
                     horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
                 ) {
-                    Text(monthNames[m - 1], color = fg, fontWeight = FontWeight.SemiBold)
-                    if (m == currentMonth) Text("oggi", color = fg.copy(alpha = 0.75f), fontSize = 10.sp)
+                    Text(monthNames[m - 1], color = fg, fontWeight = FontWeight.Bold, fontSize = 14.sp, maxLines = 1)
+                    Spacer(Modifier.height(4.dp))
+                    // pallino "oggi": stesso spazio su tutti i chip, così hanno la stessa altezza
+                    Box(
+                        Modifier
+                            .size(5.dp)
+                            .clip(CircleShape)
+                            .background(if (m == currentMonth) fg else Color.Transparent),
+                    )
                 }
             }
         }
         Spacer(Modifier.height(12.dp))
 
         Row(
-            Modifier.padding(horizontal = 20.dp).fillMaxWidth(),
+            Modifier.padding(horizontal = ScreenPadding).fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Category.entries.forEach { c ->
@@ -130,10 +142,14 @@ fun SeasonScreen(onProduct: (Product) -> Unit) {
                         .clip(RoundedCornerShape(18.dp))
                         .background(bg)
                         .bouncyClick { category = c }
-                        .padding(vertical = 10.dp),
+                        .height(76.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
                 ) {
-                    Text(c.emoji, fontSize = 20.sp)
+                    androidx.compose.foundation.Image(
+                        androidx.compose.ui.res.painterResource(c.icon), null, Modifier.size(32.dp),
+                    )
+                    Spacer(Modifier.height(4.dp))
                     Text(
                         c.label,
                         fontSize = 12.sp,
@@ -154,8 +170,8 @@ fun SeasonScreen(onProduct: (Product) -> Unit) {
                 products.filter { it.category == c && it.inSeason(m) }.sortedBy { it.name }
             }
             LazyVerticalGrid(
-                columns = GridCells.Adaptive(104.dp),
-                contentPadding = PaddingValues(start = 20.dp, end = 20.dp, top = 8.dp, bottom = 120.dp),
+                columns = GridCells.Fixed(3),
+                contentPadding = PaddingValues(start = ScreenPadding, end = ScreenPadding, top = 8.dp, bottom = 120.dp),
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 verticalArrangement = Arrangement.spacedBy(10.dp),
                 modifier = Modifier.fillMaxSize(),
@@ -182,38 +198,51 @@ fun SeasonScreen(onProduct: (Product) -> Unit) {
 
 @Composable
 private fun ProductTile(p: Product, month: Int, modifier: Modifier, onClick: () -> Unit) {
-    Column(
+    Box(
         modifier
+            .fillMaxWidth()
+            .height(140.dp)
             .clip(RoundedCornerShape(24.dp))
             .background(MaterialTheme.colorScheme.surfaceContainer)
-            .bouncyClick(onClick)
-            .padding(vertical = 14.dp, horizontal = 6.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
+            .bouncyClick(onClick),
     ) {
-        Box {
-            EmojiBubble(p.emoji, 56.dp, MaterialTheme.colorScheme.surface)
-            when {
-                p.isArriving(month) -> Badge("NEW", MaterialTheme.colorScheme.primary)
-                p.isLeaving(month) -> Badge("ULTIMI", MaterialTheme.colorScheme.secondary)
-            }
+        Column(
+            Modifier.fillMaxSize().padding(horizontal = 6.dp, vertical = 14.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            IconBubble(p.icon, 64.dp, MaterialTheme.colorScheme.surface)
+            Spacer(Modifier.height(10.dp))
+            Text(
+                p.name,
+                fontSize = 13.sp,
+                lineHeight = 16.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                maxLines = 2,
+                minLines = 2,
+                overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
+            )
         }
-        Spacer(Modifier.height(8.dp))
-        Text(p.name, fontSize = 13.sp, fontWeight = FontWeight.SemiBold, textAlign = TextAlign.Center, maxLines = 2)
+        when {
+            p.isArriving(month) -> Badge("NEW", MaterialTheme.colorScheme.primary)
+            p.isLeaving(month) -> Badge("ULTIMI", MaterialTheme.colorScheme.secondary)
+        }
     }
 }
 
 @Composable
-private fun androidx.compose.foundation.layout.BoxScope.Badge(text: String, color: androidx.compose.ui.graphics.Color) {
+private fun androidx.compose.foundation.layout.BoxScope.Badge(text: String, color: Color) {
     Text(
         text,
-        fontSize = 8.sp,
-        fontWeight = FontWeight.Bold,
+        fontSize = 9.sp,
+        fontWeight = FontWeight.ExtraBold,
         color = MaterialTheme.colorScheme.surface,
         modifier = Modifier
             .align(Alignment.TopEnd)
+            .padding(8.dp)
             .clip(RoundedCornerShape(50))
             .background(color)
-            .padding(horizontal = 5.dp, vertical = 1.dp),
+            .padding(horizontal = 6.dp, vertical = 2.dp),
     )
 }
 
@@ -231,7 +260,7 @@ fun ProductSheet(p: Product, onDismiss: () -> Unit) {
                 .padding(bottom = 24.dp),
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                EmojiBubble(p.emoji, 76.dp, MaterialTheme.colorScheme.primaryContainer)
+                IconBubble(p.icon, 76.dp, MaterialTheme.colorScheme.primaryContainer)
                 Spacer(Modifier.width(16.dp))
                 Column {
                     Text(p.name, style = MaterialTheme.typography.headlineMedium)
@@ -255,12 +284,22 @@ fun ProductSheet(p: Product, onDismiss: () -> Unit) {
                     .background(MaterialTheme.colorScheme.tertiaryContainer)
                     .padding(16.dp),
             ) {
-                Text("💡 " + p.tip, color = MaterialTheme.colorScheme.onTertiaryContainer, style = MaterialTheme.typography.bodyLarge)
+                Row {
+                    androidx.compose.material3.Icon(
+                        androidx.compose.material.icons.Icons.Rounded.Lightbulb, null,
+                        tint = MaterialTheme.colorScheme.onTertiaryContainer, modifier = Modifier.size(20.dp),
+                    )
+                    Spacer(Modifier.width(10.dp))
+                    Text(p.tip, color = MaterialTheme.colorScheme.onTertiaryContainer, style = MaterialTheme.typography.bodyLarge)
+                }
             }
             p.origin?.let {
                 Spacer(Modifier.height(12.dp))
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text("📍", fontSize = 18.sp)
+                    androidx.compose.material3.Icon(
+                        androidx.compose.material.icons.Icons.Rounded.Place, null,
+                        tint = MaterialTheme.colorScheme.secondary, modifier = Modifier.size(20.dp),
+                    )
                     Spacer(Modifier.width(8.dp))
                     Text("Da cercare: $it", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }

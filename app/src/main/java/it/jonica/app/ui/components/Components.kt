@@ -1,21 +1,27 @@
 package it.jonica.app.ui.components
 
+import androidx.annotation.DrawableRes
 import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.animation.core.animateFloat
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -30,19 +36,31 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import it.jonica.app.data.monthShort
+import kotlin.math.sin
+
+/** Margine orizzontale unico per tutte le schermate. */
+val ScreenPadding = 20.dp
 
 /** Click con rimbalzo: l'elemento si comprime leggermente mentre è premuto. */
 fun Modifier.bouncyClick(onClick: () -> Unit): Modifier = composed {
     val source = remember { MutableInteractionSource() }
     val pressed by source.collectIsPressedAsState()
     val scale by animateFloatAsState(
-        if (pressed) 0.94f else 1f,
+        if (pressed) 0.95f else 1f,
         spring(dampingRatio = Spring.DampingRatioMediumBouncy, stiffness = Spring.StiffnessMedium),
         label = "bounce",
     )
@@ -68,7 +86,7 @@ fun Modifier.staggeredEnter(index: Int, key: Any? = Unit): Modifier = composed {
 
 @Composable
 fun SectionTitle(title: String, subtitle: String? = null, modifier: Modifier = Modifier) {
-    Column(modifier.padding(horizontal = 20.dp)) {
+    Column(modifier.padding(horizontal = ScreenPadding)) {
         Text(title, style = MaterialTheme.typography.headlineSmall, color = MaterialTheme.colorScheme.onBackground)
         if (subtitle != null) {
             Text(subtitle, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
@@ -76,13 +94,14 @@ fun SectionTitle(title: String, subtitle: String? = null, modifier: Modifier = M
     }
 }
 
+/** Icona illustrata dentro un cerchio. */
 @Composable
-fun EmojiBubble(emoji: String, size: Dp = 52.dp, background: Color = MaterialTheme.colorScheme.surfaceVariant) {
+fun IconBubble(@DrawableRes icon: Int, size: Dp = 52.dp, background: Color = MaterialTheme.colorScheme.surfaceVariant) {
     Box(
         Modifier.size(size).clip(CircleShape).background(background),
         contentAlignment = Alignment.Center,
     ) {
-        Text(emoji, fontSize = (size.value * 0.5f).sp)
+        Image(painterResource(icon), contentDescription = null, modifier = Modifier.size(size * 0.68f))
     }
 }
 
@@ -93,8 +112,9 @@ fun Pill(text: String, color: Color, contentColor: Color, modifier: Modifier = M
             .clip(RoundedCornerShape(50))
             .background(color)
             .padding(horizontal = 10.dp, vertical = 4.dp),
+        contentAlignment = Alignment.Center,
     ) {
-        Text(text, color = contentColor, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+        Text(text, color = contentColor, fontSize = 12.sp, fontWeight = FontWeight.Bold, maxLines = 1, textAlign = TextAlign.Center)
     }
 }
 
@@ -107,25 +127,27 @@ fun MonthsBar(months: Set<Int>, current: Int, modifier: Modifier = Modifier) {
             val anim = remember { Animatable(0f) }
             LaunchedEffect(months) { anim.snapTo(0f); anim.animateTo(1f, tween(300, delayMillis = m * 40)) }
             Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
-                Box(
-                    Modifier
-                        .padding(bottom = 4.dp)
-                        .graphicsLayer { scaleY = if (on) anim.value else 1f; transformOrigin = androidx.compose.ui.graphics.TransformOrigin(0.5f, 1f) }
-                        .clip(RoundedCornerShape(6.dp))
-                        .background(
-                            when {
-                                on && m == current -> MaterialTheme.colorScheme.secondary
-                                on -> MaterialTheme.colorScheme.primary
-                                else -> MaterialTheme.colorScheme.surfaceVariant
-                            },
-                        )
-                        .size(width = 22.dp, height = if (on) 30.dp else 12.dp),
-                )
+                Box(Modifier.size(width = 22.dp, height = 30.dp), contentAlignment = Alignment.BottomCenter) {
+                    Box(
+                        Modifier
+                            .graphicsLayer { scaleY = if (on) anim.value else 1f; transformOrigin = TransformOrigin(0.5f, 1f) }
+                            .clip(RoundedCornerShape(6.dp))
+                            .background(
+                                when {
+                                    on && m == current -> MaterialTheme.colorScheme.secondary
+                                    on -> MaterialTheme.colorScheme.primary
+                                    else -> MaterialTheme.colorScheme.surfaceVariant
+                                },
+                            )
+                            .size(width = 22.dp, height = if (on) 30.dp else 10.dp),
+                    )
+                }
                 Text(
-                    it.jonica.app.data.monthShort[m - 1],
+                    monthShort[m - 1],
                     fontSize = 11.sp,
-                    fontWeight = if (m == current) FontWeight.Bold else FontWeight.Normal,
+                    fontWeight = if (m == current) FontWeight.ExtraBold else FontWeight.Medium,
                     color = if (m == current) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = 4.dp),
                 )
             }
         }
@@ -134,74 +156,71 @@ fun MonthsBar(months: Set<Int>, current: Int, modifier: Modifier = Modifier) {
 
 /**
  * Intestazione organica: fondo colorato con bordo inferiore a onda che si muove lentamente
- * ed emoji che fluttuano sullo sfondo.
+ * e illustrazioni che fluttuano sullo sfondo.
  */
 @Composable
 fun WavyHeader(
     color: Color,
-    floating: List<String>,
+    floating: List<Int>,
     modifier: Modifier = Modifier,
     secondColor: Color = color,
-    content: @Composable androidx.compose.foundation.layout.BoxScope.() -> Unit,
+    content: @Composable BoxScope.() -> Unit,
 ) {
-    val inf = androidx.compose.animation.core.rememberInfiniteTransition(label = "wave")
+    val inf = rememberInfiniteTransition(label = "wave")
     val phase by inf.animateFloat(
         0f, (2 * Math.PI).toFloat(),
-        androidx.compose.animation.core.infiniteRepeatable(tween(7000, easing = androidx.compose.animation.core.LinearEasing)),
+        infiniteRepeatable(tween(7000, easing = LinearEasing)),
         label = "phase",
     )
-    val drift by inf.animateFloat(
-        0f, 1f,
-        androidx.compose.animation.core.infiniteRepeatable(tween(14000, easing = androidx.compose.animation.core.LinearEasing)),
-        label = "drift",
-    )
+    val drift by inf.animateFloat(0f, 1f, infiniteRepeatable(tween(14000, easing = LinearEasing)), label = "drift")
     Box(
         modifier
             .fillMaxWidth()
             .drawBehind {
-                val amp = 14.dp.toPx()
+                val amp = 12.dp.toPx()
                 val base = size.height - amp * 2
-                val path = androidx.compose.ui.graphics.Path().apply {
+                val path = Path().apply {
                     moveTo(0f, 0f)
                     lineTo(size.width, 0f)
                     lineTo(size.width, base)
                     val steps = 48
                     for (i in steps downTo 0) {
                         val x = size.width * i / steps
-                        val y = base + amp * kotlin.math.sin(phase + x / size.width * 2.2f * Math.PI.toFloat()) +
-                            amp * 0.4f * kotlin.math.sin(phase * 2 + x / size.width * 5f)
+                        val y = base + amp * sin(phase + x / size.width * 2f * Math.PI.toFloat())
                         lineTo(x, y)
                     }
                     close()
                 }
-                drawPath(path, androidx.compose.ui.graphics.Brush.linearGradient(listOf(color, secondColor), end = androidx.compose.ui.geometry.Offset(size.width, size.height)))
+                drawPath(path, Brush.linearGradient(listOf(color, secondColor), end = Offset(size.width, size.height)))
                 // texture a puntini, come carta di un sacchetto del pane
                 val rnd = java.util.Random(7)
                 repeat(140) {
                     val x = rnd.nextFloat() * size.width
                     val y = rnd.nextFloat() * base
-                    drawCircle(Color.White.copy(alpha = 0.05f + rnd.nextFloat() * 0.06f), radius = 1.dp.toPx() + rnd.nextFloat() * 1.5f.dp.toPx(), center = androidx.compose.ui.geometry.Offset(x, y))
+                    drawCircle(Color.White.copy(alpha = 0.04f + rnd.nextFloat() * 0.05f), radius = 1.dp.toPx() + rnd.nextFloat() * 1.5f.dp.toPx(), center = Offset(x, y))
                 }
             },
     ) {
-      androidx.compose.foundation.layout.BoxWithConstraints(Modifier.matchParentSize()) {
-        val w = maxWidth
-        val h = maxHeight
-        floating.forEachIndexed { i, e ->
-            val seed = (i * 37 + 11) % 100 / 100f
-            val t = (drift + i / floating.size.toFloat()) % 1f
-            Text(
-                e,
-                fontSize = (22 + (i % 3) * 8).sp,
-                modifier = Modifier
-                    .padding(start = w * (0.08f + 0.84f * seed), top = h * (0.85f - 0.75f * t))
-                    .graphicsLayer {
-                        alpha = 0.3f * kotlin.math.sin(t * Math.PI).toFloat()
-                        rotationZ = 20f * kotlin.math.sin(t * 6f + i)
-                    },
-            )
+        BoxWithConstraints(Modifier.matchParentSize()) {
+            val w = maxWidth
+            val h = maxHeight
+            floating.forEachIndexed { i, icon ->
+                // colonne equidistanti
+                val col = (i + 0.5f) / floating.size
+                val t = (drift + (i * 0.37f) % 1f) % 1f
+                Image(
+                    painterResource(icon),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .padding(start = (w * col - 18.dp).coerceAtLeast(0.dp), top = h * (0.8f - 0.7f * t))
+                        .size(36.dp)
+                        .graphicsLayer {
+                            alpha = 0.3f * sin(t * Math.PI).toFloat()
+                            rotationZ = 16f * sin(t * 6f + i)
+                        },
+                )
+            }
         }
-      }
         content()
     }
 }

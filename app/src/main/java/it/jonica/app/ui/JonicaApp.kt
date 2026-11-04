@@ -6,16 +6,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
@@ -30,6 +27,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -155,20 +153,17 @@ private fun BottomBar(selected: Int, onSelect: (Int) -> Unit, modifier: Modifier
         modifier
             .fillMaxWidth()
             .navigationBarsPadding()
-            .padding(horizontal = 16.dp, vertical = 12.dp),
-        contentAlignment = Alignment.Center,
+            .padding(horizontal = 20.dp, vertical = 12.dp),
     ) {
         Surface(
-            shape = RoundedCornerShape(32.dp),
+            shape = RoundedCornerShape(28.dp),
             color = MaterialTheme.colorScheme.surface,
             tonalElevation = 4.dp,
-            modifier = Modifier.shadow(18.dp, RoundedCornerShape(32.dp), ambientColor = Color.Black.copy(alpha = 0.25f)),
+            modifier = Modifier
+                .fillMaxWidth()
+                .shadow(18.dp, RoundedCornerShape(28.dp), ambientColor = Color.Black.copy(alpha = 0.25f)),
         ) {
-            Row(
-                Modifier.padding(8.dp),
-                horizontalArrangement = Arrangement.spacedBy(4.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
+            Row(Modifier.padding(horizontal = 6.dp, vertical = 8.dp)) {
                 Tab.entries.forEachIndexed { i, t ->
                     val isSel = i == selected
                     val bg by animateColorAsState(
@@ -179,26 +174,38 @@ private fun BottomBar(selected: Int, onSelect: (Int) -> Unit, modifier: Modifier
                         if (isSel) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
                         tween(300), label = "fg",
                     )
-                    Row(
-                        Modifier
-                            .clip(RoundedCornerShape(24.dp))
-                            .background(bg)
-                            .bouncyClick { onSelect(i) }
-                            .padding(horizontal = 16.dp, vertical = 12.dp)
-                            .animateContentSize(spring(dampingRatio = Spring.DampingRatioLowBouncy, stiffness = Spring.StiffnessMediumLow)),
-                        verticalAlignment = Alignment.CenterVertically,
+                    val label by animateColorAsState(
+                        if (isSel) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+                        tween(300), label = "lb",
+                    )
+                    val scale by androidx.compose.animation.core.animateFloatAsState(
+                        if (isSel) 1f else 0.6f,
+                        spring(dampingRatio = Spring.DampingRatioMediumBouncy),
+                        label = "ind",
+                    )
+                    Column(
+                        Modifier.weight(1f).bouncyClick { onSelect(i) },
+                        horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
-                        Icon(t.icon, contentDescription = t.label, tint = fg)
-                        AnimatedVisibility(
-                            isSel,
-                            enter = fadeIn() + expandHorizontally(),
-                            exit = fadeOut() + shrinkHorizontally(),
+                        Box(
+                            Modifier
+                                .width(56.dp)
+                                .height(32.dp)
+                                .graphicsLayer { scaleX = scale }
+                                .clip(RoundedCornerShape(16.dp))
+                                .background(bg),
+                            contentAlignment = Alignment.Center,
                         ) {
-                            Row {
-                                Spacer(Modifier.width(8.dp))
-                                Text(t.label, color = fg, fontWeight = FontWeight.SemiBold, fontSize = 14.sp, maxLines = 1)
-                            }
+                            Icon(t.icon, contentDescription = t.label, tint = fg, modifier = Modifier.graphicsLayer { scaleX = 1f / scale })
                         }
+                        Spacer(Modifier.height(4.dp))
+                        Text(
+                            t.label,
+                            color = label,
+                            fontWeight = if (isSel) FontWeight.ExtraBold else FontWeight.SemiBold,
+                            fontSize = 12.sp,
+                            maxLines = 1,
+                        )
                     }
                 }
             }
@@ -222,13 +229,15 @@ private fun Splash(onDone: () -> Unit) {
         contentAlignment = Alignment.Center,
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(
-                "🫒",
-                fontSize = 84.sp,
-                modifier = Modifier.graphicsLayer {
-                    scaleX = leaf.value; scaleY = leaf.value
-                    rotationZ = (1f - leaf.value) * -60f
-                },
+            androidx.compose.foundation.Image(
+                androidx.compose.ui.res.painterResource(it.jonica.app.R.drawable.logo),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(132.dp)
+                    .graphicsLayer {
+                        scaleX = leaf.value; scaleY = leaf.value
+                        rotationZ = (1f - leaf.value) * -40f
+                    },
             )
             Spacer(Modifier.height(12.dp))
             Text(

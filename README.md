@@ -49,3 +49,5 @@ Overpass salvando il risultato in `scripts/osm_shops.json` e lancia
 - Dati delle botteghe e mappe © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors (ODbL).
 - Le stime sulla ripartizione del prezzo sono indicative e basate su studi ISMEA.
 - Il calendario di stagionalità è indicativo per il Centro-Sud Italia.
+- Font [Manrope](https://fonts.google.com/specimen/Manrope) (SIL Open Font License).
+- Icone illustrate e icona dell'app create con ChatGPT; `scripts/slice_icons.py` le ritaglia dai fogli generati.

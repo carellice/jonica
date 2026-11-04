@@ -8,7 +8,9 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import it.jonica.app.R
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
@@ -66,16 +68,32 @@ private val Dark = darkColorScheme(
     outline = Color(0xFF45473A),
 )
 
-private val Display = FontFamily.Serif
+val Manrope = FontFamily(
+    Font(R.font.manrope_regular, FontWeight.Normal),
+    Font(R.font.manrope_medium, FontWeight.Medium),
+    Font(R.font.manrope_semibold, FontWeight.SemiBold),
+    Font(R.font.manrope_bold, FontWeight.Bold),
+    Font(R.font.manrope_extrabold, FontWeight.ExtraBold),
+)
 
 private val AppTypography = Typography().let { t ->
-    t.copy(
-        displaySmall = TextStyle(fontFamily = Display, fontWeight = FontWeight.Bold, fontSize = 36.sp, lineHeight = 40.sp),
-        headlineLarge = TextStyle(fontFamily = Display, fontWeight = FontWeight.Bold, fontSize = 32.sp, lineHeight = 38.sp),
-        headlineMedium = TextStyle(fontFamily = Display, fontWeight = FontWeight.Bold, fontSize = 26.sp, lineHeight = 32.sp),
-        headlineSmall = TextStyle(fontFamily = Display, fontWeight = FontWeight.SemiBold, fontSize = 22.sp, lineHeight = 28.sp),
-        titleLarge = t.titleLarge.copy(fontWeight = FontWeight.SemiBold),
-        titleMedium = t.titleMedium.copy(fontWeight = FontWeight.SemiBold),
+    fun TextStyle.m() = copy(fontFamily = Manrope)
+    Typography(
+        displayLarge = t.displayLarge.m(),
+        displayMedium = t.displayMedium.m(),
+        displaySmall = TextStyle(fontFamily = Manrope, fontWeight = FontWeight.ExtraBold, fontSize = 34.sp, lineHeight = 40.sp, letterSpacing = (-0.8).sp),
+        headlineLarge = TextStyle(fontFamily = Manrope, fontWeight = FontWeight.ExtraBold, fontSize = 30.sp, lineHeight = 36.sp, letterSpacing = (-0.6).sp),
+        headlineMedium = TextStyle(fontFamily = Manrope, fontWeight = FontWeight.ExtraBold, fontSize = 26.sp, lineHeight = 32.sp, letterSpacing = (-0.5).sp),
+        headlineSmall = TextStyle(fontFamily = Manrope, fontWeight = FontWeight.Bold, fontSize = 20.sp, lineHeight = 26.sp, letterSpacing = (-0.3).sp),
+        titleLarge = t.titleLarge.m().copy(fontWeight = FontWeight.Bold, fontSize = 18.sp),
+        titleMedium = t.titleMedium.m().copy(fontWeight = FontWeight.Bold),
+        titleSmall = t.titleSmall.m().copy(fontWeight = FontWeight.SemiBold),
+        bodyLarge = t.bodyLarge.m(),
+        bodyMedium = t.bodyMedium.m(),
+        bodySmall = t.bodySmall.m(),
+        labelLarge = t.labelLarge.m().copy(fontWeight = FontWeight.SemiBold),
+        labelMedium = t.labelMedium.m().copy(fontWeight = FontWeight.SemiBold),
+        labelSmall = t.labelSmall.m().copy(fontWeight = FontWeight.SemiBold),
     )
 }
 
@@ -84,6 +102,7 @@ fun JonicaTheme(content: @Composable () -> Unit) {
     MaterialTheme(
         colorScheme = if (isSystemInDarkTheme()) Dark else Light,
         typography = AppTypography,
-        content = content,
-    )
+    ) {
+        androidx.compose.material3.ProvideTextStyle(MaterialTheme.typography.bodyMedium, content)
+    }
 }
