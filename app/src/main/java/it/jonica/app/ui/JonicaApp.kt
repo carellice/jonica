@@ -80,6 +80,9 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import it.jonica.app.update.UpdateController
 import it.jonica.app.update.UpdateSheet
+import it.jonica.app.ui.onboarding.Onboarding
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import kotlinx.coroutines.launch
 
 enum class Tab(val label: String, val icon: ImageVector) {
@@ -100,6 +103,9 @@ fun JonicaApp() {
     var mapFullscreen by remember { mutableStateOf(false) }
     val scope = androidx.compose.runtime.rememberCoroutineScope()
     val updates = remember { UpdateController(scope) }
+    val prefs = remember { context.getSharedPreferences("jonica", android.content.Context.MODE_PRIVATE) }
+    // l'introduzione parte da sola solo al primo avvio; da Filiera si può rivedere quando si vuole
+    var showOnboarding by rememberSaveable { mutableStateOf(!prefs.getBoolean("onboarding_done", false)) }
 
     val permissionLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { res ->
         permissionGranted = res.values.any { it }
@@ -110,9 +116,11 @@ fun JonicaApp() {
         onDispose { stop() }
     }
 
-    LaunchedEffect(showSplash) {
-        if (!showSplash) updates.check(manual = false)
-        if (!showSplash && !permissionGranted) {
+    // aggiornamenti e permesso di posizione solo a introduzione finita, per non sovrapporsi
+    LaunchedEffect(showSplash, showOnboarding) {
+        if (showSplash || showOnboarding) return@LaunchedEffect
+        updates.check(manual = false)
+        if (!permissionGranted) {
             delay(600)
             permissionLauncher.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION))
         }
@@ -144,7 +152,7 @@ fun JonicaApp() {
                     },
                     onFullscreenChange = { mapFullscreen = it },
                 )
-                Tab.FILIERA -> AwareScreen(updates)
+                Tab.FILIERA -> AwareScreen(updates, onShowOnboarding = { showOnboarding = true })
             }
         }
 
@@ -160,7 +168,18 @@ fun JonicaApp() {
 
         selectedProduct?.let { p -> ProductSheet(p) { selectedProduct = null } }
 
-        if (!showSplash) UpdateSheet(updates)
+        if (!showSplash && !showOnboarding) UpdateSheet(updates)
+
+        AnimatedVisibility(
+            visible = showOnboarding && !showSplash,
+            enter = fadeIn(tween(450)) + scaleIn(tween(500, easing = FastOutSlowInEasing), initialScale = 1.08f),
+            exit = fadeOut(tween(400)) + scaleOut(tween(450, easing = FastOutSlowInEasing), targetScale = 0.92f),
+        ) {
+            Onboarding(onDone = {
+                prefs.edit().putBoolean("onboarding_done", true).apply()
+                showOnboarding = false
+            })
+        }
 
         AnimatedVisibility(visible = showSplash, enter = fadeIn(), exit = fadeOut(tween(500))) {
             Splash(onDone = { showSplash = false })
@@ -199,8 +218,8 @@ private fun BottomBar(selected: Int, onSelect: (Int) -> Unit, modifier: Modifier
                     val targetLeft = selected * slot
                     val targetRight = (selected + 1) * slot
                     val goingRight = targetLeft > left.value
-                    val lead = spring<Float>(dampingRatio = 0.6f, stiffness = 700f)
-                    val trail = spring<Float>(dampingRatio = 0.45f, stiffness = 160f)
+                    val lead = spring<Float>(dampingRatio = 0.7f, stiffness = 700f)
+                    val trail = spring<Float>(dampingRatio = 0.59f, stiffness = 160f)
                     launch { left.animateTo(targetLeft, if (goingRight) trail else lead) }
                     launch { right.animateTo(targetRight, if (goingRight) lead else trail) }
                 }
@@ -226,7 +245,7 @@ private fun BottomBar(selected: Int, onSelect: (Int) -> Unit, modifier: Modifier
                         )
                         val lift by animateFloatAsState(
                             if (isSel) 1f else 0f,
-                            spring(dampingRatio = 0.4f, stiffness = 300f),
+                            spring(dampingRatio = 0.55f, stiffness = 300f),
                             label = "lift",
                         )
                         Column(

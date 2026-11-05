@@ -57,6 +57,8 @@ import it.jonica.app.ui.theme.TerracottaDeep
 import it.jonica.app.update.UpdateCard
 import it.jonica.app.update.UpdateController
 import it.jonica.app.ui.components.IconBubble
+import it.jonica.app.ui.components.ScreenPadding
+import androidx.compose.material.icons.rounded.PlayArrow
 import it.jonica.app.R
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -95,7 +97,7 @@ private val labelTips = listOf(
 )
 
 @Composable
-fun AwareScreen(updates: UpdateController) {
+fun AwareScreen(updates: UpdateController, onShowOnboarding: () -> Unit = {}) {
     val context = LocalContext.current
     val prefs = remember { context.getSharedPreferences("jonica", Context.MODE_PRIVATE) }
     var done by remember { mutableStateOf(prefs.getStringSet("pledges", emptySet())!!.toSet()) }
@@ -161,7 +163,12 @@ fun AwareScreen(updates: UpdateController) {
             }
         }
 
-        item { UpdateCard(updates) }
+        item {
+            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                UpdateCard(updates)
+                OnboardingCard(onShowOnboarding)
+            }
+        }
 
         item {
             Text(
@@ -343,6 +350,38 @@ private fun LabelTip(title: String, tip: String, modifier: Modifier) {
         if (open) {
             Spacer(Modifier.height(8.dp))
             Text(tip, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
+    }
+}
+
+/** Card per rivedere l'introduzione, stessa forma della card degli aggiornamenti. */
+@Composable
+private fun OnboardingCard(onClick: () -> Unit) {
+    Row(
+        Modifier
+            .padding(horizontal = ScreenPadding)
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(24.dp))
+            .background(MaterialTheme.colorScheme.surfaceContainer)
+            .bouncyClick(onClick)
+            .padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        IconBubble(R.drawable.ic_cesto, 52.dp, MaterialTheme.colorScheme.primaryContainer)
+        Spacer(Modifier.width(14.dp))
+        Column(Modifier.weight(1f)) {
+            Text("Rivedi l'introduzione", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurface)
+            Text(
+                "Il tour di Jonica, dall'inizio",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+        Box(
+            Modifier.size(40.dp).clip(CircleShape).background(MaterialTheme.colorScheme.primaryContainer),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(Icons.Rounded.PlayArrow, null, tint = MaterialTheme.colorScheme.onPrimaryContainer, modifier = Modifier.size(22.dp))
         }
     }
 }
