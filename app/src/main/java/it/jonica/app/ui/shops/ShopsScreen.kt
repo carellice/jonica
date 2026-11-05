@@ -76,6 +76,43 @@ import androidx.lifecycle.LifecycleEventObserver
 import it.jonica.app.data.Shop
 import it.jonica.app.data.ShopCategory
 import it.jonica.app.data.allShops
+import androidx.activity.compose.BackHandler
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.animate
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
+import androidx.compose.animation.shrinkHorizontally
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.material.icons.rounded.CloseFullscreen
+import androidx.compose.material.icons.rounded.Map
+import androidx.compose.material.icons.rounded.OpenInFull
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.TransformOrigin
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
+import androidx.compose.ui.input.nestedscroll.NestedScrollSource
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.layout.layout
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Constraints
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.Velocity
+import androidx.compose.ui.unit.lerp
+import kotlinx.coroutines.launch
+import kotlin.math.roundToInt
 import it.jonica.app.data.ShopSource
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
@@ -140,10 +177,25 @@ private fun tileFilter(dark: Boolean): ColorMatrixColorFilter {
     return ColorMatrixColorFilter(m)
 }
 
+private val CardMapHeight = 230.dp
+
+/** Molla della mappa a schermo intero: morbida, con un filo di rimbalzo finale. */
+private val ExpandSpring = spring<Float>(dampingRatio = 0.82f, stiffness = 240f)
+
+/** Molla con cui la mappa si aggancia aperta o chiusa quando finisce lo scroll. */
+private val SnapSpring = spring<Float>(dampingRatio = 0.9f, stiffness = 420f)
+
 @Composable
-fun ShopsScreen(location: GeoPoint?, permissionGranted: Boolean, onRequestPermission: () -> Unit) {
+fun ShopsScreen(
+    location: GeoPoint?,
+    permissionGranted: Boolean,
+    onRequestPermission: () -> Unit,
+    onFullscreenChange: (Boolean) -> Unit = {},
+) {
     val context = LocalContext.current
     val dark = isSystemInDarkTheme()
+    val density = LocalDensity.current
+    val scope = rememberCoroutineScope()
     var filter by remember { mutableStateOf<ShopCategory?>(null) }
     var onlyVerified by remember { mutableStateOf(false) }
     var query by remember { mutableStateOf("") }
@@ -170,133 +222,285 @@ fun ShopsScreen(location: GeoPoint?, permissionGranted: Boolean, onRequestPermis
             .map { it.first }
     }
 
-    Column(Modifier.fillMaxSize()) {
-        WavyHeader(color = Sky, secondColor = Color(0xFF5E93A6), floating = ShopCategory.entries.take(6).map { it.icon }) {
-            Column(Modifier.statusBarsPadding().padding(start = 20.dp, end = 20.dp, top = 20.dp, bottom = 44.dp)) {
-                Text("Botteghe e produttori", style = MaterialTheme.typography.headlineMedium, color = Color.White)
-                Text(
-                    if (location != null) "${allShops.size} botteghe nel Lazio, dalla più vicina a te."
-                    else "${allShops.size} botteghe nel Lazio · attiva la posizione per ordinarle in base a dove sei.",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = Color.White.copy(alpha = 0.88f),
-                )
+    // ── stato della mappa ─────────────────────────────────────────────
+    // expand: 0 = card nella pagina, 1 = schermo intero
+    val expand = remember { Animatable(0f) }
+    var expanded by remember { mutableStateOf(false) }
+    // collapse: quanti px di mappa ha "mangiato" lo scroll della lista (0..cardPx)
+    val cardPx = with(density) { CardMapHeight.toPx() }
+    val collapse = remember { mutableFloatStateOf(0f) }
+    val collapsedFraction by remember { derivedStateOf { collapse.floatValue / cardPx } }
+
+    fun setExpanded(value: Boolean) {
+        if (expanded == value) return
+        expanded = value
+        onFullscreenChange(value)
+        scope.launch {
+            if (value && collapse.floatValue > 0f) {
+                // prima riapre la card, poi la porta a schermo intero
+                launch { animate(collapse.floatValue, 0f, animationSpec = SnapSpring) { v, _ -> collapse.floatValue = v } }
+            }
+            expand.animateTo(if (value) 1f else 0f, ExpandSpring)
+        }
+    }
+    BackHandler(enabled = expanded) { setExpanded(false) }
+    DisposableEffect(Unit) { onDispose { onFullscreenChange(false) } }
+
+    // La lista "spinge" via la mappa mentre scorre verso l'alto e la riporta giù solo quando
+    // torna in cima; al rilascio la mappa si aggancia aperta o chiusa con una molla.
+    val nested = remember(cardPx) {
+        object : NestedScrollConnection {
+            override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
+                val c = collapse.floatValue
+                if (available.y < 0f && c < cardPx) {
+                    val next = (c - available.y).coerceAtMost(cardPx)
+                    collapse.floatValue = next
+                    return Offset(0f, -(next - c))
+                }
+                return Offset.Zero
+            }
+
+            override fun onPostScroll(consumed: Offset, available: Offset, source: NestedScrollSource): Offset {
+                val c = collapse.floatValue
+                if (available.y > 0f && c > 0f) {
+                    val next = (c - available.y).coerceAtLeast(0f)
+                    collapse.floatValue = next
+                    return Offset(0f, c - next)
+                }
+                return Offset.Zero
+            }
+
+            override suspend fun onPostFling(consumed: Velocity, available: Velocity): Velocity {
+                val c = collapse.floatValue
+                if (c > 0f && c < cardPx) {
+                    val velocity = consumed.y + available.y
+                    val target = when {
+                        velocity < -800f -> cardPx
+                        velocity > 800f -> 0f
+                        c > cardPx / 2 -> cardPx
+                        else -> 0f
+                    }
+                    animate(c, target, animationSpec = SnapSpring) { v, _ -> collapse.floatValue = v }
+                }
+                return Velocity.Zero
             }
         }
-        Spacer(Modifier.height(12.dp))
+    }
 
-        Box(
+    BoxWithConstraints(Modifier.fillMaxSize()) {
+        val fullW = constraints.maxWidth
+        val fullH = constraints.maxHeight
+        val statusTop = WindowInsets.statusBars.asPaddingValues().calculateTopPadding()
+        val navBottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
+
+        Column(
             Modifier
-                .padding(horizontal = ScreenPadding)
-                .offset(y = (-20).dp)
-                .fillMaxWidth()
-                .height(230.dp)
-                .clip(RoundedCornerShape(28.dp))
-                .background(MaterialTheme.colorScheme.surfaceVariant),
+                .fillMaxSize()
+                .clipToBounds()
+                .nestedScroll(nested),
         ) {
-            OsmMap(
-                dark = dark,
-                center = here,
-                userLocation = location,
-                shops = visible.map { it.first },
-                onShopClick = { selected = it },
-                onReady = { mapView = it },
-            )
+            // l'intestazione scivola verso l'alto quando la mappa va a schermo intero
             Box(
                 Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(12.dp)
-                    .size(48.dp)
-                    .clip(RoundedCornerShape(16.dp))
-                    .background(MaterialTheme.colorScheme.surface)
-                    .bouncyClick {
+                    .layout { m, c ->
+                        val p = m.measure(c)
+                        val e = expand.value.coerceIn(0f, 1f)
+                        val h = (p.height * (1f - e)).roundToInt()
+                        layout(p.width, h) { p.placeRelativeWithLayer(0, h - p.height) }
+                    },
+            ) {
+                WavyHeader(color = Sky, secondColor = Color(0xFF5E93A6), floating = ShopCategory.entries.take(6).map { it.icon }) {
+                    Column(Modifier.statusBarsPadding().padding(start = 20.dp, end = 20.dp, top = 20.dp, bottom = 44.dp)) {
+                        Text("Botteghe e produttori", style = MaterialTheme.typography.headlineMedium, color = Color.White)
+                        // il sottotitolo si richiude insieme alla mappa durante lo scroll
+                        Box(
+                            Modifier
+                                .layout { m, c ->
+                                    val p = m.measure(c)
+                                    val f = collapsedFraction.coerceIn(0f, 1f)
+                                    layout(p.width, (p.height * (1f - f)).roundToInt()) { p.placeRelative(0, 0) }
+                                }
+                                .graphicsLayer { alpha = 1f - collapsedFraction },
+                        ) {
+                            Text(
+                                if (location != null) "${allShops.size} botteghe nel Lazio, dalla più vicina a te."
+                                else "${allShops.size} botteghe nel Lazio · attiva la posizione per ordinarle in base a dove sei.",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = Color.White.copy(alpha = 0.88f),
+                            )
+                        }
+                    }
+                }
+            }
+
+            // ── finestra della mappa ──────────────────────────────────────
+            // Il MapView ha sempre la dimensione dello schermo e resta centrato: la "finestra"
+            // si allarga e si stringe sopra di lui, così la mappa non viene mai ridimensionata
+            // e l'animazione resta fluida anche a 120 Hz.
+            val surfaceVariant = MaterialTheme.colorScheme.surfaceVariant
+            Box(
+                Modifier
+                    .fillMaxWidth()
+                    .layout { m, c ->
+                        val e = expand.value
+                        val pad = lerpF(ScreenPadding.toPx(), 0f, e.coerceIn(0f, 1f))
+                        val card = (cardPx - collapse.floatValue).coerceAtLeast(0f)
+                        val h = lerpF(card, fullH.toFloat(), e).roundToInt().coerceAtLeast(0)
+                        val w = (c.maxWidth - 2 * pad).roundToInt().coerceAtLeast(0)
+                        val lift = lerpF(-20.dp.toPx(), 0f, e) * (1f - collapsedFraction)
+                        val p = m.measure(Constraints.fixed(w, h))
+                        layout(c.maxWidth, (h + lift).roundToInt().coerceAtLeast(0)) {
+                            p.placeRelativeWithLayer(pad.roundToInt(), lift.roundToInt())
+                        }
+                    }
+                    .graphicsLayer {
+                        val e = expand.value
+                        // la molla può superare 1 nel rimbalzo: raggio e margini restano non negativi
+                        shape = RoundedCornerShape(lerp(28.dp, 0.dp, e.coerceIn(0f, 1f)))
+                        clip = true
+                        // la card si "allontana" un po' mentre si richiude
+                        val f = collapsedFraction * (1f - e)
+                        alpha = 1f - 0.5f * f
+                        val s = 1f - 0.04f * f
+                        scaleX = s; scaleY = s
+                        transformOrigin = TransformOrigin(0.5f, 0f)
+                    }
+                    .background(surfaceVariant),
+            ) {
+                Box(
+                    Modifier.layout { m, c ->
+                        val p = m.measure(Constraints.fixed(fullW, fullH))
+                        layout(c.maxWidth, c.maxHeight) {
+                            p.placeRelative((c.maxWidth - fullW) / 2, (c.maxHeight - fullH) / 2)
+                        }
+                    },
+                ) {
+                    OsmMap(
+                        dark = dark,
+                        center = here,
+                        userLocation = location,
+                        shops = visible.map { it.first },
+                        onShopClick = { selected = it },
+                        onReady = { mapView = it },
+                    )
+                }
+
+                MapControls(
+                    expand = { expand.value },
+                    expanded = expanded,
+                    statusTop = statusTop,
+                    navBottom = navBottom,
+                    count = visible.size,
+                    filterLabel = filter?.label,
+                    onToggle = { setExpanded(!expanded) },
+                    onLocate = {
                         if (!permissionGranted) onRequestPermission()
                         mapView?.controller?.animateTo(OsmPoint(here.lat, here.lon), 14.6, 700L)
                     },
-                contentAlignment = Alignment.Center,
-            ) {
-                Icon(Icons.Rounded.MyLocation, "La mia posizione", tint = MaterialTheme.colorScheme.primary)
+                )
             }
-            Text(
-                "© OpenStreetMap contributors",
-                fontSize = 9.sp,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
-                modifier = Modifier
-                    .align(Alignment.BottomStart)
-                    .padding(8.dp)
-                    .clip(RoundedCornerShape(6.dp))
-                    .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.7f))
-                    .padding(horizontal = 6.dp, vertical = 2.dp),
-            )
-        }
 
-        SearchField(query, { query = it }, Modifier.offset(y = (-8).dp))
-        Spacer(Modifier.height(4.dp))
-        LazyRow(
-            contentPadding = PaddingValues(horizontal = ScreenPadding),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            item { FilterChip(null, "Tutte", filter == null) { filter = null } }
-            item { FilterChip(null, "Solo verificate", onlyVerified) { onlyVerified = !onlyVerified } }
-            items(categories) { c -> FilterChip(c.icon, c.label, filter == c) { filter = if (filter == c) null else c } }
-        }
-
-        if (!permissionGranted) {
             Row(
                 Modifier
-                    .padding(horizontal = ScreenPadding, vertical = 10.dp)
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(20.dp))
-                    .background(MaterialTheme.colorScheme.secondaryContainer)
-                    .bouncyClick(onRequestPermission)
-                    .padding(14.dp),
+                    .padding(horizontal = ScreenPadding)
+                    .offset(y = (-8).dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Icon(Icons.Rounded.LocationOn, null, tint = MaterialTheme.colorScheme.onSecondaryContainer)
-                Spacer(Modifier.width(10.dp))
-                Text(
-                    "Attiva la posizione per vedere le botteghe più vicine a te",
-                    color = MaterialTheme.colorScheme.onSecondaryContainer,
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.weight(1f),
-                )
+                SearchField(query, { query = it }, Modifier.weight(1f))
+                // quando la mappa è richiusa compare un pulsante per riaprirla
+                AnimatedVisibility(
+                    visible = collapsedFraction > 0.85f,
+                    enter = fadeIn(tween(220)) + scaleIn(spring(dampingRatio = 0.5f, stiffness = 500f), initialScale = 0.4f) +
+                        expandHorizontally(spring(stiffness = 500f)),
+                    exit = fadeOut(tween(150)) + scaleOut(tween(150), targetScale = 0.4f) + shrinkHorizontally(tween(200)),
+                ) {
+                    Row {
+                        Spacer(Modifier.width(8.dp))
+                        Box(
+                            Modifier
+                                .size(48.dp)
+                                .clip(CircleShape)
+                                .background(MaterialTheme.colorScheme.primary)
+                                .bouncyClick {
+                                    scope.launch {
+                                        animate(collapse.floatValue, 0f, animationSpec = ExpandSpring) { v, _ -> collapse.floatValue = v }
+                                    }
+                                },
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Icon(Icons.Rounded.Map, "Mostra la mappa", tint = MaterialTheme.colorScheme.onPrimary)
+                        }
+                    }
+                }
             }
-        }
+            Spacer(Modifier.height(4.dp))
+            LazyRow(
+                contentPadding = PaddingValues(horizontal = ScreenPadding),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                item { FilterChip(null, "Tutte", filter == null) { filter = null } }
+                item { FilterChip(null, "Solo verificate", onlyVerified) { onlyVerified = !onlyVerified } }
+                items(categories) { c -> FilterChip(c.icon, c.label, filter == c) { filter = if (filter == c) null else c } }
+            }
 
-        LazyColumn(
-            contentPadding = PaddingValues(start = ScreenPadding, end = ScreenPadding, top = 8.dp, bottom = 130.dp),
-            verticalArrangement = Arrangement.spacedBy(10.dp),
-        ) {
-            item {
-                Text(
-                    if (visible.size == 1) "1 bottega" else "${visible.size} botteghe",
-                    style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(start = 4.dp),
-                )
-            }
-            if (visible.isEmpty()) {
-                item {
+            if (!permissionGranted) {
+                Row(
+                    Modifier
+                        .padding(horizontal = ScreenPadding, vertical = 10.dp)
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(20.dp))
+                        .background(MaterialTheme.colorScheme.secondaryContainer)
+                        .bouncyClick(onRequestPermission)
+                        .padding(14.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Icon(Icons.Rounded.LocationOn, null, tint = MaterialTheme.colorScheme.onSecondaryContainer)
+                    Spacer(Modifier.width(10.dp))
                     Text(
-                        "Nessuna bottega trovata. Prova a cambiare filtro o ricerca.",
+                        "Attiva la posizione per vedere le botteghe più vicine a te",
+                        color = MaterialTheme.colorScheme.onSecondaryContainer,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.padding(16.dp),
+                        modifier = Modifier.weight(1f),
                     )
                 }
             }
-            itemsIndexed(visible, key = { _, it -> it.first.id }) { i, (shop, dist) ->
-                ShopRow(shop, dist, Modifier.animateItem().staggeredEnter(i, filter to onlyVerified)) {
-                    selected = shop
-                    mapView?.controller?.animateTo(OsmPoint(shop.lat, shop.lon), if (shop.approximate) 14.0 else 17.0, 700L)
+
+            LazyColumn(
+                contentPadding = PaddingValues(start = ScreenPadding, end = ScreenPadding, top = 8.dp, bottom = 130.dp),
+                verticalArrangement = Arrangement.spacedBy(10.dp),
+            ) {
+                item {
+                    Text(
+                        if (visible.size == 1) "1 bottega" else "${visible.size} botteghe",
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(start = 4.dp),
+                    )
                 }
-            }
-            item {
-                Text(
-                    "Botteghe del Lazio: ricerca su fonti pubbliche (siti dei produttori, mercati contadini, reti locali ed elenco regionale delle botteghe storiche). Le schede \"da verificare\" vengono dall'elenco regionale e non sono state confermate: chiama prima di andare. Quartiere 00138 e mappe © OpenStreetMap contributors.",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(8.dp),
-                )
+                if (visible.isEmpty()) {
+                    item {
+                        Text(
+                            "Nessuna bottega trovata. Prova a cambiare filtro o ricerca.",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(16.dp),
+                        )
+                    }
+                }
+                itemsIndexed(visible, key = { _, it -> it.first.id }) { i, (shop, dist) ->
+                    ShopRow(shop, dist, Modifier.animateItem().staggeredEnter(i, filter to onlyVerified)) {
+                        selected = shop
+                        mapView?.controller?.animateTo(OsmPoint(shop.lat, shop.lon), if (shop.approximate) 14.0 else 17.0, 700L)
+                    }
+                }
+                item {
+                    Text(
+                        "Botteghe del Lazio: ricerca su fonti pubbliche (siti dei produttori, mercati contadini, reti locali ed elenco regionale delle botteghe storiche). Le schede \"da verificare\" vengono dall'elenco regionale e non sono state confermate: chiama prima di andare. Quartiere 00138 e mappe © OpenStreetMap contributors.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(8.dp),
+                    )
+                }
             }
         }
     }
@@ -304,6 +508,116 @@ fun ShopsScreen(location: GeoPoint?, permissionGranted: Boolean, onRequestPermis
     selected?.let { s ->
         ShopSheet(s, distanceMeters(here, s.lat, s.lon), location != null, context) { selected = null }
     }
+}
+
+/** Pulsanti sopra la mappa: si spostano con gli inset di sistema quando la mappa è a schermo intero. */
+@Composable
+private fun BoxScope.MapControls(
+    expand: () -> Float,
+    expanded: Boolean,
+    statusTop: Dp,
+    navBottom: Dp,
+    count: Int,
+    filterLabel: String?,
+    onToggle: () -> Unit,
+    onLocate: () -> Unit,
+) {
+    val surface = MaterialTheme.colorScheme.surface
+    // a schermo intero: velo scuro sotto la status bar, così l'ora e le icone restano leggibili
+    Box(
+        Modifier
+            .align(Alignment.TopCenter)
+            .fillMaxWidth()
+            .height(statusTop + 28.dp)
+            .graphicsLayer { alpha = expand().coerceIn(0f, 1f) }
+            .background(Brush.verticalGradient(listOf(Color.Black.copy(alpha = 0.35f), Color.Transparent))),
+    )
+    // l'icona ruota di mezzo giro mentre si passa da "espandi" a "chiudi"
+    val turn by animateFloatAsState(if (expanded) 180f else 0f, spring(dampingRatio = 0.6f, stiffness = 300f), label = "turn")
+
+    Box(
+        Modifier
+            .align(Alignment.TopEnd)
+            .layout { m, c ->
+                val p = m.measure(c)
+                val top = (12.dp.toPx() + statusTop.toPx() * expand()).roundToInt()
+                layout(p.width + 12.dp.roundToPx(), p.height + top) { p.placeRelative(0, top) }
+            }
+            .size(48.dp)
+            .shadow(6.dp, RoundedCornerShape(16.dp))
+            .clip(RoundedCornerShape(16.dp))
+            .background(surface)
+            .bouncyClick(onToggle),
+        contentAlignment = Alignment.Center,
+    ) {
+        Icon(
+            if (turn > 90f) Icons.Rounded.CloseFullscreen else Icons.Rounded.OpenInFull,
+            contentDescription = if (expanded) "Riduci la mappa" else "Espandi la mappa",
+            tint = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.graphicsLayer { rotationZ = turn },
+        )
+    }
+
+    // a schermo intero: quante botteghe sono sulla mappa
+    Box(
+        Modifier
+            .align(Alignment.TopStart)
+            .layout { m, c ->
+                val p = m.measure(c)
+                val top = (18.dp.toPx() + statusTop.toPx() * expand()).roundToInt()
+                layout(p.width + 20.dp.roundToPx(), p.height + top) { p.placeRelative(20.dp.roundToPx(), top) }
+            }
+            .graphicsLayer {
+                val e = expand()
+                alpha = ((e - 0.5f) * 2f).coerceIn(0f, 1f)
+                translationY = (1f - e) * -24.dp.toPx()
+            }
+            .shadow(6.dp, RoundedCornerShape(50))
+            .clip(RoundedCornerShape(50))
+            .background(surface)
+            .padding(horizontal = 14.dp, vertical = 10.dp),
+    ) {
+        Text(
+            (if (count == 1) "1 bottega" else "$count botteghe") + (filterLabel?.let { " · $it" } ?: ""),
+            fontWeight = FontWeight.Bold,
+            fontSize = 13.sp,
+            color = MaterialTheme.colorScheme.onSurface,
+        )
+    }
+
+    Box(
+        Modifier
+            .align(Alignment.BottomEnd)
+            .layout { m, c ->
+                val p = m.measure(c)
+                val bottom = (12.dp.toPx() + (navBottom + 12.dp).toPx() * expand()).roundToInt()
+                layout(p.width + 12.dp.roundToPx(), p.height + bottom) { p.placeRelative(0, 0) }
+            }
+            .size(48.dp)
+            .shadow(6.dp, RoundedCornerShape(16.dp))
+            .clip(RoundedCornerShape(16.dp))
+            .background(surface)
+            .bouncyClick(onLocate),
+        contentAlignment = Alignment.Center,
+    ) {
+        Icon(Icons.Rounded.MyLocation, "La mia posizione", tint = MaterialTheme.colorScheme.primary)
+    }
+
+    Text(
+        "© OpenStreetMap contributors",
+        fontSize = 9.sp,
+        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+        modifier = Modifier
+            .align(Alignment.BottomStart)
+            .layout { m, c ->
+                val p = m.measure(c)
+                val bottom = (8.dp.toPx() + navBottom.toPx() * expand()).roundToInt()
+                layout(p.width + 8.dp.roundToPx(), p.height + bottom) { p.placeRelative(8.dp.roundToPx(), 0) }
+            }
+            .clip(RoundedCornerShape(6.dp))
+            .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.7f))
+            .padding(horizontal = 6.dp, vertical = 2.dp),
+    )
 }
 
 @Composable
@@ -632,7 +946,6 @@ private fun ShopSheet(shop: Shop, dist: Float, fromUser: Boolean, context: Conte
 private fun SearchField(value: String, onChange: (String) -> Unit, modifier: Modifier = Modifier) {
     Row(
         modifier
-            .padding(horizontal = ScreenPadding)
             .fillMaxWidth()
             .height(48.dp)
             .clip(RoundedCornerShape(50))
@@ -711,3 +1024,5 @@ private fun adviceFor(c: ShopCategory) = when (c) {
     ShopCategory.SPEZIE -> "Lo zafferano e le spezie coltivate nel Lazio sono rari e preziosi: comprali direttamente da chi li produce."
     ShopCategory.AZIENDA_AGRICOLA -> "Comprare in azienda agricola accorcia la filiera al massimo: telefona prima per sapere giorni e orari di vendita."
 }
+
+private fun lerpF(a: Float, b: Float, t: Float) = a + (b - a) * t

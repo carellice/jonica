@@ -14,6 +14,8 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
@@ -95,6 +97,7 @@ fun JonicaApp() {
     var location by remember { mutableStateOf<GeoPoint?>(null) }
     var permissionGranted by remember { mutableStateOf(hasLocationPermission(context)) }
     var selectedProduct by remember { mutableStateOf<Product?>(null) }
+    var mapFullscreen by remember { mutableStateOf(false) }
     val scope = androidx.compose.runtime.rememberCoroutineScope()
     val updates = remember { UpdateController(scope) }
 
@@ -139,16 +142,21 @@ fun JonicaApp() {
                     onRequestPermission = {
                         permissionLauncher.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION))
                     },
+                    onFullscreenChange = { mapFullscreen = it },
                 )
                 Tab.FILIERA -> AwareScreen(updates)
             }
         }
 
-        BottomBar(
-            selected = tab,
-            onSelect = { tab = it },
+        // con la mappa a schermo intero la barra scende fuori dallo schermo
+        AnimatedVisibility(
+            visible = !mapFullscreen,
+            enter = slideInVertically(spring(dampingRatio = 0.75f, stiffness = 300f)) { it } + fadeIn(tween(200)),
+            exit = slideOutVertically(spring(dampingRatio = 1f, stiffness = 400f)) { it } + fadeOut(tween(200)),
             modifier = Modifier.align(Alignment.BottomCenter),
-        )
+        ) {
+            BottomBar(selected = tab, onSelect = { tab = it })
+        }
 
         selectedProduct?.let { p -> ProductSheet(p) { selectedProduct = null } }
 
