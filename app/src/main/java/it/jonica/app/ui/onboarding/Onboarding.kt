@@ -45,6 +45,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -97,23 +98,28 @@ private val pages = listOf(
 fun Onboarding(onDone: () -> Unit) {
     val pager = rememberPagerState { pages.size }
     val scope = rememberCoroutineScope()
-    val position = pager.currentPage + pager.currentPageOffsetFraction
-
-    // lo sfondo sfuma da una pagina all'altra seguendo il dito
-    val bg = run {
-        val i = position.toInt().coerceIn(0, pages.lastIndex)
-        val next = (i + 1).coerceAtMost(pages.lastIndex)
-        lerp(pages[i].color, pages[next].color, (position - i).coerceIn(0f, 1f))
-    }
-    val last = pager.currentPage == pages.lastIndex
+    // posizione continua del pager (es. 2.4 = tra la terza e la quarta pagina); letta solo nei
+    // lambda di disegno, così lo swipe non ricompone l'intera schermata a ogni frame
+    val position = { pager.currentPage + pager.currentPageOffsetFraction }
+    val last by remember { derivedStateOf { pager.currentPage == pages.lastIndex } }
 
     Box(
         Modifier
             .fillMaxSize()
-            .background(bg)
+            // lo sfondo sfuma da una pagina all'altra seguendo il dito
+            .drawBehind {
+                val pos = position().coerceIn(0f, pages.lastIndex.toFloat())
+                val i = pos.toInt().coerceAtMost(pages.lastIndex)
+                val next = (i + 1).coerceAtMost(pages.lastIndex)
+                drawRect(lerp(pages[i].color, pages[next].color, pos - i))
+            }
             .grain(),
     ) {
-        HorizontalPager(state = pager, modifier = Modifier.fillMaxSize()) { index ->
+        HorizontalPager(
+            state = pager,
+            beyondViewportPageCount = 1,
+            modifier = Modifier.fillMaxSize(),
+        ) { index ->
             PageContent(index, pager)
         }
 
@@ -156,11 +162,12 @@ fun Onboarding(onDone: () -> Unit) {
 private fun PageContent(index: Int, pager: PagerState) {
     val page = pages[index]
     // distanza della pagina dal centro: 0 = visibile, ±1 = fuori
-    val offset = (pager.currentPage - index) + pager.currentPageOffsetFraction
-    // entrata: parte quando la pagina si ferma al centro
+    val offset = { (pager.currentPage - index) + pager.currentPageOffsetFraction }
+    // entrata: parte appena lo swipe punta a questa pagina, così è già viva mentre arriva
     val enter = remember { Animatable(0f) }
-    LaunchedEffect(pager.settledPage == index) {
-        if (pager.settledPage == index) enter.animateTo(1f, tween(900, easing = FastOutSlowInEasing))
+    val active by remember { derivedStateOf { pager.targetPage == index || pager.currentPage == index } }
+    LaunchedEffect(active) {
+        if (active) enter.animateTo(1f, tween(900, easing = FastOutSlowInEasing))
     }
 
     Column(
@@ -176,8 +183,11 @@ private fun PageContent(index: Int, pager: PagerState) {
                 .fillMaxWidth()
                 // parallasse: l'illustrazione scorre più lentamente del testo
                 .graphicsLayer {
-                    translationX = offset * size.width * 0.45f
-                    alpha = 1f - abs(offset).coerceIn(0f, 1f) * 0.6f
+                    val o = offset()
+                    translationX = o * size.width * 0.3f
+                    alpha = (1f - abs(o) * 1.3f).coerceIn(0f, 1f)
+                    val s = 1f - 0.12f * abs(o).coerceIn(0f, 1f)
+                    scaleX = s; scaleY = s
                 },
             contentAlignment = Alignment.Center,
         ) {
@@ -196,8 +206,10 @@ private fun PageContent(index: Int, pager: PagerState) {
             Modifier
                 .padding(horizontal = 32.dp)
                 .graphicsLayer {
-                    translationX = offset * size.width * 0.15f
-                    alpha = 1f - abs(offset).coerceIn(0f, 1f)
+                    val o = offset()
+                    // il testo esce un po' più veloce della pagina: effetto profondità
+                    translationX = -o * size.width * 0.2f
+                    alpha = (1f - abs(o) * 1.5f).coerceIn(0f, 1f)
                 },
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
@@ -288,21 +300,22 @@ private val wheelIcons = listOf(
 
 /** La ruota dell'anno: gira con lo swipe e si ferma con il mese corrente in alto. */
 @Composable
-private fun SeasonWheel(enter: Float, offset: Float) {
+private fun SeasonWheel(enter: Float, offset: () -> Float) {
     val month = remember { LocalDate.now().monthValue }
     val inf = rememberInfiniteTransition(label = "wheel")
     val pulse by inf.animateFloat(1f, 1.12f, infiniteRepeatable(tween(1100), RepeatMode.Reverse), label = "pulse")
     // a fine entrata il mese di oggi è in cima (-90°)
     val target = -90f - (month - 1) * 30f
-    val rotation = target + (1f - enter) * 140f + offset * 90f
+    val rotation = { target + (1f - enter) * 140f + offset() * 90f }
     BoxWithConstraints(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         val r = maxWidth * 0.36f
         Canvas(Modifier.fillMaxSize().graphicsLayer { alpha = enter }) {
             val c = center
+            val rot = rotation()
             val ring = r.toPx()
             drawCircle(Color.White.copy(alpha = 0.12f), radius = ring, center = c, style = Stroke(2.dp.toPx()))
             for (m in 0 until 12) {
-                val a = Math.toRadians((rotation + m * 30f).toDouble())
+                val a = Math.toRadians((rot + m * 30f).toDouble())
                 val p = Offset(c.x + (cos(a) * ring).toFloat(), c.y + (sin(a) * ring).toFloat())
                 val current = m == month - 1
                 drawCircle(
@@ -315,13 +328,13 @@ private fun SeasonWheel(enter: Float, offset: Float) {
             drawCircle(Mustard, radius = 6.dp.toPx(), center = Offset(c.x, c.y - ring - 38.dp.toPx()))
         }
         wheelIcons.forEachIndexed { m, icon ->
-            val a = Math.toRadians((rotation + m * 30f).toDouble())
             val current = m == month - 1
             Image(
                 painterResource(icon), null,
                 Modifier
                     .size(if (current) 46.dp else 34.dp)
                     .graphicsLayer {
+                        val a = Math.toRadians((rotation() + m * 30f).toDouble())
                         translationX = (cos(a) * r.toPx()).toFloat()
                         translationY = (sin(a) * r.toPx()).toFloat()
                         val s = enter * if (current) pulse else 1f
@@ -548,7 +561,7 @@ private fun CheckRow(@DrawableRes icon: Int, text: String, progress: Float) {
  * lo raggiunge dopo, così il segno si allunga come una goccia tra un pallino e l'altro.
  */
 @Composable
-private fun LiquidIndicator(position: Float, count: Int, modifier: Modifier = Modifier) {
+private fun LiquidIndicator(position: () -> Float, count: Int, modifier: Modifier = Modifier) {
     Canvas(modifier.height(12.dp)) {
         val dot = 8.dp.toPx()
         val gap = 14.dp.toPx()
@@ -558,8 +571,9 @@ private fun LiquidIndicator(position: Float, count: Int, modifier: Modifier = Mo
         for (i in 0 until count) {
             drawCircle(Color.White.copy(alpha = 0.3f), radius = dot / 2, center = Offset(i * step + dot / 2, y))
         }
-        val i = position.toInt().coerceIn(0, count - 1)
-        val t = (position - i).coerceIn(0f, 1f)
+        val pos = position().coerceIn(0f, (count - 1).toFloat())
+        val i = pos.toInt().coerceIn(0, count - 1)
+        val t = (pos - i).coerceIn(0f, 1f)
         val lead = sqrt(t)        // il bordo davanti corre
         val trail = t * t         // quello dietro insegue
         val left = (i + trail) * step
@@ -571,18 +585,9 @@ private fun LiquidIndicator(position: Float, count: Int, modifier: Modifier = Mo
 
 @Composable
 private fun NextButton(last: Boolean, onClick: () -> Unit) {
-    val width by animateDpAsState(if (last) 168.dp else 64.dp, spring(dampingRatio = 0.7f, stiffness = 300f), label = "w")
-    val inf = rememberInfiniteTransition(label = "glow")
-    val glow by inf.animateFloat(0f, 1f, infiniteRepeatable(tween(1600, easing = LinearEasing)), label = "g")
-    Box(contentAlignment = Alignment.Center) {
-        // alone che pulsa dietro al pulsante
-        Box(
-            Modifier
-                .size(width + 16.dp * glow, 64.dp + 16.dp * glow)
-                .graphicsLayer { alpha = (1f - glow) * 0.35f }
-                .clip(RoundedCornerShape(50))
-                .background(Cream),
-        )
+    // si allarga solo quando arriva all'ultima pagina; per il resto resta fermo
+    val width by animateDpAsState(if (last) 168.dp else 64.dp, spring(dampingRatio = 0.85f, stiffness = 300f), label = "w")
+    Box(Modifier.height(64.dp), contentAlignment = Alignment.CenterEnd) {
         Row(
             Modifier
                 .size(width, 64.dp)
