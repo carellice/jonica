@@ -84,14 +84,19 @@ data class Shop(
     /** true se la posizione è il centro del comune e non l'indirizzo esatto. */
     val approximate: Boolean = false,
     val source: ShopSource = ShopSource.OSM,
-    /** Gestione personale o familiare documentata dalle fonti. */
+    /** Gestione personale, familiare o cooperativa documentata dalle fonti. */
     val family: Boolean = false,
+    /** Scheda Google Maps del punto vendita, quando la mappatura la riporta. */
+    val mapsUrl: String? = null,
 ) {
     val place: String? get() = comune?.let { c -> provincia?.let { "$c ($it)" } ?: c }
 }
 
-/** Tutte le botteghe: quartiere 00138 (OpenStreetMap) + mappatura del Lazio. */
-val allShops: List<Shop> by lazy { shops + lazioShops }
+/**
+ * Tutte le botteghe: quartiere 00138 (OpenStreetMap), mappatura del Lazio e mappatura di Roma.
+ * Le schede di Roma sono le più recenti e complete: sostituiscono i doppioni delle altre due.
+ */
+val allShops: List<Shop> by lazy { (shops + lazioShops).filterNot { it.id in romaReplaces } + romaShops }
 
 fun prevMonth(m: Int) = if (m == 1) 12 else m - 1
 fun nextMonth(m: Int) = if (m == 12) 1 else m + 1

@@ -1856,5 +1856,164 @@
 "lat": 41.4643098,
 "lon": 12.9065728,
 "type": "residential"
+},
+"Via Salaria, 1464A, Roma, Italia": {
+"lat": 42.0021389,
+"lon": 12.5179215,
+"type": "primary"
+},
+"Via Nemorense, 51C, Roma, Italia": {
+"lat": 41.9240301,
+"lon": 12.5076945,
+"type": "tertiary"
+},
+"Via Giovanni Conti, mercato Val Melaina, Roma, Italia": null,
+"Via Giovanni Conti, Roma, Italia": {
+"lat": 41.9529614,
+"lon": 12.5294145,
+"type": "secondary"
+},
+"Via delle Vigne Nuove, 100, Roma, Italia": {
+"lat": 41.957805,
+"lon": 12.5354054,
+"type": "tertiary"
+},
+"Viale del Tintoretto, 222, Roma, Italia": {
+"lat": 41.833754,
+"lon": 12.49627,
+"type": "unclassified"
+},
+"Via dei Chiavari, 34, Roma, Italia": {
+"lat": 41.8946474,
+"lon": 12.4742641,
+"type": "shop"
+},
+"Via Andrea Doria, mercato Trionfale, box 227/228, Roma, Italia": null,
+"Via Andrea Doria, Roma, Italia": {
+"lat": 41.9102859,
+"lon": 12.4543608,
+"type": "secondary"
+},
+"Via Gallia, 22/24, Roma, Italia": {
+"lat": 41.8804792,
+"lon": 12.5071835,
+"type": "secondary"
+},
+"Via della Luce, 21, Roma, Italia": {
+"lat": 41.8885642,
+"lon": 12.4753182,
+"type": "shop"
+},
+"Via Flavio Stilicone, 278/282, Roma, Italia": {
+"lat": 41.8582367,
+"lon": 12.5622689,
+"type": "shop"
+},
+"Via Lidia, 32 / Via Segesta, 24, Roma, Italia": null,
+"Via Veroli, 18, Roma, Italia": {
+"lat": 41.891773,
+"lon": 12.5590599,
+"type": "residential"
+},
+"Via di Tor Sapienza, 32, Roma, Italia": {
+"lat": 41.8959193,
+"lon": 12.5919002,
+"type": "tertiary"
+},
+"Via Gregorio VII, 397, Roma, Italia": {
+"lat": 41.8987551,
+"lon": 12.4512709,
+"type": "primary"
+},
+"Via Bergamo, 27/29, Roma, Italia": {
+"lat": 41.9113519,
+"lon": 12.4999207,
+"type": "shop"
+},
+"Via della Maddalena, 15, Roma, Italia": {
+"lat": 41.9003489,
+"lon": 12.4764967,
+"type": "shop"
+},
+"Via Giovanni De Calvi, 23/25, Roma, Italia": {
+"lat": 41.8676838,
+"lon": 12.4462186,
+"type": "residential"
+},
+"Via delle Alzavole, 47-49, Roma, Italia": {
+"lat": 41.8738442,
+"lon": 12.6017427,
+"type": "residential"
+},
+"Viale Anicio Gallo, 59, Roma, Italia": {
+"lat": 41.8540464,
+"lon": 12.5620789,
+"type": "shop"
+},
+"Via Domenico Panaroli, 35, Roma, Italia": {
+"lat": 41.8822673,
+"lon": 12.5622155,
+"type": "amenity"
+},
+"Via Ardeatina, 931, Roma, Italia": {
+"lat": 41.8012699,
+"lon": 12.5365439,
+"type": "place"
+},
+"Via Santa Maria Ausiliatrice, 68, Roma, Italia": {
+"lat": 41.8083546,
+"lon": 12.6741674,
+"type": "road"
+},
+"Via Nomentana, 285, Roma, Italia": {
+"lat": 41.9682336,
+"lon": 12.6027384,
+"type": "secondary"
+},
+"Via Salaria, 1472/1474, Roma, Italia": {
+"lat": 42.0021389,
+"lon": 12.5179215,
+"type": "primary"
+},
+"Via Monte Giberto, 101, Roma, Italia": {
+"lat": 41.9792407,
+"lon": 12.5168616,
+"type": "tertiary"
+},
+"Via Seggiano, 57, Roma, Italia": {
+"lat": 41.9523789,
+"lon": 12.5147734,
+"type": "tertiary"
+},
+"Via Simeto, 4/A, Roma, Italia": {
+"lat": 41.9174924,
+"lon": 12.497873,
+"type": "residential"
+},
+"Via Scirè, 24, Roma, Italia": {
+"lat": 41.9297266,
+"lon": 12.5231659,
+"type": "shop"
+},
+"Via Monte Sirino, 23, Roma, Italia": {
+"lat": 41.9493799,
+"lon": 12.5327065,
+"type": "amenity"
+},
+"Via Veronica Gambara, Roma, Italia": {
+"lat": 41.9446656,
+"lon": 12.5569675,
+"type": "residential"
+},
+"Via di San Teodoro, 74, Roma, Italia": {
+"lat": 41.8888122,
+"lon": 12.483228,
+"type": "building"
+},
+"Via Andrea Doria / Via Santamaura, Roma, Italia": null,
+"Trionfale, Roma, Italia": {
+"lat": 41.9355047,
+"lon": 12.400213,
+"type": "suburb"
 }
 }

@@ -35,8 +35,8 @@ e a chi vende nel quartiere.
 - **Stagioni**: calendario mese per mese di frutta, verdura, pesce del Tirreno
   e dispensa (olio, ricotta, miele, legumi…), con consigli d'acquisto per ogni
   prodotto.
-- **Botteghe**: mappa e lista di quasi 400 botteghe e piccoli produttori del
-  Lazio (fruttivendoli, macellerie, forni, caseifici, frantoi, norcinerie,
+- **Botteghe**: mappa e lista di oltre 500 botteghe e piccoli produttori di
+  Roma e del Lazio, con un focus su Colle Salario e il quadrante nord (fruttivendoli, macellerie, forni, caseifici, frantoi, norcinerie,
   cantine, mulini, apicoltori…), con ricerca, filtri per categoria e distanza
   dalla tua posizione.
 - **Filiera**: dove va 1 € della spesa, perché la stagionalità conta, come
@@ -87,6 +87,10 @@ python scripts/gen_lazio.py
 
 Il primo script calcola le coordinate con Nominatim (una richiesta al secondo, con cache);
 quando l'indirizzo non si trova usa il centro del comune e l'app lo segnala.
+
+Le botteghe di Roma (priorità Colle Salario 00138) vengono da
+`scripts/data/botteghe_alimentari_roma_00138.json`: `python scripts/gen_roma.py` le genera e
+sostituisce i doppioni già presenti nelle altre due fonti.
 
 ## Crediti
 

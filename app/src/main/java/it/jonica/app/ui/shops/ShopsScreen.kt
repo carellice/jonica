@@ -495,7 +495,7 @@ fun ShopsScreen(
                 }
                 item {
                     Text(
-                        "Botteghe del Lazio: ricerca su fonti pubbliche (siti dei produttori, mercati contadini, reti locali ed elenco regionale delle botteghe storiche). Le schede \"da verificare\" vengono dall'elenco regionale e non sono state confermate: chiama prima di andare. Quartiere 00138 e mappe © OpenStreetMap contributors.",
+                        "Botteghe di Roma e del Lazio: ricerche su fonti pubbliche (siti dei produttori, mercati contadini, reti locali, schede Maps ed elenco regionale delle botteghe storiche). Le schede \"da verificare\" non sono state confermate: chiama prima di andare. Quartiere 00138 e mappe © OpenStreetMap contributors.",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.padding(8.dp),
@@ -840,7 +840,7 @@ private fun ShopSheet(shop: Shop, dist: Float, fromUser: Boolean, context: Conte
             Spacer(Modifier.height(14.dp))
             FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 shop.categories.forEach { c -> Pill(c.label, c.color.copy(alpha = 0.16f), c.color.readable()) }
-                if (shop.family) Pill("Gestione familiare", MaterialTheme.colorScheme.secondaryContainer, MaterialTheme.colorScheme.onSecondaryContainer)
+                if (shop.family) Pill("Gestione familiare o cooperativa", MaterialTheme.colorScheme.secondaryContainer, MaterialTheme.colorScheme.onSecondaryContainer)
                 if (shop.source == ShopSource.REGISTRO) Pill("Da verificare", MaterialTheme.colorScheme.tertiaryContainer, MaterialTheme.colorScheme.onTertiaryContainer)
             }
             shop.description?.let {
@@ -886,7 +886,11 @@ private fun ShopSheet(shop: Shop, dist: Float, fromUser: Boolean, context: Conte
             Button(
                 onClick = {
                     // posizione approssimativa: meglio far cercare nome e indirizzo all'app di mappe
-                    val uri = if (shop.approximate) {
+                    val cid = shop.mapsUrl?.takeIf { "cid=" in it }
+                    val uri = if (cid != null) {
+                        // scheda Maps del negozio: apre direttamente il punto giusto
+                        Uri.parse(cid)
+                    } else if (shop.approximate) {
                         Uri.parse("geo:0,0?q=" + Uri.encode(listOfNotNull(shop.name, shop.address, shop.comune).joinToString(" ")))
                     } else {
                         Uri.parse("geo:${shop.lat},${shop.lon}?q=${shop.lat},${shop.lon}(${Uri.encode(shop.name)})")
