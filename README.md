@@ -1,6 +1,20 @@
-# 🫒 Jonica
+<p align="center">
+  <img src="docs/logo.png" alt="Logo di Jonica" width="140">
+</p>
 
-**Mangia di stagione. Compra vicino.**
+<h1 align="center">Jonica</h1>
+
+<p align="center">
+  <b>Mangia di stagione. Compra vicino.</b><br>
+  <a href="../../releases/latest">Scarica l'ultima versione</a>
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/onb1.jpg" alt="Introduzione" width="200">
+  <img src="docs/screenshots/today.jpg" alt="Oggi" width="200">
+  <img src="docs/screenshots/seasons.jpg" alt="Calendario delle stagioni" width="200">
+  <img src="docs/screenshots/shops.jpg" alt="Botteghe e produttori" width="200">
+</p>
 
 Jonica è un'app Android etica che aiuta a fare una spesa più consapevole:
 scoprire cosa è davvero di stagione, capire dove vanno i soldi della spesa
@@ -27,11 +41,28 @@ e a chi vende nel quartiere.
   dalla tua posizione.
 - **Filiera**: dove va 1 € della spesa, perché la stagionalità conta, come
   leggere le etichette e una lista di piccoli impegni da spuntare.
+- **Introduzione animata** al primo avvio, rivedibile da Filiera, e
+  **aggiornamenti dall'app** tramite le release di GitHub.
+
+## Screenshot
+
+| Introduzione | | |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/onb1.jpg" width="220"> | <img src="docs/screenshots/onb2.jpg" width="220"> | <img src="docs/screenshots/onb3.jpg" width="220"> |
+
+| Oggi | Stagioni | Filiera |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/today.jpg" width="220"> | <img src="docs/screenshots/seasons.jpg" width="220"> | <img src="docs/screenshots/aware.jpg" width="220"> |
+
+| Botteghe | Mappa a schermo intero | Tema scuro |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/shops.jpg" width="220"> | <img src="docs/screenshots/shops_full.jpg" width="220"> | <img src="docs/screenshots/today_dark.jpg" width="220"> |
 
 ## Installazione
 
 Scarica l'APK dall'ultima [release](../../releases/latest) e installalo sul
-telefono (consenti l'installazione da origini sconosciute).
+telefono (consenti l'installazione da origini sconosciute). Dalla versione
+1.2.0 in poi gli aggiornamenti si installano direttamente dall'app.
 
 ## Sviluppo
 
