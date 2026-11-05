@@ -21,8 +21,10 @@ e a chi vende nel quartiere.
 - **Stagioni**: calendario mese per mese di frutta, verdura, pesce del Tirreno
   e dispensa (olio, ricotta, miele, legumi…), con consigli d'acquisto per ogni
   prodotto.
-- **Botteghe**: mappa e lista delle botteghe di quartiere ordinate per distanza
-  dalla tua posizione (per ora zona Roma 00138 e dintorni).
+- **Botteghe**: mappa e lista di quasi 400 botteghe e piccoli produttori del
+  Lazio (fruttivendoli, macellerie, forni, caseifici, frantoi, norcinerie,
+  cantine, mulini, apicoltori…), con ricerca, filtri per categoria e distanza
+  dalla tua posizione.
 - **Filiera**: dove va 1 € della spesa, perché la stagionalità conta, come
   leggere le etichette e una lista di piccoli impegni da spuntare.
 
@@ -40,13 +42,25 @@ Nessun backend, nessuna chiave API: tutti i dati sono nell'app.
 ./gradlew assembleRelease
 ```
 
-Le botteghe sono estratte da OpenStreetMap: per aggiornarle, riesegui la query
-Overpass salvando il risultato in `scripts/osm_shops.json` e lancia
-`python scripts/gen_shops.py`.
+Le botteghe del quartiere 00138 sono estratte da OpenStreetMap: per aggiornarle,
+riesegui la query Overpass salvando il risultato in `scripts/osm_shops.json` e
+lancia `python scripts/gen_shops.py`.
+
+Le botteghe del Lazio vengono dalla mappatura `scripts/data/botteghe_alimentari_lazio.json`.
+Per aggiornarle:
+
+```bash
+python scripts/geocode_lazio.py scripts/data/botteghe_alimentari_lazio.json
+python scripts/gen_lazio.py
+```
+
+Il primo script calcola le coordinate con Nominatim (una richiesta al secondo, con cache);
+quando l'indirizzo non si trova usa il centro del comune e l'app lo segnala.
 
 ## Crediti
 
-- Dati delle botteghe e mappe © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors (ODbL).
+- Mappatura "Botteghe alimentari e piccoli produttori del Lazio" (ricerca documentale su fonti pubbliche, novembre 2026): le schede del registro regionale sono indicate come "da verificare".
+- Dati delle botteghe del quartiere, coordinate e mappe © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors (ODbL).
 - Le stime sulla ripartizione del prezzo sono indicative e basate su studi ISMEA.
 - Il calendario di stagionalità è indicativo per il Centro-Sud Italia.
 - Font [Manrope](https://fonts.google.com/specimen/Manrope) (SIL Open Font License).

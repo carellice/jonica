@@ -45,10 +45,25 @@ enum class ShopCategory(val label: String, @DrawableRes val icon: Int, val color
     PASTA_FRESCA("Pasta fresca", R.drawable.ic_pasta, Color(0xFFD99A3C)),
     ALIMENTARI("Alimentari", R.drawable.ic_cesto, Color(0xFF6B7A3A)),
     MERCATO("Mercato rionale", R.drawable.ic_bancarella, Color(0xFF3E6B8C)),
+    CASEIFICIO("Caseificio", R.drawable.ic_ricotta, Color(0xFFB89A4E)),
+    NORCINERIA("Norcineria", R.drawable.ic_salumi, Color(0xFFA8473A)),
+    FRANTOIO("Frantoio", R.drawable.ic_olio, Color(0xFF7A8C2E)),
+    CANTINA("Cantina", R.drawable.ic_uva, Color(0xFF6E3A6B)),
+    TORREFAZIONE("Torrefazione", R.drawable.ic_caffe, Color(0xFF7A5236)),
+    MULINO("Mulino", R.drawable.ic_mulino, Color(0xFFB0843A)),
+    APICOLTURA("Miele", R.drawable.ic_miele, Color(0xFFD69A1E)),
+    CONSERVE("Conserve", R.drawable.ic_conserve, Color(0xFFC44A32)),
+    BIRRIFICIO("Birrificio", R.drawable.ic_birra, Color(0xFFC7891F)),
+    GELATERIA("Gelateria", R.drawable.ic_gelato, Color(0xFF6FA08A)),
+    SPEZIE("Spezie e zafferano", R.drawable.ic_zafferano, Color(0xFF8A62B0)),
+    AZIENDA_AGRICOLA("Azienda agricola", R.drawable.ic_cascina, Color(0xFF5E8A3C)),
 }
 
+/** Da dove arriva la scheda: OpenStreetMap, mappatura approfondita o elenco regionale da verificare. */
+enum class ShopSource { OSM, SCHEDA, REGISTRO }
+
 data class Shop(
-    val id: Long,
+    val id: String,
     val name: String,
     val category: ShopCategory,
     val lat: Double,
@@ -56,7 +71,27 @@ data class Shop(
     val address: String?,
     val hours: String?,
     val phone: String?,
-)
+    val categories: List<ShopCategory> = listOf(category),
+    val comune: String? = null,
+    val provincia: String? = null,
+    val description: String? = null,
+    val products: List<String> = emptyList(),
+    val channels: List<String> = emptyList(),
+    val alsoAt: List<String> = emptyList(),
+    val website: String? = null,
+    val email: String? = null,
+    val note: String? = null,
+    /** true se la posizione è il centro del comune e non l'indirizzo esatto. */
+    val approximate: Boolean = false,
+    val source: ShopSource = ShopSource.OSM,
+    /** Gestione personale o familiare documentata dalle fonti. */
+    val family: Boolean = false,
+) {
+    val place: String? get() = comune?.let { c -> provincia?.let { "$c ($it)" } ?: c }
+}
+
+/** Tutte le botteghe: quartiere 00138 (OpenStreetMap) + mappatura del Lazio. */
+val allShops: List<Shop> by lazy { shops + lazioShops }
 
 fun prevMonth(m: Int) = if (m == 1) 12 else m - 1
 fun nextMonth(m: Int) = if (m == 12) 1 else m + 1

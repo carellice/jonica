@@ -1,0 +1,1732 @@
+{
+"laz_a0667b18eb5aa6": {
+"lat": 41.726565,
+"lon": 13.342293,
+"precisione": "comune"
+},
+"laz_f218bbf51941aa": {
+"lat": 41.467723,
+"lon": 13.330608,
+"precisione": "indirizzo"
+},
+"laz_fba485bf664c01": {
+"lat": 41.744701,
+"lon": 13.152634,
+"precisione": "comune"
+},
+"laz_655ae6d4887cf3": {
+"lat": 41.620199,
+"lon": 13.799978,
+"precisione": "comune"
+},
+"laz_9ca6429e0e4051": {
+"lat": 41.642525,
+"lon": 13.472583,
+"precisione": "comune"
+},
+"laz_96ae0bad32e15c": {
+"lat": 41.449869,
+"lon": 13.823635,
+"precisione": "indirizzo"
+},
+"laz_8ffa6d90f98340": {
+"lat": 41.545579,
+"lon": 13.515554,
+"precisione": "comune"
+},
+"laz_94180605d51b50": {
+"lat": 41.545579,
+"lon": 13.515554,
+"precisione": "comune"
+},
+"laz_ae08a7b2d45c6e": {
+"lat": 41.690623,
+"lon": 13.260091,
+"precisione": "indirizzo"
+},
+"laz_ba9117d2427fb8": {
+"lat": 41.641461,
+"lon": 13.344648,
+"precisione": "indirizzo"
+},
+"laz_7cbf0c3fde60e2": {
+"lat": 41.640707,
+"lon": 13.350916,
+"precisione": "comune"
+},
+"laz_25048e695d0b61": {
+"lat": 41.65016,
+"lon": 13.306603,
+"precisione": "indirizzo"
+},
+"laz_f34183dc985acd": {
+"lat": 41.770335,
+"lon": 13.656587,
+"precisione": "comune"
+},
+"laz_5c05576fb14bf1": {
+"lat": 41.646263,
+"lon": 13.867783,
+"precisione": "comune"
+},
+"laz_246a176b76de51": {
+"lat": 41.430509,
+"lon": 13.727856,
+"precisione": "indirizzo"
+},
+"laz_1d3f8cd0a8d064": {
+"lat": 41.612256,
+"lon": 13.424749,
+"precisione": "comune"
+},
+"laz_3e9ca0ec6b4c9f": {
+"lat": 41.831683,
+"lon": 13.103758,
+"precisione": "indirizzo"
+},
+"laz_a2966a9091f8ec": {
+"lat": 41.669624,
+"lon": 13.850011,
+"precisione": "comune"
+},
+"laz_b2ecc8e7443d19": {
+"lat": 41.686378,
+"lon": 13.117313,
+"precisione": "indirizzo"
+},
+"laz_a0fe814a21c098": {
+"lat": 41.77069,
+"lon": 13.259989,
+"precisione": "indirizzo"
+},
+"laz_9330975ba9d631": {
+"lat": 41.691274,
+"lon": 13.41763,
+"precisione": "comune"
+},
+"laz_0b144a51e6ae00": {
+"lat": 41.662346,
+"lon": 13.399511,
+"precisione": "indirizzo"
+},
+"laz_2074541e6a019b": {
+"lat": 41.685054,
+"lon": 13.395469,
+"precisione": "indirizzo"
+},
+"laz_00594835502286": {
+"lat": 41.573254,
+"lon": 12.67749,
+"precisione": "indirizzo"
+},
+"laz_31e2a4f4dbbc24": {
+"lat": 41.643104,
+"lon": 12.915851,
+"precisione": "comune"
+},
+"laz_480e9526572b85": {
+"lat": 41.355226,
+"lon": 13.422642,
+"precisione": "indirizzo"
+},
+"laz_6467b185ec245f": {
+"lat": 41.332102,
+"lon": 13.4289,
+"precisione": "indirizzo"
+},
+"laz_d38888e32ae78d": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_a55b65b790ab49": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_1296cf37950a54": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_e2d7826c5985b6": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_0f585dea65d170": {
+"lat": 41.548674,
+"lon": 12.664322,
+"precisione": "indirizzo"
+},
+"laz_9f1c4e5b55a15c": {
+"lat": 41.408979,
+"lon": 12.937941,
+"precisione": "indirizzo"
+},
+"laz_018231cd12fdd1": {
+"lat": 41.446618,
+"lon": 12.888704,
+"precisione": "indirizzo"
+},
+"laz_a2acb87f409829": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_29c544e7b7a35d": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_463c04c4d4b657": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_9819cb3b038935": {
+"lat": 41.444431,
+"lon": 12.746182,
+"precisione": "indirizzo"
+},
+"laz_c6514e282df94c": {
+"lat": 41.516941,
+"lon": 12.891276,
+"precisione": "indirizzo"
+},
+"laz_56db6ed768377a": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_19922efb95fdf0": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_a8a964da994bd2": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_f7121ef77f4333": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_2df0b3978a497a": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_427fb415e23ff3": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_b536b9fdcb1bdb": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_34bbb2a3001834": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_ba96f7c3208101": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_21dc97ed6fac08": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_7f4534fbb4d874": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_e90c3291ed76f5": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_8d0666cd13f9c1": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_854d7ad3a63887": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_c7307e0f08091e": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_99149a6ce3b50d": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_97b31b3e526f77": {
+"lat": 41.46431,
+"lon": 12.906573,
+"precisione": "indirizzo"
+},
+"laz_183c63987a257f": {
+"lat": 41.462988,
+"lon": 12.922986,
+"precisione": "indirizzo"
+},
+"laz_314751e7fca101": {
+"lat": 41.414257,
+"lon": 13.10808,
+"precisione": "indirizzo"
+},
+"laz_c86032e71ba9cf": {
+"lat": 41.432769,
+"lon": 13.006607,
+"precisione": "indirizzo"
+},
+"laz_f3fea35bebe260": {
+"lat": 41.434501,
+"lon": 13.135542,
+"precisione": "indirizzo"
+},
+"laz_80a6451c2c52b8": {
+"lat": 41.463321,
+"lon": 13.187124,
+"precisione": "indirizzo"
+},
+"laz_8f513fe07a0fc6": {
+"lat": 41.496585,
+"lon": 13.162382,
+"precisione": "indirizzo"
+},
+"laz_46ad0c1d04e8b1": {
+"lat": 41.558229,
+"lon": 12.979554,
+"precisione": "indirizzo"
+},
+"laz_d4a898f3bb4623": {
+"lat": 41.464632,
+"lon": 13.015999,
+"precisione": "indirizzo"
+},
+"laz_5095ab1a5e7851": {
+"lat": 41.464632,
+"lon": 13.015999,
+"precisione": "indirizzo"
+},
+"laz_3d3274150a6516": {
+"lat": 41.28712,
+"lon": 13.249201,
+"precisione": "comune"
+},
+"laz_d5138d89563def": {
+"lat": 42.415808,
+"lon": 13.077049,
+"precisione": "indirizzo"
+},
+"laz_05a28707c09e73": {
+"lat": 42.618254,
+"lon": 13.159684,
+"precisione": "comune"
+},
+"laz_91c09bf668e5fc": {
+"lat": 42.618254,
+"lon": 13.159684,
+"precisione": "comune"
+},
+"laz_30d28930733ea1": {
+"lat": 42.333311,
+"lon": 12.55132,
+"precisione": "indirizzo"
+},
+"laz_34385604114bd9": {
+"lat": 42.157168,
+"lon": 12.657913,
+"precisione": "indirizzo"
+},
+"laz_a229064d4ac93f": {
+"lat": 42.169704,
+"lon": 12.710366,
+"precisione": "indirizzo"
+},
+"laz_af025810e059bb": {
+"lat": 42.361357,
+"lon": 12.48117,
+"precisione": "comune"
+},
+"laz_deb3338367bd4c": {
+"lat": 42.37917,
+"lon": 12.584507,
+"precisione": "indirizzo"
+},
+"laz_0ae40c4cf069c9": {
+"lat": 42.384997,
+"lon": 12.580095,
+"precisione": "indirizzo"
+},
+"laz_c5f82939c66cf2": {
+"lat": 42.268043,
+"lon": 12.664079,
+"precisione": "comune"
+},
+"laz_740d39c4e0dff6": {
+"lat": 42.20784,
+"lon": 12.779599,
+"precisione": "indirizzo"
+},
+"laz_e0705518b2bfcd": {
+"lat": 42.264886,
+"lon": 12.685846,
+"precisione": "indirizzo"
+},
+"laz_a3698246fde5d0": {
+"lat": 42.399929,
+"lon": 12.859383,
+"precisione": "indirizzo"
+},
+"laz_3cdbdce33ea7a0": {
+"lat": 42.434795,
+"lon": 12.88778,
+"precisione": "indirizzo"
+},
+"laz_8cc038746c0476": {
+"lat": 42.503392,
+"lon": 12.859663,
+"precisione": "indirizzo"
+},
+"laz_a109b5ba1d9259": {
+"lat": 42.335572,
+"lon": 12.58635,
+"precisione": "comune"
+},
+"laz_200be2b03a9446": {
+"lat": 42.239829,
+"lon": 13.019884,
+"precisione": "comune"
+},
+"laz_b61dd1ed1a99d4": {
+"lat": 42.056309,
+"lon": 12.127493,
+"precisione": "indirizzo"
+},
+"laz_e1475b0acab670": {
+"lat": 42.101095,
+"lon": 12.173857,
+"precisione": "comune"
+},
+"laz_7c5bb5bc816778": {
+"lat": 42.084645,
+"lon": 12.181727,
+"precisione": "indirizzo"
+},
+"laz_dd90336bb85f5c": {
+"lat": 42.141078,
+"lon": 12.383669,
+"precisione": "comune"
+},
+"laz_30c24a8c982b33": {
+"lat": 42.121376,
+"lon": 12.339405,
+"precisione": "indirizzo"
+},
+"laz_823946aee115a4": {
+"lat": 42.102958,
+"lon": 12.560898,
+"precisione": "indirizzo"
+},
+"laz_b54c9b6f5b3f27": {
+"lat": 41.820462,
+"lon": 12.937135,
+"precisione": "indirizzo"
+},
+"laz_19544df39fce4c": {
+"lat": 41.99107,
+"lon": 12.245134,
+"precisione": "indirizzo"
+},
+"laz_a317439c9df921": {
+"lat": 41.7854,
+"lon": 12.974851,
+"precisione": "indirizzo"
+},
+"laz_54f723390eed21": {
+"lat": 41.711166,
+"lon": 12.690037,
+"precisione": "indirizzo"
+},
+"laz_092361e711be8e": {
+"lat": 41.947792,
+"lon": 12.678741,
+"precisione": "indirizzo"
+},
+"laz_4c8e2f320b6c10": {
+"lat": 41.623996,
+"lon": 12.689072,
+"precisione": "indirizzo"
+},
+"laz_09d17a475b5ab1": {
+"lat": 41.726476,
+"lon": 12.830401,
+"precisione": "indirizzo"
+},
+"laz_363c54c2bc45e4": {
+"lat": 41.771651,
+"lon": 12.656552,
+"precisione": "indirizzo"
+},
+"laz_0559e8f84463d0": {
+"lat": 41.461036,
+"lon": 12.656242,
+"precisione": "indirizzo"
+},
+"laz_b004bd3d70af87": {
+"lat": 41.894647,
+"lon": 12.474264,
+"precisione": "indirizzo"
+},
+"laz_76dadcbdf8083a": {
+"lat": 42.073481,
+"lon": 12.344618,
+"precisione": "indirizzo"
+},
+"laz_cfcc711a58e265": {
+"lat": 41.927996,
+"lon": 12.337874,
+"precisione": "indirizzo"
+},
+"laz_970e5cf9ae6b00": {
+"lat": 41.853426,
+"lon": 12.458723,
+"precisione": "indirizzo"
+},
+"laz_8d48ebe079a34a": {
+"lat": 41.888564,
+"lon": 12.475318,
+"precisione": "indirizzo"
+},
+"laz_35d417d94befa4": {
+"lat": 41.858237,
+"lon": 12.562269,
+"precisione": "indirizzo"
+},
+"laz_6d85563cde7272": {
+"lat": 41.763053,
+"lon": 12.54892,
+"precisione": "indirizzo"
+},
+"laz_73a3d8036125ed": {
+"lat": 41.872754,
+"lon": 12.510505,
+"precisione": "indirizzo"
+},
+"laz_78d1aa9672d3b4": {
+"lat": 41.898755,
+"lon": 12.451271,
+"precisione": "indirizzo"
+},
+"laz_2dd2d699def37d": {
+"lat": 41.89332,
+"lon": 12.482932,
+"precisione": "comune"
+},
+"laz_7d8ffd3f00ab90": {
+"lat": 41.943686,
+"lon": 12.537482,
+"precisione": "indirizzo"
+},
+"laz_062a34686f7614": {
+"lat": 41.742821,
+"lon": 13.037306,
+"precisione": "indirizzo"
+},
+"laz_1f764610517046": {
+"lat": 41.95021,
+"lon": 12.773203,
+"precisione": "indirizzo"
+},
+"laz_39fb5d1219a73c": {
+"lat": 41.957985,
+"lon": 12.797363,
+"precisione": "indirizzo"
+},
+"laz_44801f18df4619": {
+"lat": 41.95256,
+"lon": 12.767801,
+"precisione": "indirizzo"
+},
+"laz_4b67f82867b5f9": {
+"lat": 41.957006,
+"lon": 12.79697,
+"precisione": "indirizzo"
+},
+"laz_13836e66b51aaf": {
+"lat": 42.149613,
+"lon": 11.938195,
+"precisione": "comune"
+},
+"laz_8ddd3501dbe066": {
+"lat": 42.149452,
+"lon": 12.284546,
+"precisione": "indirizzo"
+},
+"laz_5dc654fc54ad3c": {
+"lat": 41.926989,
+"lon": 13.230666,
+"precisione": "comune"
+},
+"laz_0502e7f3640136": {
+"lat": 41.926989,
+"lon": 13.230666,
+"precisione": "comune"
+},
+"laz_9e61c4e9218152": {
+"lat": 41.926989,
+"lon": 13.230666,
+"precisione": "comune"
+},
+"laz_c957545589192f": {
+"lat": 41.659051,
+"lon": 12.80594,
+"precisione": "indirizzo"
+},
+"laz_c1bf6b24ec077b": {
+"lat": 41.633205,
+"lon": 12.807303,
+"precisione": "indirizzo"
+},
+"laz_fa9aa71a96fa62": {
+"lat": 41.686701,
+"lon": 12.777043,
+"precisione": "comune"
+},
+"laz_9b658bfffeac66": {
+"lat": 42.644971,
+"lon": 12.203898,
+"precisione": "comune"
+},
+"laz_21294ef9dac35c": {
+"lat": 42.605362,
+"lon": 12.187658,
+"precisione": "comune"
+},
+"laz_7e2ebcb049a57b": {
+"lat": 42.375908,
+"lon": 12.431241,
+"precisione": "indirizzo"
+},
+"laz_77431bed1c59c0": {
+"lat": 42.351542,
+"lon": 11.607299,
+"precisione": "comune"
+},
+"laz_467eb8629dc715": {
+"lat": 42.537025,
+"lon": 12.065526,
+"precisione": "indirizzo"
+},
+"laz_c1a231588c7b63": {
+"lat": 42.534685,
+"lon": 12.033913,
+"precisione": "indirizzo"
+},
+"laz_e9823625099694": {
+"lat": 42.53982,
+"lon": 12.033326,
+"precisione": "indirizzo"
+},
+"laz_ada667ceabdd45": {
+"lat": 42.463577,
+"lon": 12.39089,
+"precisione": "indirizzo"
+},
+"laz_918b94c630cda1": {
+"lat": 42.517932,
+"lon": 11.828273,
+"precisione": "comune"
+},
+"laz_62831c1156a2d7": {
+"lat": 42.75716,
+"lon": 11.830261,
+"precisione": "comune"
+},
+"laz_5bdeda8fa072a2": {
+"lat": 42.757609,
+"lon": 11.828144,
+"precisione": "indirizzo"
+},
+"laz_9518c1886f410b": {
+"lat": 42.757377,
+"lon": 11.825367,
+"precisione": "indirizzo"
+},
+"laz_e204d0f530ae13": {
+"lat": 42.756161,
+"lon": 11.830317,
+"precisione": "indirizzo"
+},
+"laz_92a57189d8f99b": {
+"lat": 42.394929,
+"lon": 11.832373,
+"precisione": "indirizzo"
+},
+"laz_9cd9a318ff1431": {
+"lat": 42.573013,
+"lon": 11.810716,
+"precisione": "indirizzo"
+},
+"laz_74bad657710470": {
+"lat": 42.38397,
+"lon": 12.26279,
+"precisione": "comune"
+},
+"laz_ebea71ea3f0dbc": {
+"lat": 42.429713,
+"lon": 12.098525,
+"precisione": "indirizzo"
+},
+"laz_94d43dfd41d3be": {
+"lat": 42.450256,
+"lon": 12.083305,
+"precisione": "indirizzo"
+},
+"laz_31a54db6d90fbb": {
+"lat": 42.520349,
+"lon": 12.143497,
+"precisione": "indirizzo"
+},
+"laz_9043f8a78ce136": {
+"lat": 42.41256,
+"lon": 12.117416,
+"precisione": "indirizzo"
+},
+"laz_cf1f9d3cca29a5": {
+"lat": 42.435913,
+"lon": 12.104035,
+"precisione": "indirizzo"
+},
+"laz_reg_0016": {
+"lat": 41.747095,
+"lon": 13.298633,
+"precisione": "indirizzo"
+},
+"laz_reg_0061": {
+"lat": 41.491119,
+"lon": 13.70471,
+"precisione": "comune"
+},
+"laz_reg_0053": {
+"lat": 41.493417,
+"lon": 13.701194,
+"precisione": "indirizzo"
+},
+"laz_reg_0057": {
+"lat": 41.491119,
+"lon": 13.70471,
+"precisione": "comune"
+},
+"laz_reg_0058": {
+"lat": 41.491119,
+"lon": 13.70471,
+"precisione": "comune"
+},
+"laz_reg_0059": {
+"lat": 41.491119,
+"lon": 13.70471,
+"precisione": "comune"
+},
+"laz_reg_0055": {
+"lat": 41.491119,
+"lon": 13.70471,
+"precisione": "comune"
+},
+"laz_reg_0080": {
+"lat": 41.586958,
+"lon": 13.575662,
+"precisione": "indirizzo"
+},
+"laz_reg_0072": {
+"lat": 41.587716,
+"lon": 13.575429,
+"precisione": "comune"
+},
+"laz_reg_0074": {
+"lat": 41.582823,
+"lon": 13.541554,
+"precisione": "indirizzo"
+},
+"laz_reg_0090": {
+"lat": 41.619826,
+"lon": 13.800629,
+"precisione": "indirizzo"
+},
+"laz_reg_0088": {
+"lat": 41.610901,
+"lon": 13.797842,
+"precisione": "indirizzo"
+},
+"laz_reg_0089": {
+"lat": 41.629043,
+"lon": 13.789175,
+"precisione": "indirizzo"
+},
+"laz_reg_0142": {
+"lat": 41.490748,
+"lon": 13.830805,
+"precisione": "indirizzo"
+},
+"laz_reg_0132": {
+"lat": 41.492558,
+"lon": 13.83053,
+"precisione": "comune"
+},
+"laz_reg_0167": {
+"lat": 41.529283,
+"lon": 13.693938,
+"precisione": "comune"
+},
+"laz_reg_0173": {
+"lat": 41.567459,
+"lon": 13.330464,
+"precisione": "indirizzo"
+},
+"laz_reg_0175": {
+"lat": 41.545341,
+"lon": 13.518093,
+"precisione": "indirizzo"
+},
+"laz_reg_0178": {
+"lat": 41.545341,
+"lon": 13.518093,
+"precisione": "indirizzo"
+},
+"laz_reg_0202": {
+"lat": 41.55122,
+"lon": 13.694909,
+"precisione": "comune"
+},
+"laz_reg_0412": {
+"lat": 41.505749,
+"lon": 13.751672,
+"precisione": "indirizzo"
+},
+"laz_reg_0465": {
+"lat": 41.59036,
+"lon": 13.593587,
+"precisione": "indirizzo"
+},
+"laz_reg_0500": {
+"lat": 41.542468,
+"lon": 13.635177,
+"precisione": "indirizzo"
+},
+"laz_reg_0505": {
+"lat": 41.538521,
+"lon": 13.644829,
+"precisione": "indirizzo"
+},
+"laz_reg_0501": {
+"lat": 41.546689,
+"lon": 13.670137,
+"precisione": "indirizzo"
+},
+"laz_reg_0498": {
+"lat": 41.530571,
+"lon": 13.648762,
+"precisione": "indirizzo"
+},
+"laz_reg_0709": {
+"lat": 41.404117,
+"lon": 13.761312,
+"precisione": "comune"
+},
+"laz_reg_0708": {
+"lat": 41.411776,
+"lon": 13.76877,
+"precisione": "indirizzo"
+},
+"laz_reg_0098": {
+"lat": 41.549755,
+"lon": 13.032233,
+"precisione": "comune"
+},
+"laz_reg_0095": {
+"lat": 41.549755,
+"lon": 13.032233,
+"precisione": "comune"
+},
+"laz_reg_0228": {
+"lat": 41.359269,
+"lon": 13.429064,
+"precisione": "indirizzo"
+},
+"laz_reg_0234": {
+"lat": 41.357285,
+"lon": 13.430031,
+"precisione": "comune"
+},
+"laz_reg_0245": {
+"lat": 41.357479,
+"lon": 13.433331,
+"precisione": "indirizzo"
+},
+"laz_reg_0223": {
+"lat": 41.358117,
+"lon": 13.429432,
+"precisione": "indirizzo"
+},
+"laz_reg_0231": {
+"lat": 41.358339,
+"lon": 13.428626,
+"precisione": "indirizzo"
+},
+"laz_reg_0243": {
+"lat": 41.357058,
+"lon": 13.42825,
+"precisione": "indirizzo"
+},
+"laz_reg_0248": {
+"lat": 41.255976,
+"lon": 13.60506,
+"precisione": "indirizzo"
+},
+"laz_reg_0285": {
+"lat": 41.212424,
+"lon": 13.559168,
+"precisione": "indirizzo"
+},
+"laz_reg_0284": {
+"lat": 41.218312,
+"lon": 13.56281,
+"precisione": "comune"
+},
+"laz_reg_0283": {
+"lat": 41.223647,
+"lon": 13.568668,
+"precisione": "indirizzo"
+},
+"laz_reg_0313": {
+"lat": 41.459833,
+"lon": 12.922006,
+"precisione": "indirizzo"
+},
+"laz_reg_0323": {
+"lat": 41.406115,
+"lon": 13.459406,
+"precisione": "comune"
+},
+"laz_reg_0318": {
+"lat": 41.406115,
+"lon": 13.459406,
+"precisione": "comune"
+},
+"laz_reg_0321": {
+"lat": 41.407613,
+"lon": 13.460897,
+"precisione": "indirizzo"
+},
+"laz_reg_0322": {
+"lat": 41.408916,
+"lon": 13.461342,
+"precisione": "indirizzo"
+},
+"laz_reg_0325": {
+"lat": 41.523361,
+"lon": 13.180549,
+"precisione": "comune"
+},
+"laz_reg_0324": {
+"lat": 41.523615,
+"lon": 13.179052,
+"precisione": "indirizzo"
+},
+"laz_reg_0364": {
+"lat": 41.255473,
+"lon": 13.712258,
+"precisione": "indirizzo"
+},
+"laz_reg_0352": {
+"lat": 41.262974,
+"lon": 13.746522,
+"precisione": "comune"
+},
+"laz_reg_0358": {
+"lat": 41.255473,
+"lon": 13.712258,
+"precisione": "indirizzo"
+},
+"laz_reg_0356": {
+"lat": 41.254024,
+"lon": 13.712006,
+"precisione": "indirizzo"
+},
+"laz_reg_0351": {
+"lat": 41.262974,
+"lon": 13.746522,
+"precisione": "comune"
+},
+"laz_reg_0350": {
+"lat": 41.262974,
+"lon": 13.746522,
+"precisione": "comune"
+},
+"laz_reg_0353": {
+"lat": 41.262974,
+"lon": 13.746522,
+"precisione": "comune"
+},
+"laz_reg_0408": {
+"lat": 41.571689,
+"lon": 12.976065,
+"precisione": "indirizzo"
+},
+"laz_reg_0403": {
+"lat": 41.571689,
+"lon": 12.976065,
+"precisione": "indirizzo"
+},
+"laz_reg_0435": {
+"lat": 41.469878,
+"lon": 13.181989,
+"precisione": "indirizzo"
+},
+"laz_reg_0433": {
+"lat": 41.474174,
+"lon": 13.180583,
+"precisione": "indirizzo"
+},
+"laz_reg_0472": {
+"lat": 41.525315,
+"lon": 13.155925,
+"precisione": "comune"
+},
+"laz_reg_0477": {
+"lat": 41.525315,
+"lon": 13.155925,
+"precisione": "comune"
+},
+"laz_reg_0475": {
+"lat": 41.525315,
+"lon": 13.155925,
+"precisione": "comune"
+},
+"laz_reg_0486": {
+"lat": 41.524487,
+"lon": 13.165023,
+"precisione": "indirizzo"
+},
+"laz_reg_0468": {
+"lat": 41.525315,
+"lon": 13.155925,
+"precisione": "comune"
+},
+"laz_reg_0471": {
+"lat": 41.525315,
+"lon": 13.155925,
+"precisione": "comune"
+},
+"laz_reg_0466": {
+"lat": 41.525315,
+"lon": 13.155925,
+"precisione": "comune"
+},
+"laz_reg_0491": {
+"lat": 41.525315,
+"lon": 13.155925,
+"precisione": "comune"
+},
+"laz_reg_0485": {
+"lat": 41.525315,
+"lon": 13.155925,
+"precisione": "comune"
+},
+"laz_reg_0474": {
+"lat": 41.527295,
+"lon": 13.155609,
+"precisione": "indirizzo"
+},
+"laz_reg_0470": {
+"lat": 41.525315,
+"lon": 13.155925,
+"precisione": "comune"
+},
+"laz_reg_0510": {
+"lat": 41.479872,
+"lon": 13.212363,
+"precisione": "comune"
+},
+"laz_reg_0689": {
+"lat": 41.294362,
+"lon": 13.033906,
+"precisione": "indirizzo"
+},
+"laz_reg_0740": {
+"lat": 41.498415,
+"lon": 13.059217,
+"precisione": "comune"
+},
+"laz_reg_0731": {
+"lat": 41.495594,
+"lon": 13.064894,
+"precisione": "indirizzo"
+},
+"laz_reg_0736": {
+"lat": 41.498415,
+"lon": 13.059217,
+"precisione": "comune"
+},
+"laz_reg_0737": {
+"lat": 41.498415,
+"lon": 13.059217,
+"precisione": "comune"
+},
+"laz_reg_0728": {
+"lat": 41.49581,
+"lon": 13.042788,
+"precisione": "indirizzo"
+},
+"laz_reg_0754": {
+"lat": 41.39363,
+"lon": 13.19648,
+"precisione": "indirizzo"
+},
+"laz_reg_0751": {
+"lat": 41.413647,
+"lon": 13.243177,
+"precisione": "indirizzo"
+},
+"laz_reg_0746": {
+"lat": 41.401021,
+"lon": 13.203207,
+"precisione": "indirizzo"
+},
+"laz_reg_0756": {
+"lat": 41.413647,
+"lon": 13.243177,
+"precisione": "indirizzo"
+},
+"laz_reg_0744": {
+"lat": 41.413785,
+"lon": 13.241609,
+"precisione": "indirizzo"
+},
+"laz_reg_0749": {
+"lat": 41.414193,
+"lon": 13.241926,
+"precisione": "indirizzo"
+},
+"laz_reg_0748": {
+"lat": 41.41426,
+"lon": 13.241522,
+"precisione": "comune"
+},
+"laz_reg_0752": {
+"lat": 41.379143,
+"lon": 13.198818,
+"precisione": "indirizzo"
+},
+"laz_reg_0784": {
+"lat": 41.260212,
+"lon": 13.433107,
+"precisione": "comune"
+},
+"laz_reg_0789": {
+"lat": 41.28712,
+"lon": 13.249201,
+"precisione": "comune"
+},
+"laz_reg_0047": {
+"lat": 42.632051,
+"lon": 13.290192,
+"precisione": "comune"
+},
+"laz_reg_0035": {
+"lat": 42.632051,
+"lon": 13.290192,
+"precisione": "comune"
+},
+"laz_reg_0044": {
+"lat": 42.632051,
+"lon": 13.290192,
+"precisione": "comune"
+},
+"laz_reg_0046": {
+"lat": 42.632051,
+"lon": 13.290192,
+"precisione": "comune"
+},
+"laz_reg_0410": {
+"lat": 42.132126,
+"lon": 12.939684,
+"precisione": "comune"
+},
+"laz_reg_0432": {
+"lat": 42.553959,
+"lon": 13.140913,
+"precisione": "indirizzo"
+},
+"laz_reg_0450": {
+"lat": 42.398692,
+"lon": 12.860499,
+"precisione": "indirizzo"
+},
+"laz_reg_0458": {
+"lat": 42.516434,
+"lon": 12.854977,
+"precisione": "comune"
+},
+"laz_reg_0813": {
+"lat": 42.250577,
+"lon": 12.889506,
+"precisione": "indirizzo"
+},
+"laz_reg_0013": {
+"lat": 41.727727,
+"lon": 12.659691,
+"precisione": "indirizzo"
+},
+"laz_reg_0026": {
+"lat": 42.147804,
+"lon": 11.906094,
+"precisione": "indirizzo"
+},
+"laz_reg_0031": {
+"lat": 42.156081,
+"lon": 11.90284,
+"precisione": "indirizzo"
+},
+"laz_reg_0032": {
+"lat": 42.156218,
+"lon": 11.903832,
+"precisione": "comune"
+},
+"laz_reg_0021": {
+"lat": 42.156218,
+"lon": 11.903832,
+"precisione": "comune"
+},
+"laz_reg_0028": {
+"lat": 42.147804,
+"lon": 11.906094,
+"precisione": "indirizzo"
+},
+"laz_reg_0086": {
+"lat": 41.879722,
+"lon": 13.114392,
+"precisione": "comune"
+},
+"laz_reg_0111": {
+"lat": 42.138596,
+"lon": 12.380678,
+"precisione": "indirizzo"
+},
+"laz_reg_0110": {
+"lat": 42.138596,
+"lon": 12.380678,
+"precisione": "indirizzo"
+},
+"laz_reg_0106": {
+"lat": 42.141078,
+"lon": 12.383669,
+"precisione": "comune"
+},
+"laz_reg_0109": {
+"lat": 42.139465,
+"lon": 12.38166,
+"precisione": "indirizzo"
+},
+"laz_reg_0112": {
+"lat": 42.136622,
+"lon": 12.102304,
+"precisione": "indirizzo"
+},
+"laz_reg_0113": {
+"lat": 42.136622,
+"lon": 12.102304,
+"precisione": "indirizzo"
+},
+"laz_reg_0153": {
+"lat": 41.746864,
+"lon": 12.648918,
+"precisione": "indirizzo"
+},
+"laz_reg_0152": {
+"lat": 41.745716,
+"lon": 12.650773,
+"precisione": "indirizzo"
+},
+"laz_reg_0157": {
+"lat": 41.747345,
+"lon": 12.648527,
+"precisione": "indirizzo"
+},
+"laz_reg_0151": {
+"lat": 41.746587,
+"lon": 12.650475,
+"precisione": "indirizzo"
+},
+"laz_reg_0185": {
+"lat": 42.093752,
+"lon": 11.792246,
+"precisione": "comune"
+},
+"laz_reg_0197": {
+"lat": 41.727033,
+"lon": 13.004158,
+"precisione": "comune"
+},
+"laz_reg_0289": {
+"lat": 41.832709,
+"lon": 12.972713,
+"precisione": "indirizzo"
+},
+"laz_reg_0290": {
+"lat": 41.83298,
+"lon": 12.972836,
+"precisione": "indirizzo"
+},
+"laz_reg_0286": {
+"lat": 41.833114,
+"lon": 12.972995,
+"precisione": "indirizzo"
+},
+"laz_reg_0299": {
+"lat": 41.707286,
+"lon": 12.688975,
+"precisione": "indirizzo"
+},
+"laz_reg_0301": {
+"lat": 41.70699,
+"lon": 12.690237,
+"precisione": "indirizzo"
+},
+"laz_reg_0297": {
+"lat": 41.706715,
+"lon": 12.689556,
+"precisione": "indirizzo"
+},
+"laz_reg_0292": {
+"lat": 41.706715,
+"lon": 12.689556,
+"precisione": "indirizzo"
+},
+"laz_reg_0345": {
+"lat": 41.768578,
+"lon": 12.655337,
+"precisione": "indirizzo"
+},
+"laz_reg_0335": {
+"lat": 41.770017,
+"lon": 12.657275,
+"precisione": "indirizzo"
+},
+"laz_reg_0343": {
+"lat": 41.769788,
+"lon": 12.658608,
+"precisione": "comune"
+},
+"laz_reg_0338": {
+"lat": 41.770437,
+"lon": 12.666886,
+"precisione": "indirizzo"
+},
+"laz_reg_0341": {
+"lat": 41.768428,
+"lon": 12.662069,
+"precisione": "indirizzo"
+},
+"laz_reg_0387": {
+"lat": 42.051799,
+"lon": 12.618397,
+"precisione": "comune"
+},
+"laz_reg_0390": {
+"lat": 42.146294,
+"lon": 12.490801,
+"precisione": "indirizzo"
+},
+"laz_reg_0422": {
+"lat": 41.673595,
+"lon": 12.498643,
+"precisione": "indirizzo"
+},
+"laz_reg_0436": {
+"lat": 42.100122,
+"lon": 12.505675,
+"precisione": "comune"
+},
+"laz_reg_0558": {
+"lat": 41.900735,
+"lon": 12.483059,
+"precisione": "indirizzo"
+},
+"laz_reg_0543": {
+"lat": 41.89332,
+"lon": 12.482932,
+"precisione": "comune"
+},
+"laz_reg_0552": {
+"lat": 41.905824,
+"lon": 12.468169,
+"precisione": "indirizzo"
+},
+"laz_reg_0564": {
+"lat": 41.891576,
+"lon": 12.50061,
+"precisione": "indirizzo"
+},
+"laz_reg_0563": {
+"lat": 41.936058,
+"lon": 12.514457,
+"precisione": "indirizzo"
+},
+"laz_reg_0664": {
+"lat": 41.907346,
+"lon": 12.463201,
+"precisione": "indirizzo"
+},
+"laz_reg_0630": {
+"lat": 41.911733,
+"lon": 12.508057,
+"precisione": "indirizzo"
+},
+"laz_reg_0619": {
+"lat": 41.904013,
+"lon": 12.425438,
+"precisione": "indirizzo"
+},
+"laz_reg_0555": {
+"lat": 41.87975,
+"lon": 12.50821,
+"precisione": "indirizzo"
+},
+"laz_reg_0568": {
+"lat": 41.905912,
+"lon": 12.475625,
+"precisione": "indirizzo"
+},
+"laz_reg_0595": {
+"lat": 41.897851,
+"lon": 12.474013,
+"precisione": "indirizzo"
+},
+"laz_reg_0673": {
+"lat": 41.89372,
+"lon": 12.489126,
+"precisione": "indirizzo"
+},
+"laz_reg_0656": {
+"lat": 41.879374,
+"lon": 12.475673,
+"precisione": "indirizzo"
+},
+"laz_reg_0597": {
+"lat": 41.901006,
+"lon": 12.484147,
+"precisione": "indirizzo"
+},
+"laz_reg_0643": {
+"lat": 41.893404,
+"lon": 12.472202,
+"precisione": "indirizzo"
+},
+"laz_reg_0647": {
+"lat": 41.903432,
+"lon": 12.495265,
+"precisione": "indirizzo"
+},
+"laz_reg_0635": {
+"lat": 41.89332,
+"lon": 12.482932,
+"precisione": "comune"
+},
+"laz_reg_0522": {
+"lat": 41.89332,
+"lon": 12.482932,
+"precisione": "comune"
+},
+"laz_reg_0621": {
+"lat": 41.8722,
+"lon": 12.525757,
+"precisione": "indirizzo"
+},
+"laz_reg_0638": {
+"lat": 41.899569,
+"lon": 12.477397,
+"precisione": "indirizzo"
+},
+"laz_reg_0662": {
+"lat": 41.909409,
+"lon": 12.491164,
+"precisione": "indirizzo"
+},
+"laz_reg_0537": {
+"lat": 41.91395,
+"lon": 12.494759,
+"precisione": "indirizzo"
+},
+"laz_reg_0536": {
+"lat": 41.890253,
+"lon": 12.470957,
+"precisione": "indirizzo"
+},
+"laz_reg_0516": {
+"lat": 41.92625,
+"lon": 12.463033,
+"precisione": "indirizzo"
+},
+"laz_reg_0623": {
+"lat": 41.909038,
+"lon": 12.476213,
+"precisione": "indirizzo"
+},
+"laz_reg_0633": {
+"lat": 41.910748,
+"lon": 12.476365,
+"precisione": "indirizzo"
+},
+"laz_reg_0603": {
+"lat": 41.89332,
+"lon": 12.482932,
+"precisione": "comune"
+},
+"laz_reg_0560": {
+"lat": 41.87061,
+"lon": 12.52954,
+"precisione": "indirizzo"
+},
+"laz_reg_0642": {
+"lat": 41.909797,
+"lon": 12.461983,
+"precisione": "indirizzo"
+},
+"laz_reg_0551": {
+"lat": 41.905092,
+"lon": 12.46115,
+"precisione": "indirizzo"
+},
+"laz_reg_0721": {
+"lat": 42.035028,
+"lon": 12.713204,
+"precisione": "indirizzo"
+},
+"laz_reg_0792": {
+"lat": 42.152518,
+"lon": 11.941184,
+"precisione": "indirizzo"
+},
+"laz_reg_0798": {
+"lat": 42.152298,
+"lon": 11.938341,
+"precisione": "indirizzo"
+},
+"laz_reg_0793": {
+"lat": 42.151811,
+"lon": 11.933612,
+"precisione": "indirizzo"
+},
+"laz_reg_0797": {
+"lat": 42.151238,
+"lon": 11.939691,
+"precisione": "indirizzo"
+},
+"laz_reg_0828": {
+"lat": 42.155926,
+"lon": 12.246195,
+"precisione": "comune"
+},
+"laz_reg_0822": {
+"lat": 42.155904,
+"lon": 12.245989,
+"precisione": "indirizzo"
+},
+"laz_reg_0829": {
+"lat": 42.157078,
+"lon": 12.242586,
+"precisione": "indirizzo"
+},
+"laz_reg_0815": {
+"lat": 42.157078,
+"lon": 12.242586,
+"precisione": "indirizzo"
+},
+"laz_reg_0094": {
+"lat": 42.466074,
+"lon": 12.313034,
+"precisione": "comune"
+},
+"laz_reg_0105": {
+"lat": 42.271156,
+"lon": 12.032743,
+"precisione": "indirizzo"
+},
+"laz_reg_0115": {
+"lat": 42.4625,
+"lon": 11.753367,
+"precisione": "indirizzo"
+},
+"laz_reg_0114": {
+"lat": 42.465433,
+"lon": 11.749106,
+"precisione": "indirizzo"
+},
+"laz_reg_0123": {
+"lat": 42.326625,
+"lon": 12.235766,
+"precisione": "comune"
+},
+"laz_reg_0127": {
+"lat": 42.33215,
+"lon": 12.266676,
+"precisione": "indirizzo"
+},
+"laz_reg_0384": {
+"lat": 42.275322,
+"lon": 11.910819,
+"precisione": "indirizzo"
+},
+"laz_reg_0379": {
+"lat": 42.267882,
+"lon": 11.898648,
+"precisione": "comune"
+},
+"laz_reg_0383": {
+"lat": 42.270903,
+"lon": 11.903808,
+"precisione": "indirizzo"
+},
+"laz_reg_0382": {
+"lat": 42.267882,
+"lon": 11.898648,
+"precisione": "comune"
+},
+"laz_reg_0381": {
+"lat": 42.266969,
+"lon": 11.885172,
+"precisione": "indirizzo"
+},
+"laz_reg_0374": {
+"lat": 42.537925,
+"lon": 12.030997,
+"precisione": "comune"
+},
+"laz_reg_0376": {
+"lat": 42.540191,
+"lon": 12.033252,
+"precisione": "indirizzo"
+},
+"laz_reg_0378": {
+"lat": 42.537925,
+"lon": 12.030997,
+"precisione": "comune"
+},
+"laz_reg_0371": {
+"lat": 42.539076,
+"lon": 12.032364,
+"precisione": "indirizzo"
+},
+"laz_reg_0385": {
+"lat": 42.195446,
+"lon": 12.309903,
+"precisione": "indirizzo"
+},
+"laz_reg_0777": {
+"lat": 42.418249,
+"lon": 12.234229,
+"precisione": "comune"
+},
+"laz_reg_0780": {
+"lat": 42.420189,
+"lon": 12.237226,
+"precisione": "indirizzo"
+},
+"laz_reg_0782": {
+"lat": 42.418249,
+"lon": 12.234229,
+"precisione": "comune"
+},
+"laz_reg_0779": {
+"lat": 42.418249,
+"lon": 12.234229,
+"precisione": "comune"
+},
+"laz_reg_0767": {
+"lat": 42.472659,
+"lon": 12.277822,
+"precisione": "indirizzo"
+},
+"laz_reg_0778": {
+"lat": 42.419773,
+"lon": 12.233884,
+"precisione": "indirizzo"
+},
+"laz_reg_0788": {
+"lat": 42.254663,
+"lon": 11.758691,
+"precisione": "indirizzo"
+},
+"laz_reg_0859": {
+"lat": 42.417407,
+"lon": 12.105527,
+"precisione": "indirizzo"
+},
+"laz_reg_0844": {
+"lat": 42.418513,
+"lon": 12.106501,
+"precisione": "indirizzo"
+},
+"laz_reg_0845": {
+"lat": 42.412518,
+"lon": 12.102572,
+"precisione": "indirizzo"
+},
+"laz_reg_0863": {
+"lat": 42.416844,
+"lon": 12.105115,
+"precisione": "comune"
+},
+"laz_reg_0875": {
+"lat": 42.416953,
+"lon": 12.10983,
+"precisione": "indirizzo"
+},
+"laz_reg_0849": {
+"lat": 42.419124,
+"lon": 12.106788,
+"precisione": "indirizzo"
+},
+"laz_reg_0867": {
+"lat": 42.416844,
+"lon": 12.105115,
+"precisione": "comune"
+},
+"laz_reg_0862": {
+"lat": 42.416844,
+"lon": 12.105115,
+"precisione": "comune"
+},
+"laz_reg_0852": {
+"lat": 42.416844,
+"lon": 12.105115,
+"precisione": "comune"
+},
+"mercato:Mercato Annonario di Latina": {
+"lat": 41.4643098,
+"lon": 12.9065728,
+"precisione": "indirizzo"
+},
+"mercato:Mercato di Campagna Amica del Circo Massimo": {
+"lat": 41.8890448,
+"lon": 12.4836229,
+"precisione": "indirizzo"
+}
+}

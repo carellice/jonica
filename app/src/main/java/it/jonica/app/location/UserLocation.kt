@@ -44,4 +44,8 @@ fun distanceMeters(a: GeoPoint, lat: Double, lon: Double): Float {
 }
 
 fun formatDistance(m: Float): String =
-    if (m < 1000) "${(m / 10).toInt() * 10} m" else String.format(java.util.Locale.ITALY, "%.1f km", m / 1000)
+    when {
+        m < 1000 -> "${(m / 10).toInt() * 10} m"
+        m < 100_000 -> String.format(java.util.Locale.ITALY, "%.1f km", m / 1000)
+        else -> "${(m / 1000).toInt()} km"
+    }

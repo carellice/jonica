@@ -1,0 +1,1860 @@
+{
+"Alatri, Frosinone, Lazio, Italia": {
+"lat": 41.7265651,
+"lon": 13.342293,
+"type": "town"
+},
+"Via Campello 58/b Loc Mole Bisleti, Alatri, Frosinone, Italia": null,
+"Amaseno, Frosinone, Lazio, Italia": {
+"lat": 41.467815,
+"lon": 13.336002,
+"type": "village"
+},
+"Via Farneti, Amaseno, Frosinone, Italia": {
+"lat": 41.4677232,
+"lon": 13.3306076,
+"type": "residential"
+},
+"Anagni, Frosinone, Lazio, Italia": {
+"lat": 41.7447015,
+"lon": 13.1526343,
+"type": "town"
+},
+"Via Osteria della Fontana Villamagna-Gorga, , , Frosinone, Anagni, Frosinone, Italia": null,
+"Via Osteria della Fontana Villamagna-Gorga, Anagni, Italia": null,
+"Atina, Frosinone, Lazio, Italia": {
+"lat": 41.620199,
+"lon": 13.7999785,
+"type": "village"
+},
+"Via Muraglia, 555, Atina, Frosinone, Italia": null,
+"Via Muraglia, Atina, Italia": null,
+"Boville Ernica, Frosinone, Lazio, Italia": {
+"lat": 41.6425255,
+"lon": 13.472583,
+"type": "village"
+},
+"Via San Francesco, Boville Ernica, Frosinone, Italia": null,
+"Cassino, Frosinone, Lazio, Italia": {
+"lat": 41.4925576,
+"lon": 13.8305297,
+"type": "town"
+},
+"Via Colle Romano, Cassino, Frosinone, Italia": {
+"lat": 41.4498685,
+"lon": 13.8236349,
+"type": "unclassified"
+},
+"Ceprano, Frosinone, Lazio, Italia": {
+"lat": 41.545579,
+"lon": 13.5155537,
+"type": "village"
+},
+"Via Cese, 8, Ceprano, Frosinone, Italia": null,
+"Via Cese, Ceprano, Italia": null,
+"Via Don Luigi Catelli, 1, Ceprano, Frosinone, Italia": null,
+"Via Don Luigi Catelli, Ceprano, Italia": null,
+"Ferentino, Frosinone, Lazio, Italia": {
+"lat": 41.6922157,
+"lon": 13.2533998,
+"type": "town"
+},
+"Via Casilina Sud, 143A, Ferentino, Frosinone, Italia": {
+"lat": 41.6906226,
+"lon": 13.2600905,
+"type": "unclassified"
+},
+"Frosinone, Frosinone, Lazio, Italia": {
+"lat": 41.640707,
+"lon": 13.3509157,
+"type": "city"
+},
+"Via Aldo Moro, 401, Frosinone, Frosinone, Italia": {
+"lat": 41.6414612,
+"lon": 13.3446475,
+"type": "amenity"
+},
+"Piazza Norberto Bobbio, 2, Frosinone, Frosinone, Italia": null,
+"Piazza Norberto Bobbio, Frosinone, Italia": null,
+"Via delle Salci, 93, Frosinone, Frosinone, Italia": {
+"lat": 41.6501601,
+"lon": 13.3066034,
+"type": "unclassified"
+},
+"Pescosolido, Frosinone, Lazio, Italia": {
+"lat": 41.7703353,
+"lon": 13.6565873,
+"type": "city"
+},
+"Via Piana 32, 03030, Pescosolido, Frosinone, Italia": null,
+"Via Piana 32, Pescosolido, Italia": null,
+"Picinisco, Frosinone, Lazio, Italia": {
+"lat": 41.6462629,
+"lon": 13.8677827,
+"type": "village"
+},
+"Contrada Serre, località Cervi, Picinisco, Frosinone, Italia": null,
+"Contrada Serre, Picinisco, Italia": null,
+"Pontecorvo, Frosinone, Lazio, Italia": {
+"lat": 41.4616237,
+"lon": 13.6667039,
+"type": "town"
+},
+"Via Ravano di Sopra, 1, , Frosinone, Lazio, Italy, Pontecorvo, Frosinone, Italia": null,
+"Via Ravano di Sopra, Pontecorvo, Italia": {
+"lat": 41.4305088,
+"lon": 13.7278555,
+"type": "unclassified"
+},
+"Ripi, Frosinone, Lazio, Italia": {
+"lat": 41.6122559,
+"lon": 13.4247486,
+"type": "village"
+},
+"Via Colle Lisi, 9, Ripi, Frosinone, Italia": null,
+"Via Colle Lisi, Ripi, Italia": null,
+"Serrone, Frosinone, Lazio, Italia": {
+"lat": 41.842121,
+"lon": 13.095192,
+"type": "village"
+},
+"Via Prenestina, 322, località La Forma, Serrone, Frosinone, Italia": null,
+"Via Prenestina, Serrone, Italia": {
+"lat": 41.8316832,
+"lon": 13.1037578,
+"type": "primary"
+},
+"Settefrati, Frosinone, Lazio, Italia": {
+"lat": 41.669624,
+"lon": 13.850011,
+"type": "village"
+},
+"Via Colle Pizzuto, 21, Settefrati, Frosinone, Italia": null,
+"Via Colle Pizzuto, Settefrati, Italia": null,
+"Sgurgola, Frosinone, Lazio, Italia": {
+"lat": 41.6709477,
+"lon": 13.1489087,
+"type": "village"
+},
+"SP 145, 54 – –, Sgurgola, Frosinone, Italia": null,
+"SP 145, Sgurgola, Italia": {
+"lat": 41.6863779,
+"lon": 13.1173132,
+"type": "tertiary"
+},
+"Trivigliano, Frosinone, Lazio, Italia": {
+"lat": 41.775721,
+"lon": 13.272296,
+"type": "village"
+},
+"Via Malle, 29, Trivigliano, Frosinone, Italia": {
+"lat": 41.7706899,
+"lon": 13.2599889,
+"type": "unclassified"
+},
+"Veroli, Frosinone, Lazio, Italia": {
+"lat": 41.6912736,
+"lon": 13.4176298,
+"type": "town"
+},
+"Via Colle Morgatto, 24, Veroli, Frosinone, Italia": {
+"lat": 41.6623457,
+"lon": 13.3995113,
+"type": "unclassified"
+},
+"Via Sant’Anna, 1, Veroli, Frosinone, Italia": {
+"lat": 41.6850542,
+"lon": 13.3954691,
+"type": "tertiary"
+},
+"Aprilia, Latina, Lazio, Italia": {
+"lat": 41.5942016,
+"lon": 12.6485765,
+"type": "town"
+},
+"Via Scilla, 62, Aprilia, Latina, Italia": {
+"lat": 41.5732537,
+"lon": 12.6774898,
+"type": "unclassified"
+},
+"Cori, Latina, Lazio, Italia": {
+"lat": 41.6431038,
+"lon": 12.9158514,
+"type": "town"
+},
+"Via Casalotti, 174/B, Cori, Latina, Italia": null,
+"Via Casalotti, Cori, Italia": null,
+"Fondi, Latina, Lazio, Italia": {
+"lat": 41.3572854,
+"lon": 13.430031,
+"type": "town"
+},
+"Via delle Fornaci, 57/63, Fondi, Latina, Italia": {
+"lat": 41.3552259,
+"lon": 13.4226418,
+"type": "residential"
+},
+"Via Pantanello, I traversa destra, 1, Fondi, Latina, Italia": null,
+"Via Pantanello, Fondi, Italia": {
+"lat": 41.3321022,
+"lon": 13.4288996,
+"type": "unclassified"
+},
+"Latina, Latina, Lazio, Italia": {
+"lat": 41.467299,
+"lon": 12.9037518,
+"type": "city"
+},
+"Via Don Giovanni Minzoni, Latina, Latina, Italia": {
+"lat": 41.4643098,
+"lon": 12.9065728,
+"type": "residential"
+},
+"Via Astura, 24, Latina, Latina, Italia": {
+"lat": 41.5486738,
+"lon": 12.6643217,
+"type": "residential"
+},
+"Strada Zi Maria, Latina, Latina, Italia": {
+"lat": 41.4089787,
+"lon": 12.9379413,
+"type": "tertiary"
+},
+"Via del Lido, 145, Latina, Latina, Italia": {
+"lat": 41.4466185,
+"lon": 12.8887041,
+"type": "secondary"
+},
+"Strada Foglino, 1156, Latina, Latina, Italia": {
+"lat": 41.444431,
+"lon": 12.7461822,
+"type": "primary"
+},
+"Strada Congiunte Destre, 73 bis, Latina, Latina, Italia": {
+"lat": 41.516941,
+"lon": 12.891276,
+"type": "tertiary"
+},
+"Via dei Messapi, 4, Latina, Latina, Italia": {
+"lat": 41.4629879,
+"lon": 12.9229857,
+"type": "residential"
+},
+"Pontinia, Latina, Lazio, Italia": {
+"lat": 41.4084557,
+"lon": 13.0443366,
+"type": "town"
+},
+"Via migliara 50 dx, Pontinia, Latina, Italia": {
+"lat": 41.414257,
+"lon": 13.10808,
+"type": "unclassified"
+},
+"Strada Migliara 51 Sx, 167, , LT 04014, IT, Pontinia, Latina, Italia": null,
+"Strada Migliara 51 Sx, Pontinia, Italia": {
+"lat": 41.4327691,
+"lon": 13.0066065,
+"type": "tertiary"
+},
+"Strada Lungo Ufente 2344 – 04014, Pontinia, Latina, Italia": {
+"lat": 41.4345007,
+"lon": 13.1355424,
+"type": "tertiary"
+},
+"Priverno, Latina, Lazio, Italia": {
+"lat": 41.4726165,
+"lon": 13.1798388,
+"type": "town"
+},
+"Via Villa Meri, 10, Priverno, Latina, Italia": null,
+"Via Villa Meri, Priverno, Italia": {
+"lat": 41.4633212,
+"lon": 13.1871239,
+"type": "unclassified"
+},
+"Via Stradone Sant’Angelo, Priverno, Latina, Italia": {
+"lat": 41.4965848,
+"lon": 13.1623822,
+"type": "unclassified"
+},
+"Sermoneta, Latina, Lazio, Italia": {
+"lat": 41.549314,
+"lon": 12.984893,
+"type": "village"
+},
+"Via Vigna Riccelli, 6, Sermoneta, Latina, Italia": {
+"lat": 41.5582293,
+"lon": 12.9795537,
+"type": "residential"
+},
+"Sezze, Latina, Lazio, Italia": {
+"lat": 41.4984145,
+"lon": 13.0592171,
+"type": "town"
+},
+"Via Maina, 20 04018, Sezze, Latina, Italia": {
+"lat": 41.4646315,
+"lon": 13.0159985,
+"type": "residential"
+},
+"Via Maina, 04018, Sezze, Latina, Italia": {
+"lat": 41.4646315,
+"lon": 13.0159985,
+"type": "residential"
+},
+"Terracina, Latina, Lazio, Italia": {
+"lat": 41.2871196,
+"lon": 13.2492009,
+"type": "town"
+},
+"Via Lungoline Pio VI, 1, Terracina, Latina, Italia": null,
+"Via Lungoline Pio VI, Terracina, Italia": null,
+"Antrodoco, Rieti, Lazio, Italia": {
+"lat": 42.4032755,
+"lon": 13.1354121,
+"type": "city"
+},
+"Corso Roma, 19, Antrodoco, Rieti, Italia": {
+"lat": 42.4158077,
+"lon": 13.0770489,
+"type": "tertiary"
+},
+"Cittareale, Rieti, Lazio, Italia": {
+"lat": 42.6182543,
+"lon": 13.1596844,
+"type": "village"
+},
+"Località Ricci, Cittareale, Rieti, Italia": null,
+"Via del Santuario, 2, Cittareale, Rieti, Italia": null,
+"Via del Santuario, Cittareale, Italia": null,
+"Collevecchio, Rieti, Lazio, Italia": {
+"lat": 42.3349731,
+"lon": 12.5529751,
+"type": "village"
+},
+"VIA San Valentino, 45, Collevecchio, Rieti, Italia": {
+"lat": 42.3333113,
+"lon": 12.55132,
+"type": "residential"
+},
+"Fara in Sabina, Rieti, Lazio, Italia": {
+"lat": 42.2095575,
+"lon": 12.7292119,
+"type": "town"
+},
+"Via farense 443, Fara in Sabina, Rieti, Italia": {
+"lat": 42.1571681,
+"lon": 12.6579131,
+"type": "secondary"
+},
+"Via Lucio Tuccio, 36/38, Corese Terra, Fara in Sabina, Rieti, Italia": {
+"lat": 42.1697038,
+"lon": 12.7103662,
+"type": "residential"
+},
+"Magliano Sabina, Rieti, Lazio, Italia": {
+"lat": 42.3613571,
+"lon": 12.4811695,
+"type": "village"
+},
+"Via Mazzamora, 5, Magliano Sabina, Rieti, Italia": null,
+"Via Mazzamora, Magliano Sabina, Italia": null,
+"Montebuono, Rieti, Lazio, Italia": {
+"lat": 42.3666554,
+"lon": 12.5970594,
+"type": "village"
+},
+"Via Sargnano, 2, Montebuono, Rieti, Italia": {
+"lat": 42.3791701,
+"lon": 12.5845067,
+"type": "secondary"
+},
+"Via Sant’Andrea, 67, Montebuono, Rieti, Italia": {
+"lat": 42.3849972,
+"lon": 12.5800952,
+"type": "secondary"
+},
+"Poggio Mirteto, Rieti, Lazio, Italia": {
+"lat": 42.2680426,
+"lon": 12.6640788,
+"type": "city"
+},
+"Via Valle del Lago II tratto, 9, Poggio Mirteto, Rieti, Italia": null,
+"Via Valle del Lago II tratto, Poggio Mirteto, Italia": null,
+"Poggio Nativo, Rieti, Lazio, Italia": {
+"lat": 42.215427,
+"lon": 12.79658,
+"type": "village"
+},
+"Via Farense, 73, Poggio Nativo, Rieti, Italia": {
+"lat": 42.2078397,
+"lon": 12.7795989,
+"type": "secondary"
+},
+"Rieti, Rieti, Lazio, Italia": {
+"lat": 42.4025479,
+"lon": 12.8605297,
+"type": "city"
+},
+"Via Porta Romana, 27, Rieti, Rieti, Italia": {
+"lat": 42.2648856,
+"lon": 12.6858461,
+"type": "residential"
+},
+"Via della Verdura, 21/25, Rieti, Rieti, Italia": {
+"lat": 42.3999285,
+"lon": 12.859383,
+"type": "residential"
+},
+"Via Foresta, 51, Rieti, Rieti, Italia": {
+"lat": 42.4347951,
+"lon": 12.8877803,
+"type": "amenity"
+},
+"Rivodutri, Rieti, Lazio, Italia": {
+"lat": 42.516434,
+"lon": 12.854977,
+"type": "village"
+},
+"Via Palazzo, 15, Rivodutri, Rieti, Italia": {
+"lat": 42.5033917,
+"lon": 12.8596631,
+"type": "shop"
+},
+"Tarano, Rieti, Lazio, Italia": {
+"lat": 42.3355718,
+"lon": 12.5863495,
+"type": "city"
+},
+"Via Palica Tiburzi, 42, Tarano, Rieti, Italia": null,
+"Via Palica Tiburzi, Tarano, Italia": null,
+"Varco Sabino, Rieti, Lazio, Italia": {
+"lat": 42.239829,
+"lon": 13.019884,
+"type": "village"
+},
+"Località il Casale, 02020, Varco Sabino, Rieti, Italia": null,
+"Località il Casale, Varco Sabino, Italia": null,
+"Bracciano, Roma, Lazio, Italia": {
+"lat": 42.1010951,
+"lon": 12.1738573,
+"type": "town"
+},
+"Via di Castel Giuliano, 40, Bracciano, Roma, Italia": {
+"lat": 42.056309,
+"lon": 12.1274935,
+"type": "tertiary"
+},
+"VIA delle querce, 26/L, , Roma, Bracciano, Roma, Italia": null,
+"VIA delle querce, Bracciano, Italia": null,
+"Via Settevene Palo, 39, Bracciano, Roma, Italia": {
+"lat": 42.0846452,
+"lon": 12.1817275,
+"type": "secondary"
+},
+"Campagnano di Roma, Roma, Lazio, Italia": {
+"lat": 42.141078,
+"lon": 12.3836686,
+"type": "town"
+},
+"Via del Casilino, Campagnano di Roma, Roma, Italia": null,
+"Strada di Martignano, Campagnano di Roma, Roma, Italia": {
+"lat": 42.1213761,
+"lon": 12.3394052,
+"type": "road"
+},
+"Castelnuovo di Porto, Roma, Lazio, Italia": {
+"lat": 42.1253987,
+"lon": 12.5007367,
+"type": "village"
+},
+"Via del Pascolo, 7, Castelnuovo di Porto, Roma, Italia": {
+"lat": 42.1029577,
+"lon": 12.5608976,
+"type": "residential"
+},
+"Cave, Roma, Lazio, Italia": {
+"lat": 41.8179234,
+"lon": 12.9283673,
+"type": "town"
+},
+"Via Madonna del Campo, 4, Cave, Roma, Italia": {
+"lat": 41.8204622,
+"lon": 12.9371349,
+"type": "tourism"
+},
+"Fiumicino, Roma, Lazio, Italia": {
+"lat": 41.7712145,
+"lon": 12.2278855,
+"type": "town"
+},
+"VIA CASALE DI TRAGLIATELLA , 00054, Fiumicino, Roma, Italia": {
+"lat": 41.99107,
+"lon": 12.2451336,
+"type": "secondary"
+},
+"Genazzano, Roma, Lazio, Italia": {
+"lat": 41.8296733,
+"lon": 12.9722464,
+"type": "village"
+},
+"Via Santa Cristina, Genazzano, Roma, Italia": {
+"lat": 41.7853999,
+"lon": 12.9748507,
+"type": "unclassified"
+},
+"Genzano di Roma, Roma, Lazio, Italia": {
+"lat": 41.7067607,
+"lon": 12.6898337,
+"type": "town"
+},
+"Viale Giuseppe Mazzini, 13, Genzano di Roma, Roma, Italia": {
+"lat": 41.7111658,
+"lon": 12.6900366,
+"type": "tertiary"
+},
+"Guidonia Montecelio, Roma, Lazio, Italia": {
+"lat": 41.9842734,
+"lon": 12.6953191,
+"type": "municipality"
+},
+"Via Enrico Forlanini, 37-39-41, Guidonia Montecelio, Roma, Italia": {
+"lat": 41.9477919,
+"lon": 12.6787413,
+"type": "unclassified"
+},
+"Lanuvio, Roma, Lazio, Italia": {
+"lat": 41.6745277,
+"lon": 12.6972435,
+"type": "town"
+},
+"Via Cisternense, 6, Lanuvio, Roma, Italia": {
+"lat": 41.6239963,
+"lon": 12.6890715,
+"type": "tertiary"
+},
+"Lariano, Roma, Lazio, Italia": {
+"lat": 41.7251135,
+"lon": 12.8312761,
+"type": "town"
+},
+"Via Tempio di Diana, 20, Lariano, Roma, Italia": {
+"lat": 41.7264763,
+"lon": 12.8304014,
+"type": "residential"
+},
+"Marino, Roma, Lazio, Italia": {
+"lat": 41.7697883,
+"lon": 12.6586082,
+"type": "town"
+},
+"Via Garibaldi, 1, Marino, Roma, Italia": {
+"lat": 41.7716514,
+"lon": 12.6565519,
+"type": "residential"
+},
+"Nettuno, Roma, Lazio, Italia": {
+"lat": 41.4575382,
+"lon": 12.661425,
+"type": "town"
+},
+"Via Romana, 140, Nettuno, Roma, Italia": {
+"lat": 41.4610362,
+"lon": 12.6562424,
+"type": "residential"
+},
+"Roma, Roma, Lazio, Italia": {
+"lat": 41.8933203,
+"lon": 12.4829321,
+"type": "city"
+},
+"Via dei Chiavari, 34, Roma, Roma, Italia": {
+"lat": 41.8946474,
+"lon": 12.4742641,
+"type": "shop"
+},
+"Via Ponte degli Incastri, 175, Roma, Roma, Italia": {
+"lat": 42.0734812,
+"lon": 12.344618,
+"type": "unclassified"
+},
+"Via Sostegno, 20, Roma, Roma, Italia": {
+"lat": 41.9279956,
+"lon": 12.3378737,
+"type": "unclassified"
+},
+"Via della Magliana, 1173, Roma, Roma, Italia": {
+"lat": 41.8534259,
+"lon": 12.4587225,
+"type": "secondary"
+},
+"Via della Luce, 21, Roma, Roma, Italia": {
+"lat": 41.8885642,
+"lon": 12.4753182,
+"type": "shop"
+},
+"Via Flavio Stilicone, 278/282, Roma, Roma, Italia": {
+"lat": 41.8582367,
+"lon": 12.5622689,
+"type": "shop"
+},
+"Via Giovanni Gregorio Mendel, 151, Roma, Roma, Italia": {
+"lat": 41.7630531,
+"lon": 12.5489195,
+"type": "residential"
+},
+"Via Lidia, 32 / Via Segesta, 24, Roma, Roma, Italia": null,
+"Via Lidia, Roma, Italia": {
+"lat": 41.8727543,
+"lon": 12.5105047,
+"type": "residential"
+},
+"Via Gregorio VII, 397, Roma, Roma, Italia": {
+"lat": 41.8987551,
+"lon": 12.4512709,
+"type": "primary"
+},
+"Piazza Campo de’ Fiori, 43, Roma, Roma, Italia": null,
+"Piazza Campo de’ Fiori, Roma, Italia": null,
+"Viale Adriatico, 1 b/f, Roma, Roma, Italia": {
+"lat": 41.9436863,
+"lon": 12.5374818,
+"type": "tertiary"
+},
+"Segni, Roma, Lazio, Italia": {
+"lat": 41.6914426,
+"lon": 13.0231783,
+"type": "village"
+},
+"Via Casilina, 23, Segni, Roma, Italia": {
+"lat": 41.7428211,
+"lon": 13.0373065,
+"type": "primary"
+},
+"Tivoli, Roma, Lazio, Italia": {
+"lat": 41.960922,
+"lon": 12.798884,
+"type": "town"
+},
+"Via Marche, 17, Tivoli, Roma, Italia": {
+"lat": 41.9502098,
+"lon": 12.7732033,
+"type": "residential"
+},
+"Via Dea Bona, 3, Tivoli, Roma, Italia": {
+"lat": 41.9579851,
+"lon": 12.797363,
+"type": "residential"
+},
+"Via Emilia, 11, Tivoli, Roma, Italia": {
+"lat": 41.95256,
+"lon": 12.7678008,
+"type": "residential"
+},
+"Via Dea Bona, Tivoli, Roma, Italia": {
+"lat": 41.9570055,
+"lon": 12.7969699,
+"type": "residential"
+},
+"Tolfa, Roma, Lazio, Italia": {
+"lat": 42.1496129,
+"lon": 11.9381951,
+"type": "village"
+},
+"Località La Scaglia, Santa Severa, Tolfa, Roma, Italia": null,
+"Località La Scaglia, Tolfa, Italia": null,
+"Trevignano Romano, Roma, Lazio, Italia": {
+"lat": 42.1559258,
+"lon": 12.2461954,
+"type": "village"
+},
+"Via dello Sboccatore, 8, Trevignano Romano, Roma, Italia": {
+"lat": 42.1494524,
+"lon": 12.2845455,
+"type": "residential"
+},
+"Vallepietra, Roma, Lazio, Italia": {
+"lat": 41.9269887,
+"lon": 13.2306665,
+"type": "village"
+},
+"Via Trieste, 4, Vallepietra, Roma, Italia": null,
+"Via Trieste, Vallepietra, Italia": null,
+"Località Casa degli Zocchi, Vallepietra, Roma, Italia": null,
+"Via Vittorio Veneto, 2, Vallepietra, Roma, Italia": null,
+"Via Vittorio Veneto, Vallepietra, Italia": null,
+"Velletri, Roma, Lazio, Italia": {
+"lat": 41.6867015,
+"lon": 12.7770433,
+"type": "town"
+},
+"Via Vecchia Napoli, 308, Velletri, Roma, Italia": {
+"lat": 41.6590514,
+"lon": 12.8059401,
+"type": "tertiary"
+},
+"via Selvanova n° 63, Velletri, Roma, Italia": {
+"lat": 41.6332049,
+"lon": 12.807303,
+"type": "unclassified"
+},
+"Via di Carano Vecchia, 42, Velletri, Roma, Italia": null,
+"Via di Carano Vecchia, Velletri, Italia": null,
+"Castiglione in Teverina, Viterbo, Lazio, Italia": {
+"lat": 42.6449715,
+"lon": 12.2038975,
+"type": "village"
+},
+"Civitella d’Agliano, Viterbo, Lazio, Italia": {
+"lat": 42.6053622,
+"lon": 12.1876584,
+"type": "village"
+},
+"località Morre della Chiesa, 3, Civitella d'Agliano, Civitella d’Agliano, Viterbo, Italia": null,
+"località Morre della Chiesa, Civitella d’Agliano, Italia": null,
+"Gallese, Viterbo, Lazio, Italia": {
+"lat": 42.3732869,
+"lon": 12.4028042,
+"type": "village"
+},
+"Via Vignarola, 9, Gallese, Viterbo, Italia": {
+"lat": 42.3759084,
+"lon": 12.4312414,
+"type": "unclassified"
+},
+"Montalto di Castro, Viterbo, Lazio, Italia": {
+"lat": 42.3515417,
+"lon": 11.6072988,
+"type": "village"
+},
+"Via del Giardini, 15, Montalto di Castro, Viterbo, Italia": null,
+"Via del Giardini, Montalto di Castro, Italia": null,
+"Montefiascone, Viterbo, Lazio, Italia": {
+"lat": 42.5379248,
+"lon": 12.0309974,
+"type": "town"
+},
+"Via Paternocchio, Montefiascone, Viterbo, Italia": {
+"lat": 42.5370254,
+"lon": 12.0655262,
+"type": "unclassified"
+},
+"Via Giuseppe Contadini, 55, Montefiascone, Viterbo, Italia": {
+"lat": 42.5346852,
+"lon": 12.0339129,
+"type": "craft"
+},
+"Corso Cavour, 10, Montefiascone, Viterbo, Italia": {
+"lat": 42.5398203,
+"lon": 12.0333259,
+"type": "shop"
+},
+"Orte, Viterbo, Lazio, Italia": {
+"lat": 42.4605984,
+"lon": 12.3856056,
+"type": "village"
+},
+"Via Amerina, 1, Orte, Viterbo, Italia": {
+"lat": 42.4635766,
+"lon": 12.3908902,
+"type": "secondary"
+},
+"Piansano, Viterbo, Lazio, Italia": {
+"lat": 42.517932,
+"lon": 11.8282734,
+"type": "village"
+},
+"Località Vitozzetto, 50, Piansano, Viterbo, Italia": null,
+"Località Vitozzetto, Piansano, Italia": null,
+"Proceno, Viterbo, Lazio, Italia": {
+"lat": 42.7571602,
+"lon": 11.8302614,
+"type": "village"
+},
+"Strada consorziale, ., Proceno, Viterbo, Italia": null,
+"Strada consorziale, Proceno, Italia": null,
+"Corso Regina Margherita, 74, Proceno, Viterbo, Italia": {
+"lat": 42.7576087,
+"lon": 11.8281438,
+"type": "residential"
+},
+"Via fuori porta Fiorentina, 50/a, Proceno, Viterbo, Italia": {
+"lat": 42.7573771,
+"lon": 11.8253672,
+"type": "residential"
+},
+"Via Cotone, 16, Proceno, Viterbo, Italia": {
+"lat": 42.7561614,
+"lon": 11.8303166,
+"type": "residential"
+},
+"Tuscania, Viterbo, Lazio, Italia": {
+"lat": 42.4202141,
+"lon": 11.8702611,
+"type": "village"
+},
+"Strada Tarquiniese, Tuscania, Viterbo, Italia": {
+"lat": 42.3949288,
+"lon": 11.8323726,
+"type": "secondary"
+},
+"Valentano, Viterbo, Lazio, Italia": {
+"lat": 42.5684597,
+"lon": 11.8187556,
+"type": "village"
+},
+"Strada Provinciale Lago di Mezzano, Valentano, Viterbo, Italia": {
+"lat": 42.573013,
+"lon": 11.8107162,
+"type": "tertiary"
+},
+"Vallerano, Viterbo, Lazio, Italia": {
+"lat": 42.38397,
+"lon": 12.2627904,
+"type": "village"
+},
+"Località La Selva, Vallerano, Viterbo, Italia": null,
+"Viterbo, Viterbo, Lazio, Italia": {
+"lat": 42.4168441,
+"lon": 12.1051148,
+"type": "city"
+},
+"Via Tuscia, 9A/9B, Viterbo, Viterbo, Italia": {
+"lat": 42.4297133,
+"lon": 12.0985249,
+"type": "residential"
+},
+"S.S. Cassia Nord, Viterbo, Viterbo, Italia": {
+"lat": 42.4502561,
+"lon": 12.0833055,
+"type": "shop"
+},
+"Strada Grottana, 9, Grotte Santo Stefano, Viterbo, Viterbo, Italia": {
+"lat": 42.520349,
+"lon": 12.143497,
+"type": "tertiary"
+},
+"Via Carlo Cattaneo, 34, Viterbo, Viterbo, Italia": {
+"lat": 42.4125601,
+"lon": 12.1174159,
+"type": "residential"
+},
+"Via Lega dei XII Popoli, 7D, Viterbo, Viterbo, Italia": {
+"lat": 42.4359135,
+"lon": 12.1040354,
+"type": "residential"
+},
+"VIA SERITICO, 7, Alatri, Frosinone, Italia": {
+"lat": 41.7470949,
+"lon": 13.298633,
+"type": "unclassified"
+},
+"Aquino, Frosinone, Lazio, Italia": {
+"lat": 41.491119,
+"lon": 13.70471,
+"type": "village"
+},
+"C.DA ZAMMARELLI- VIA SCARDATORE, ?, Aquino, Frosinone, Italia": null,
+"C.DA ZAMMARELLI- VIA SCARDATORE, Aquino, Italia": null,
+"PIAZZA SAN TOMMASO, 81, Aquino, Frosinone, Italia": {
+"lat": 41.4934167,
+"lon": 13.7011944,
+"type": "residential"
+},
+"PIAZZA MUNICIPIO, 14/15, Aquino, Frosinone, Italia": null,
+"PIAZZA MUNICIPIO, Aquino, Italia": null,
+"VIA CANAPINE, 1, Aquino, Frosinone, Italia": null,
+"VIA CANAPINE, Aquino, Italia": null,
+"VIA SOLDATO IGNOTO, 70, Aquino, Frosinone, Italia": null,
+"VIA SOLDATO IGNOTO, Aquino, Italia": null,
+"VIA DELLA VITTORIA ???, Aquino, Frosinone, Italia": null,
+"Arce, Frosinone, Lazio, Italia": {
+"lat": 41.5877162,
+"lon": 13.5754288,
+"type": "village"
+},
+"PIAZZA UMBERTO I, 61, Arce, Frosinone, Italia": {
+"lat": 41.5869577,
+"lon": 13.5756619,
+"type": "residential"
+},
+"CORSO UMBERTO I, 105, Arce, Frosinone, Italia": null,
+"CORSO UMBERTO I, Arce, Italia": null,
+"VIA CAMPANILE, 178, Arce, Frosinone, Italia": {
+"lat": 41.5828232,
+"lon": 13.5415536,
+"type": "tertiary"
+},
+"PIAZZA SATURNO 11, Atina, Frosinone, Italia": {
+"lat": 41.6198262,
+"lon": 13.8006292,
+"type": "pedestrian"
+},
+"VIA SAN NICOLA 9, Atina, Frosinone, Italia": {
+"lat": 41.6109007,
+"lon": 13.7978424,
+"type": "unclassified"
+},
+"VIA DEI SANNITI 560, Atina, Frosinone, Italia": {
+"lat": 41.6290428,
+"lon": 13.7891749,
+"type": "secondary"
+},
+"VIA DEL CARMINE 46, Cassino, Frosinone, Italia": {
+"lat": 41.4907476,
+"lon": 13.8308051,
+"type": "residential"
+},
+"P.ZZA MARCONI 7/9, Cassino, Frosinone, Italia": null,
+"Castrocielo, Frosinone, Lazio, Italia": {
+"lat": 41.5292828,
+"lon": 13.6939382,
+"type": "village"
+},
+"VIA IMMACOLATA, 51, Castrocielo, Frosinone, Italia": null,
+"VIA IMMACOLATA, Castrocielo, Italia": null,
+"Ceccano, Frosinone, Lazio, Italia": {
+"lat": 41.567717,
+"lon": 13.333301,
+"type": "town"
+},
+"VIA MADONNA DELLA PACE, 109, Ceccano, Frosinone, Italia": {
+"lat": 41.5674585,
+"lon": 13.330464,
+"type": "place"
+},
+"VIA ALFIERI, 16, Ceprano, Frosinone, Italia": {
+"lat": 41.5453414,
+"lon": 13.5180927,
+"type": "residential"
+},
+"VIA ALFIERI, 12, Ceprano, Frosinone, Italia": {
+"lat": 41.5453414,
+"lon": 13.5180927,
+"type": "residential"
+},
+"Colle San Magno, Frosinone, Lazio, Italia": {
+"lat": 41.55122,
+"lon": 13.694909,
+"type": "village"
+},
+"VIA LARGO MUNICIPIO, 9, Colle San Magno, Frosinone, Italia": null,
+"VIA LARGO MUNICIPIO, Colle San Magno, Italia": null,
+"Piedimonte San Germano, Frosinone, Lazio, Italia": {
+"lat": 41.4977702,
+"lon": 13.7517029,
+"type": "village"
+},
+"PIAZZA VITTORIO VENETO, 4, Piedimonte San Germano, Frosinone, Italia": {
+"lat": 41.5057492,
+"lon": 13.7516724,
+"type": "square"
+},
+"Rocca D'Arce, Frosinone, Lazio, Italia": {
+"lat": 41.58712,
+"lon": 13.585106,
+"type": "village"
+},
+"VIA MADONNA DI PARIS 3, Rocca D'Arce, Frosinone, Italia": {
+"lat": 41.5903598,
+"lon": 13.5935875,
+"type": "residential"
+},
+"Roccasecca, Frosinone, Lazio, Italia": {
+"lat": 41.5523208,
+"lon": 13.6672577,
+"type": "village"
+},
+"VIA CASILINA, Roccasecca, Frosinone, Italia": {
+"lat": 41.5424676,
+"lon": 13.6351769,
+"type": "primary"
+},
+"VIA CASILINA 28-30, Roccasecca, Frosinone, Italia": {
+"lat": 41.5385209,
+"lon": 13.644829,
+"type": "primary"
+},
+"VIA ROMA 23, Roccasecca, Frosinone, Italia": {
+"lat": 41.5466887,
+"lon": 13.6701367,
+"type": "tertiary"
+},
+"VIA PIAVE 41, Roccasecca, Frosinone, Italia": {
+"lat": 41.5305706,
+"lon": 13.6487621,
+"type": "residential"
+},
+"San Giorgio A Liri, Frosinone, Lazio, Italia": {
+"lat": 41.404117,
+"lon": 13.761312,
+"type": "village"
+},
+"VIALE DELLE RIMEMBRANZE 2, San Giorgio A Liri, Frosinone, Italia": null,
+"CORSO ACHILLE SPATUZZI 93, San Giorgio A Liri, Frosinone, Italia": {
+"lat": 41.4117759,
+"lon": 13.7687699,
+"type": "residential"
+},
+"Bassiano, Latina, Lazio, Italia": {
+"lat": 41.5497551,
+"lon": 13.032233,
+"type": "village"
+},
+"VIA A. MANUNZIO 74, Bassiano, Latina, Italia": null,
+"VIA CASANATOLA 10, Bassiano, Latina, Italia": null,
+"VIA VESPASIANO GONZAGA, 36, Fondi, Latina, Italia": {
+"lat": 41.3592686,
+"lon": 13.4290641,
+"type": "residential"
+},
+"VIA DON LUIGI STURZO ANG. VIA P.A. FALANGA, Fondi, Latina, Italia": null,
+"VIA VINCENZO GIOBERTI, Fondi, Latina, Italia": {
+"lat": 41.3574791,
+"lon": 13.4333305,
+"type": "residential"
+},
+"VIALE REGINA MARGHERITA, 14, Fondi, Latina, Italia": {
+"lat": 41.3581167,
+"lon": 13.4294319,
+"type": "residential"
+},
+"VIA ANTONIO RUFFINI, 10, Fondi, Latina, Italia": {
+"lat": 41.3583385,
+"lon": 13.4286257,
+"type": "shop"
+},
+"VIA GIULIA GONZAGA, 18, Fondi, Latina, Italia": {
+"lat": 41.3570576,
+"lon": 13.4282498,
+"type": "residential"
+},
+"Formia, Latina, Lazio, Italia": {
+"lat": 41.259308,
+"lon": 13.6080209,
+"type": "town"
+},
+"P.ZZA MARCONI, 13, Formia, Latina, Italia": {
+"lat": 41.2559756,
+"lon": 13.6050598,
+"type": "residential"
+},
+"Gaeta, Latina, Lazio, Italia": {
+"lat": 41.218312,
+"lon": 13.56281,
+"type": "town"
+},
+"VIA ROMA, 106, Gaeta, Latina, Italia": {
+"lat": 41.2124237,
+"lon": 13.559168,
+"type": "building"
+},
+"VIA C. BATTISTI, 5, Gaeta, Latina, Italia": null,
+"VIA C. BATTISTI, Gaeta, Italia": null,
+"VIA INDIPENDENZA, 94/96, Gaeta, Latina, Italia": {
+"lat": 41.2236472,
+"lon": 13.5686683,
+"type": "residential"
+},
+"VIA DON TORELLO 19, Latina, Latina, Italia": {
+"lat": 41.4598334,
+"lon": 12.9220056,
+"type": "secondary"
+},
+"Lenola, Latina, Lazio, Italia": {
+"lat": 41.406115,
+"lon": 13.459406,
+"type": "village"
+},
+"F.A. NOTARIANNI, 10, Lenola, Latina, Italia": null,
+"F.A. NOTARIANNI, Lenola, Italia": null,
+"VIA G.MATTEI, 13, Lenola, Latina, Italia": null,
+"VIA G.MATTEI, Lenola, Italia": null,
+"VIA SANTUARIO DEL COLLE, 10, Lenola, Latina, Italia": {
+"lat": 41.4076128,
+"lon": 13.4608975,
+"type": "road"
+},
+"PIAZZA CAVOUR 16, Lenola, Latina, Italia": {
+"lat": 41.408916,
+"lon": 13.4613422,
+"type": "square"
+},
+"Maenza, Latina, Lazio, Italia": {
+"lat": 41.5233613,
+"lon": 13.1805494,
+"type": "village"
+},
+"VIA MADONNE DELLE GRAZIE 40, Maenza, Latina, Italia": null,
+"VIA CIRCONVALLAZIONE 23, Maenza, Latina, Italia": {
+"lat": 41.5236155,
+"lon": 13.1790516,
+"type": "unclassified"
+},
+"Minturno, Latina, Lazio, Italia": {
+"lat": 41.2629744,
+"lon": 13.7465219,
+"type": "town"
+},
+"VIA APPIA, 497, Minturno, Latina, Italia": {
+"lat": 41.2554732,
+"lon": 13.7122581,
+"type": "secondary"
+},
+"FRAZIONE MARINA DI VIA APPIA 1108, Minturno, Latina, Italia": null,
+"VIA APPIA, 1103, Minturno, Latina, Italia": {
+"lat": 41.2554732,
+"lon": 13.7122581,
+"type": "secondary"
+},
+"VIA MARCONI, 52, Minturno, Latina, Italia": {
+"lat": 41.2540243,
+"lon": 13.7120056,
+"type": "residential"
+},
+"FRAZIONE SCAURI VIA APPIA 684, Minturno, Latina, Italia": null,
+"FRAZIONE SCAURI VIA APPIA, 697, Minturno, Latina, Italia": null,
+"FRAZIONE SCAURI VIA APPIA, Minturno, Italia": null,
+"FRAZIONE SCAURI VIA APPIA 246, Minturno, Latina, Italia": null,
+"Norma, Latina, Lazio, Italia": {
+"lat": 41.585964,
+"lon": 12.9744412,
+"type": "village"
+},
+"VIA NORBANA 17, Norma, Latina, Italia": {
+"lat": 41.5716886,
+"lon": 12.976065,
+"type": "secondary"
+},
+"VIA NORBANA 8/10, Norma, Latina, Italia": {
+"lat": 41.5716886,
+"lon": 12.976065,
+"type": "secondary"
+},
+"VIA DELLA GROTTA, 156, Priverno, Latina, Italia": {
+"lat": 41.4698775,
+"lon": 13.181989,
+"type": "tertiary"
+},
+"VIA CONSOLARE, 23, Priverno, Latina, Italia": {
+"lat": 41.4741745,
+"lon": 13.1805829,
+"type": "residential"
+},
+"Roccagorga, Latina, Lazio, Italia": {
+"lat": 41.5253154,
+"lon": 13.1559249,
+"type": "village"
+},
+"PIAZZA M.RI ARDEATINI 6, Roccagorga, Latina, Italia": null,
+"VIA A. GRAMSCI 89, Roccagorga, Latina, Italia": null,
+"VIA D. MENTA 19, Roccagorga, Latina, Italia": null,
+"VIA PONTE BOCCETTA 119, Roccagorga, Latina, Italia": {
+"lat": 41.5244875,
+"lon": 13.1650227,
+"type": "secondary"
+},
+"PIAZZA VI GENNAION. 20, Roccagorga, Latina, Italia": null,
+"PIAZZA VI GENNAIO 8, Roccagorga, Latina, Italia": null,
+"VIA C. COLOMBO 156, Roccagorga, Latina, Italia": null,
+"VIA G. SALTARELLI 1, Roccagorga, Latina, Italia": null,
+"VIA M. DORI 5, Roccagorga, Latina, Italia": null,
+"CORSO REPUBBLICA 78, Roccagorga, Latina, Italia": {
+"lat": 41.5272952,
+"lon": 13.1556086,
+"type": "shop"
+},
+"VIA B.GO MADONNA 78, Roccagorga, Latina, Italia": null,
+"Roccasecca Dei Volsci, Latina, Lazio, Italia": {
+"lat": 41.4798719,
+"lon": 13.2123626,
+"type": "village"
+},
+"VIA REGINA CAMILLA, N . 1, Roccasecca Dei Volsci, Latina, Italia": null,
+"VIA REGINA CAMILLA, Roccasecca Dei Volsci, Italia": null,
+"Sabaudia, Latina, Lazio, Italia": {
+"lat": 41.3015672,
+"lon": 13.0258726,
+"type": "town"
+},
+"CORSO VITTORIO EMANUELE III, 76/78, Sabaudia, Latina, Italia": {
+"lat": 41.2943624,
+"lon": 13.0339059,
+"type": "tertiary"
+},
+"VIA COLLI I TRATTON. 69, Sezze, Latina, Italia": null,
+"VIA PIAGGE MARINE, 6, Sezze, Latina, Italia": {
+"lat": 41.4955938,
+"lon": 13.0648938,
+"type": "tertiary"
+},
+"VIA FULVIA 18, Sezze, Latina, Italia": null,
+"VIA CASALI I TRATTO I, Sezze, Latina, Italia": null,
+"VIA CUNEO, 8, Sezze, Latina, Italia": {
+"lat": 41.4958098,
+"lon": 13.0427879,
+"type": "residential"
+},
+"Sonnino, Latina, Lazio, Italia": {
+"lat": 41.4142596,
+"lon": 13.2415221,
+"type": "town"
+},
+"VIA CONSOLARE CAPOCROCE, Sonnino, Latina, Italia": {
+"lat": 41.3936296,
+"lon": 13.1964798,
+"type": "tertiary"
+},
+"VIA CESARE BATTISTI, 35 - 37 - 39, Sonnino, Latina, Italia": {
+"lat": 41.4136472,
+"lon": 13.2431769,
+"type": "residential"
+},
+"VIA CAPOCROCE, Sonnino, Latina, Italia": {
+"lat": 41.4010215,
+"lon": 13.2032073,
+"type": "tertiary"
+},
+"VIA CESARE BATTISTI, Sonnino, Latina, Italia": {
+"lat": 41.4136472,
+"lon": 13.2431769,
+"type": "residential"
+},
+"PIAZZA SAN PIETRO, Sonnino, Latina, Italia": {
+"lat": 41.4137848,
+"lon": 13.2416088,
+"type": "residential"
+},
+"PIAZZA GARIBALDI, 2, Sonnino, Latina, Italia": {
+"lat": 41.4141931,
+"lon": 13.2419263,
+"type": "pedestrian"
+},
+"VIA CORNAROLO, 21, Sonnino, Latina, Italia": null,
+"VIA CORNAROLO, Sonnino, Italia": null,
+"VIA CONSOLARE FRASSO, 8301, Sonnino, Latina, Italia": {
+"lat": 41.379143,
+"lon": 13.1988175,
+"type": "tertiary"
+},
+"Sperlonga, Latina, Lazio, Italia": {
+"lat": 41.260212,
+"lon": 13.433107,
+"type": "village"
+},
+"VIA DELLE BENEDETTINE 14 ( EX VIA FULCO TOSTI), Sperlonga, Latina, Italia": null,
+"VIA C.BATTISTI, Terracina, Latina, Italia": null,
+"Amatrice, Rieti, Lazio, Italia": {
+"lat": 42.6320509,
+"lon": 13.2901924,
+"type": "city"
+},
+"CORSO UMBERTO I 43/45 - ATTUALMENTE DELOCALIZZATO PRESSO IL CENTRO COMMERCIALE \"IL CORSO\", Amatrice, Rieti, Italia": null,
+"DELOCALIZZATO PRESSO IL CENTRO COMMERCIALE \"IL CORSO\" IN VIA PADRE GIOVANI MINOZZI, Amatrice, Rieti, Italia": null,
+"CORSO UMBERTO I 69 - ATTUALMENTE DELOCALIZZATO PRESSO IL CENTRO COMMERCIALE \"IL TRIANGOLO\", Amatrice, Rieti, Italia": null,
+"CORSO UMBERTO I 77 - ATTUALMENTE DELOCALIZZATO PRESSO IL CENTRO COMMERCIALE \"IL CORSO\", Amatrice, Rieti, Italia": null,
+"Orvinio, Rieti, Lazio, Italia": {
+"lat": 42.132126,
+"lon": 12.939684,
+"type": "village"
+},
+"VIALE ROMA, 26, Orvinio, Rieti, Italia": null,
+"VIALE ROMA, Orvinio, Italia": null,
+"Posta, Rieti, Lazio, Italia": {
+"lat": 42.5179291,
+"lon": 13.0751853,
+"type": "city"
+},
+"VIA STECCATO, 2, Posta, Rieti, Italia": {
+"lat": 42.5539594,
+"lon": 13.1409126,
+"type": "primary"
+},
+"VIA PORTA ROMANA 60, Rieti, Rieti, Italia": {
+"lat": 42.398692,
+"lon": 12.8604985,
+"type": "residential"
+},
+"Torricella In Sabina, Rieti, Lazio, Italia": {
+"lat": 42.263329,
+"lon": 12.870081,
+"type": "village"
+},
+"VIA BORGO, 35 FRAZIONE DI OLIVETO-SABINO, Torricella In Sabina, Rieti, Italia": null,
+"VIA BORGO, Torricella In Sabina, Italia": {
+"lat": 42.2505774,
+"lon": 12.8895058,
+"type": "residential"
+},
+"Albano Laziale, Roma, Lazio, Italia": {
+"lat": 41.7288894,
+"lon": 12.6582689,
+"type": "town"
+},
+"CORSO GIACOMO MATTEOTTI, 40, Albano Laziale, Roma, Italia": {
+"lat": 41.7277273,
+"lon": 12.6596912,
+"type": "primary"
+},
+"Allumiere, Roma, Lazio, Italia": {
+"lat": 42.156218,
+"lon": 11.9038323,
+"type": "village"
+},
+"VIA DELLA REPUBBLICA, 37/B, Allumiere, Roma, Italia": {
+"lat": 42.1478038,
+"lon": 11.9060937,
+"type": "tertiary"
+},
+"VIA ROMA 35, Allumiere, Roma, Italia": {
+"lat": 42.1560812,
+"lon": 11.9028397,
+"type": "residential"
+},
+"VIALE G. GARIBALDI. 3, Allumiere, Roma, Italia": null,
+"VIA TEOFOLDO MERTEL 97-99-101, Allumiere, Roma, Italia": null,
+"VIA DELLA REPUBBLICA, 58, Allumiere, Roma, Italia": {
+"lat": 42.1478038,
+"lon": 11.9060937,
+"type": "tertiary"
+},
+"Arcinazzo Romano, Roma, Lazio, Italia": {
+"lat": 41.879722,
+"lon": 13.114392,
+"type": "village"
+},
+"VIA S. MARIA 2, Arcinazzo Romano, Roma, Italia": null,
+"Campagnano Di Roma, Roma, Lazio, Italia": {
+"lat": 42.141078,
+"lon": 12.3836686,
+"type": "town"
+},
+"C.SO VITTORIO EMANUELE 28/30, Campagnano Di Roma, Roma, Italia": {
+"lat": 42.1385965,
+"lon": 12.3806784,
+"type": "residential"
+},
+"C.SO VITTORIO EMANUELE, 101, Campagnano Di Roma, Roma, Italia": {
+"lat": 42.1385965,
+"lon": 12.3806784,
+"type": "residential"
+},
+"C.SO V. EMANUELE, 90/92, Campagnano Di Roma, Roma, Italia": null,
+"C.SO V. EMANUELE, Campagnano Di Roma, Italia": null,
+"C.SO VITTORIO EMANUELE, 61, Campagnano Di Roma, Roma, Italia": {
+"lat": 42.1394649,
+"lon": 12.3816596,
+"type": "residential"
+},
+"Canale Monterano, Roma, Lazio, Italia": {
+"lat": 42.136043,
+"lon": 12.1030665,
+"type": "village"
+},
+"CORSO DELLA REPUBBLICA, 42, Canale Monterano, Roma, Italia": {
+"lat": 42.1366217,
+"lon": 12.1023037,
+"type": "tertiary"
+},
+"CORSO DELLA REPUBBLICA, 10a, Canale Monterano, Roma, Italia": {
+"lat": 42.1366217,
+"lon": 12.1023037,
+"type": "tertiary"
+},
+"Castel Gandolfo, Roma, Lazio, Italia": {
+"lat": 41.7425222,
+"lon": 12.6488774,
+"type": "village"
+},
+"VIA MASSIMO D'AZEGLIO, 3, Castel Gandolfo, Roma, Italia": {
+"lat": 41.7468635,
+"lon": 12.6489178,
+"type": "residential"
+},
+"CORSO DELLA REPUBBLICA, 8, Castel Gandolfo, Roma, Italia": {
+"lat": 41.7457158,
+"lon": 12.6507733,
+"type": "pedestrian"
+},
+"VIA GARIBALDI, 6, Castel Gandolfo, Roma, Italia": {
+"lat": 41.7473453,
+"lon": 12.6485274,
+"type": "shop"
+},
+"PIAZZA DELLA LIBERTA', 16, Castel Gandolfo, Roma, Italia": {
+"lat": 41.7465871,
+"lon": 12.6504754,
+"type": "square"
+},
+"Civitavecchia, Roma, Lazio, Italia": {
+"lat": 42.0937524,
+"lon": 11.7922462,
+"type": "town"
+},
+"P.ZZA REGINA MARGHERITA BOX 50, Civitavecchia, Roma, Italia": null,
+"Colleferro, Roma, Lazio, Italia": {
+"lat": 41.727033,
+"lon": 13.0041576,
+"type": "town"
+},
+"VIA SAN PAOLO 34, Genazzano, Roma, Italia": {
+"lat": 41.8327094,
+"lon": 12.9727135,
+"type": "shop"
+},
+"VIA SAN PAOLO 9, Genazzano, Roma, Italia": {
+"lat": 41.8329803,
+"lon": 12.9728363,
+"type": "pedestrian"
+},
+"PIAZZA DEL SANTUARIO, 5, Genazzano, Roma, Italia": {
+"lat": 41.8331139,
+"lon": 12.9729953,
+"type": "amenity"
+},
+"Genzano Di Roma, Roma, Lazio, Italia": {
+"lat": 41.7067607,
+"lon": 12.6898337,
+"type": "town"
+},
+"PIAZZA IV NOVEMBRE, 7, Genzano Di Roma, Roma, Italia": {
+"lat": 41.7072858,
+"lon": 12.6889749,
+"type": "pedestrian"
+},
+"VIA ITALO BELARDI, 58/60, Genzano Di Roma, Roma, Italia": {
+"lat": 41.7069897,
+"lon": 12.6902368,
+"type": "residential"
+},
+"CORSO DON MINZONI, 15, Genzano Di Roma, Roma, Italia": {
+"lat": 41.7067147,
+"lon": 12.6895564,
+"type": "primary"
+},
+"CORSO DON MINZONI, 27, Genzano Di Roma, Roma, Italia": {
+"lat": 41.7067147,
+"lon": 12.6895564,
+"type": "primary"
+},
+"VIA CAVE DI PEPERINO, 114, Marino, Roma, Italia": {
+"lat": 41.7685782,
+"lon": 12.6553375,
+"type": "residential"
+},
+"VIA ROMA, 84, Marino, Roma, Italia": {
+"lat": 41.7700167,
+"lon": 12.6572752,
+"type": "residential"
+},
+"VIA P. MARONCELLI, 25, Marino, Roma, Italia": null,
+"VIA P. MARONCELLI, Marino, Italia": null,
+"CORSO VITTORIA COLONNA, 13, Marino, Roma, Italia": {
+"lat": 41.7704372,
+"lon": 12.6668859,
+"type": "secondary"
+},
+"PIAZZA GIACOMO MATTEOTTI, 11, Marino, Roma, Italia": {
+"lat": 41.7684282,
+"lon": 12.6620694,
+"type": "amenity"
+},
+"Monterotondo, Roma, Lazio, Italia": {
+"lat": 42.0517987,
+"lon": 12.6183967,
+"type": "town"
+},
+"VIALE G. MAZZINI, 14/B, Monterotondo, Roma, Italia": null,
+"VIALE G. MAZZINI, Monterotondo, Italia": null,
+"Morlupo, Roma, Lazio, Italia": {
+"lat": 42.1488565,
+"lon": 12.5030127,
+"type": "village"
+},
+"VIA SAN PELLEGRINO, 2A, Morlupo, Roma, Italia": {
+"lat": 42.146294,
+"lon": 12.4908008,
+"type": "residential"
+},
+"Pomezia, Roma, Lazio, Italia": {
+"lat": 41.667529,
+"lon": 12.5047863,
+"type": "town"
+},
+"VIA RATTAZZI, 15, Pomezia, Roma, Italia": {
+"lat": 41.6735954,
+"lon": 12.4986433,
+"type": "residential"
+},
+"Riano, Roma, Lazio, Italia": {
+"lat": 42.100122,
+"lon": 12.505675,
+"type": "town"
+},
+"VIA G. LEOPARDI, 12, Riano, Roma, Italia": null,
+"VIA G. LEOPARDI, Riano, Italia": null,
+"VIA DELLE MURATTE, 8, Roma, Roma, Italia": {
+"lat": 41.9007346,
+"lon": 12.4830594,
+"type": "shop"
+},
+"VIA OSTIENSE 54b-54c, Roma, Roma, Italia": null,
+"VIA TACITO, 76-78, Roma, Roma, Italia": {
+"lat": 41.9058244,
+"lon": 12.468169,
+"type": "residential"
+},
+"VIA CARLO BOTTA 21 - 23, Roma, Roma, Italia": {
+"lat": 41.8915765,
+"lon": 12.5006096,
+"type": "residential"
+},
+"LARGO SOMALIA 68/69, Roma, Roma, Italia": {
+"lat": 41.9360576,
+"lon": 12.5144568,
+"type": "residential"
+},
+"VIA COLA DI RIENZO, 196-198, Roma, Roma, Italia": {
+"lat": 41.9073464,
+"lon": 12.4632011,
+"type": "shop"
+},
+"VIALE REGINA MARGHERITA, 146-148, Roma, Roma, Italia": {
+"lat": 41.9117334,
+"lon": 12.5080568,
+"type": "secondary"
+},
+"VIA DOMENICO TARDINI, 3-3A, Roma, Roma, Italia": {
+"lat": 41.9040129,
+"lon": 12.4254382,
+"type": "primary"
+},
+"VIA BRITANNIA, 32-34, Roma, Roma, Italia": {
+"lat": 41.8797502,
+"lon": 12.5082099,
+"type": "primary"
+},
+"VIA DI RIPETTA, 236-237, Roma, Roma, Italia": {
+"lat": 41.9059117,
+"lon": 12.4756255,
+"type": "residential"
+},
+"CORSO DEL RINASCIMENTO, 8, Roma, Roma, Italia": {
+"lat": 41.8978513,
+"lon": 12.4740131,
+"type": "tertiary"
+},
+"VIA CAVOUR, 313, Roma, Roma, Italia": {
+"lat": 41.8937195,
+"lon": 12.489126,
+"type": "amenity"
+},
+"VIA GINORI, 53-55, Roma, Roma, Italia": {
+"lat": 41.8793745,
+"lon": 12.4756726,
+"type": "residential"
+},
+"VIA DEL LAVATORE, 31-31a, Roma, Roma, Italia": {
+"lat": 41.901006,
+"lon": 12.4841473,
+"type": "pedestrian"
+},
+"VIA DEI PETTINARI, 44, Roma, Roma, Italia": {
+"lat": 41.8934041,
+"lon": 12.4722022,
+"type": "pedestrian"
+},
+"VIA VITTORIO EMANUELE ORLANDO, 75, Roma, Roma, Italia": {
+"lat": 41.9034324,
+"lon": 12.4952646,
+"type": "place"
+},
+"VIALE PARIOLI N . 16/a-16/b, Roma, Roma, Italia": null,
+"PIAZZA UMBERTO I, 5 ANGOLO VIA DEI GNOLI, 752, Roma, Roma, Italia": null,
+"PIAZZA UMBERTO I, Roma, Italia": {
+"lat": 42.2022611,
+"lon": 12.4016971,
+"type": "square"
+},
+"via Appia Nuova 522/c, Roma, Roma, Italia": {
+"lat": 41.8721995,
+"lon": 12.525757,
+"type": "place"
+},
+"VIA DEGLI ORFANI, 84-86 ANGOLO VIA DEI PASTINI, 6-11, Roma, Roma, Italia": null,
+"VIA DEGLI ORFANI, Roma, Italia": {
+"lat": 41.8995686,
+"lon": 12.4773968,
+"type": "road"
+},
+"VIA SARDEGNA, 19-21, Roma, Roma, Italia": {
+"lat": 41.9094087,
+"lon": 12.4911644,
+"type": "residential"
+},
+"VIA PO, 124-126, Roma, Roma, Italia": {
+"lat": 41.9139505,
+"lon": 12.4947594,
+"type": "tertiary"
+},
+"VIA DEL MORO 37/A/B, Roma, Roma, Italia": {
+"lat": 41.8902529,
+"lon": 12.4709572,
+"type": "pedestrian"
+},
+"VIALE DEL VIGNOLA 107-109, Roma, Roma, Italia": {
+"lat": 41.9262496,
+"lon": 12.4630331,
+"type": "residential"
+},
+"VIA DI RIPETTA, 19-20, Roma, Roma, Italia": {
+"lat": 41.9090384,
+"lon": 12.4762126,
+"type": "shop"
+},
+"PIAZZA DEL POPOLO, 4-5-5a, Roma, Roma, Italia": null,
+"PIAZZA DEL POPOLO, Roma, Italia": {
+"lat": 41.9107479,
+"lon": 12.4763646,
+"type": "square"
+},
+"PIAZZA CAMPO DE' FIORI, 1-2, Roma, Roma, Italia": null,
+"PIAZZA CAMPO DE' FIORI, Roma, Italia": null,
+"VIA GENZANO, 64-66, Roma, Roma, Italia": {
+"lat": 41.8706097,
+"lon": 12.52954,
+"type": "residential"
+},
+"VIA FABIO MASSIMO 80a, Roma, Roma, Italia": {
+"lat": 41.9097974,
+"lon": 12.4619834,
+"type": "amenity"
+},
+"VIA PROPERZIO, 23-25, Roma, Roma, Italia": {
+"lat": 41.9050922,
+"lon": 12.4611496,
+"type": "residential"
+},
+"Sant'Angelo Romano, Roma, Lazio, Italia": {
+"lat": 42.035122,
+"lon": 12.712681,
+"type": "village"
+},
+"VIA NAZIONALE 20/24, Sant'Angelo Romano, Roma, Italia": {
+"lat": 42.0350279,
+"lon": 12.7132037,
+"type": "residential"
+},
+"VIA DEL BAGNO, 5, Tolfa, Roma, Italia": {
+"lat": 42.1525176,
+"lon": 11.9411836,
+"type": "shop"
+},
+"VIA XX SETTEMBRE, 19, Tolfa, Roma, Italia": {
+"lat": 42.1522977,
+"lon": 11.9383409,
+"type": "residential"
+},
+"VIA ANNIBAL CARO, 40 ALL'INTERNO DI PALAZZO PANETTI, Tolfa, Roma, Italia": null,
+"VIA ANNIBAL CARO, Tolfa, Italia": {
+"lat": 42.1518107,
+"lon": 11.9336124,
+"type": "residential"
+},
+"VIA ROMA, 7, Tolfa, Roma, Italia": {
+"lat": 42.151238,
+"lon": 11.9396907,
+"type": "secondary"
+},
+"VIALE GARIBALDI, 55, Trevignano Romano, Roma, Italia": null,
+"VIALE GARIBALDI, Trevignano Romano, Italia": null,
+"PIAZZA VITTORIO EMANUELE, 8/9, Trevignano Romano, Roma, Italia": {
+"lat": 42.1559042,
+"lon": 12.2459888,
+"type": "square"
+},
+"VIA UNGHERIA, 3, Trevignano Romano, Roma, Italia": {
+"lat": 42.1570784,
+"lon": 12.2425856,
+"type": "residential"
+},
+"VIA UNGHERIA, 15, Trevignano Romano, Roma, Italia": {
+"lat": 42.1570784,
+"lon": 12.2425856,
+"type": "residential"
+},
+"Bassano In Teverina, Viterbo, Lazio, Italia": {
+"lat": 42.4660738,
+"lon": 12.3130342,
+"type": "village"
+},
+"PIAZZA SAN ROCCO 4, Bassano In Teverina, Viterbo, Italia": null,
+"Blera, Viterbo, Lazio, Italia": {
+"lat": 42.272522,
+"lon": 12.031662,
+"type": "village"
+},
+"VIA UMBERTO I, 71, Blera, Viterbo, Italia": {
+"lat": 42.2711563,
+"lon": 12.032743,
+"type": "secondary"
+},
+"Canino, Viterbo, Lazio, Italia": {
+"lat": 42.4639626,
+"lon": 11.7495088,
+"type": "village"
+},
+"VIA TUSCANIA, 1, Canino, Viterbo, Italia": {
+"lat": 42.4624997,
+"lon": 11.7533667,
+"type": "secondary"
+},
+"VIA CAVOUR, 33, Canino, Viterbo, Italia": {
+"lat": 42.4654332,
+"lon": 11.7491055,
+"type": "residential"
+},
+"Caprarola, Viterbo, Lazio, Italia": {
+"lat": 42.326625,
+"lon": 12.235766,
+"type": "village"
+},
+"VIA ANTONIO GRAMSCI 12, Caprarola, Viterbo, Italia": null,
+"Carbognano, Viterbo, Lazio, Italia": {
+"lat": 42.3322289,
+"lon": 12.2644377,
+"type": "village"
+},
+"PIAZZA COMUNE, 9, Carbognano, Viterbo, Italia": {
+"lat": 42.3321503,
+"lon": 12.2666762,
+"type": "square"
+},
+"Monte Romano, Viterbo, Lazio, Italia": {
+"lat": 42.2678823,
+"lon": 11.8986478,
+"type": "village"
+},
+"VIA VITTORIO EMANUELE, 22, Monte Romano, Viterbo, Italia": {
+"lat": 42.2753223,
+"lon": 11.9108192,
+"type": "primary"
+},
+"PIAZZA DANTE, 2-3, Monte Romano, Viterbo, Italia": null,
+"PIAZZA DANTE, Monte Romano, Italia": null,
+"VIA VITTORIO EMANUELE, 43, Monte Romano, Viterbo, Italia": {
+"lat": 42.2709031,
+"lon": 11.9038082,
+"type": "primary"
+},
+"PIAZZA DANTE, 5, Monte Romano, Viterbo, Italia": null,
+"VIA VITTORIO EMANUELE, 61, Monte Romano, Viterbo, Italia": {
+"lat": 42.2669689,
+"lon": 11.8851724,
+"type": "primary"
+},
+"VIA D. ALIGHIERI, 16, Montefiascone, Viterbo, Italia": null,
+"VIA D. ALIGHIERI, Montefiascone, Italia": null,
+"VIA CASSIA, 169, Montefiascone, Viterbo, Italia": {
+"lat": 42.5401912,
+"lon": 12.0332525,
+"type": "tertiary"
+},
+"CORSO CAVOUR, 74/76, Montefiascone, Viterbo, Italia": {
+"lat": 42.5390757,
+"lon": 12.0323641,
+"type": "residential"
+},
+"Monterosi, Viterbo, Lazio, Italia": {
+"lat": 42.195823,
+"lon": 12.308469,
+"type": "village"
+},
+"VIA ROMA 10, Monterosi, Viterbo, Italia": {
+"lat": 42.1954457,
+"lon": 12.3099032,
+"type": "secondary"
+},
+"Soriano Nel Cimino, Viterbo, Lazio, Italia": {
+"lat": 42.4182489,
+"lon": 12.2342287,
+"type": "village"
+},
+"PIAZZA G. MARCONI, 22, Soriano Nel Cimino, Viterbo, Italia": null,
+"PIAZZA G. MARCONI, Soriano Nel Cimino, Italia": null,
+"VIALE ERNESTO MONACI, 31/A, Soriano Nel Cimino, Viterbo, Italia": {
+"lat": 42.4201891,
+"lon": 12.2372262,
+"type": "secondary"
+},
+"PIAZZA G. MARCONI, Soriano Nel Cimino, Viterbo, Italia": null,
+"VIA CINQUE GIUGNO, 5, Soriano Nel Cimino, Viterbo, Italia": null,
+"VIA CINQUE GIUGNO, Soriano Nel Cimino, Italia": null,
+"VIA UMBERTO I, 1, Soriano Nel Cimino, Viterbo, Italia": {
+"lat": 42.4726588,
+"lon": 12.277822,
+"type": "living_street"
+},
+"VIA INNOCENZO VIII, 32, Soriano Nel Cimino, Viterbo, Italia": {
+"lat": 42.4197729,
+"lon": 12.2338839,
+"type": "residential"
+},
+"Tarquinia, Viterbo, Lazio, Italia": {
+"lat": 42.2532394,
+"lon": 11.7591747,
+"type": "town"
+},
+"VIA SAN PANCRAZIO, 6, Tarquinia, Viterbo, Italia": {
+"lat": 42.2546634,
+"lon": 11.7586911,
+"type": "residential"
+},
+"VIA ROMA, 26/28, Viterbo, Viterbo, Italia": {
+"lat": 42.4174074,
+"lon": 12.1055267,
+"type": "pedestrian"
+},
+"CORSO ITALIA, 31, Viterbo, Viterbo, Italia": {
+"lat": 42.4185134,
+"lon": 12.1065012,
+"type": "shop"
+},
+"VIA SAN CARLO, 14/16, Viterbo, Viterbo, Italia": {
+"lat": 42.4125184,
+"lon": 12.1025719,
+"type": "road"
+},
+"VIA GARIBALDI, 20, Viterbo, Viterbo, Italia": {
+"lat": 42.2536425,
+"lon": 11.7577737,
+"type": "place"
+},
+"VIA DELLA VERITA', 25, Viterbo, Viterbo, Italia": {
+"lat": 42.4169529,
+"lon": 12.1098297,
+"type": "amenity"
+},
+"CORSO ITALIA, 119, Viterbo, Viterbo, Italia": {
+"lat": 42.4191236,
+"lon": 12.1067877,
+"type": "pedestrian"
+},
+"VIA GARIBALDI, 25, Viterbo, Viterbo, Italia": {
+"lat": 42.2160654,
+"lon": 12.4185252,
+"type": "place"
+},
+"VIA GARIBALDI, 24, Viterbo, Viterbo, Italia": {
+"lat": 42.2882621,
+"lon": 12.4111968,
+"type": "residential"
+},
+"PIAZZA M. BURATTI, 33, Viterbo, Viterbo, Italia": null,
+"PIAZZA M. BURATTI, Viterbo, Italia": null,
+"Via Don Giovanni Minzoni, Latina, Italia": {
+"lat": 41.4643098,
+"lon": 12.9065728,
+"type": "residential"
+}
+}

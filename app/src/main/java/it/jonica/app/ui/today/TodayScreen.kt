@@ -76,7 +76,7 @@ import it.jonica.app.data.facts
 import it.jonica.app.data.farmEvents
 import it.jonica.app.data.products
 import it.jonica.app.data.seasonOf
-import it.jonica.app.data.shops
+import it.jonica.app.data.allShops
 import it.jonica.app.location.Default00138
 import it.jonica.app.location.GeoPoint
 import it.jonica.app.location.distanceMeters
@@ -214,7 +214,7 @@ private fun Hero(today: LocalDate, count: Int) {
             ) {
                 HeroStat(season, "stagione", Modifier.weight(1f))
                 HeroStat("$count", "di stagione", Modifier.weight(1f))
-                HeroStat("${shops.size}", "botteghe", Modifier.weight(1f))
+                HeroStat("${allShops.size}", "botteghe", Modifier.weight(1f))
             }
         }
     }
@@ -481,7 +481,7 @@ private fun FactCarousel() {
 @Composable
 private fun NearestShop(location: GeoPoint?, onOpenShops: () -> Unit) {
     val here = location ?: Default00138
-    val nearest = remember(here) { shops.minBy { distanceMeters(here, it.lat, it.lon) } }
+    val nearest = remember(here) { allShops.minBy { distanceMeters(here, it.lat, it.lon) } }
     val dist = remember(here, nearest) { distanceMeters(here, nearest.lat, nearest.lon) }
     Column(Modifier.padding(horizontal = ScreenPadding)) {
         Text("La bottega più vicina", style = MaterialTheme.typography.headlineSmall)

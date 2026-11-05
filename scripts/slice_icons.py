@@ -54,6 +54,10 @@ SHEETS = {
         "cesto", "bancarella", "inverno", "primavera",
         "estate", "autunno", "camion", "contadino",
     ]),
+    "sheet8.png": (2, 4, [
+        "salumi", "caffe", "conserve", "birra",
+        "gelato", "zafferano", "cascina", "mulino",
+    ]),
 }
 
 

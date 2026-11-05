@@ -67,7 +67,7 @@ def main():
             if "addr:postcode" in t:
                 address += ", " + t["addr:postcode"]
         rows.append(
-            "    Shop({id}L, {name}, ShopCategory.{cat}, {lat:.6f}, {lon:.6f}, {addr}, {hours}, {phone}),".format(
+            "    Shop(\"osm_{id}\", {name}, ShopCategory.{cat}, {lat:.6f}, {lon:.6f}, {addr}, {hours}, {phone}),".format(
                 id=e["id"],
                 name=kstr(t.get("name") or DEFAULT_NAME[cat]),
                 cat=cat,
