@@ -16,10 +16,10 @@
     "ambito": "Selezione nazionale estendibile. Le categorie indicano l’attività prevalente o i prodotti documentati e possono sovrapporsi."
   },
   "statistiche": {
-    "attivita": 263,
+    "attivita": 264,
     "regioni_documentate": 20,
     "per_canale": {
-      "ecommerce_con_riscontro_di_acquisto": 171,
+      "ecommerce_con_riscontro_di_acquisto": 172,
       "ordine_a_distanza_su_richiesta": 15,
       "negozio_online_dichiarato": 43,
       "acquisto_su_shop_del_consorzio": 34
@@ -34,7 +34,7 @@
       "gastronomia": 3,
       "macellerie": 18,
       "miele": 7,
-      "norcinerie_e_salumifici": 28,
+      "norcinerie_e_salumifici": 29,
       "olio_e_frantoi": 74,
       "ortofrutta": 23,
       "pastifici": 11,
@@ -50,7 +50,7 @@
       "Campania": 10,
       "Emilia-Romagna": 41,
       "Friuli Venezia Giulia": 8,
-      "Lazio": 31,
+      "Lazio": 32,
       "Liguria": 8,
       "Lombardia": 12,
       "Marche": 6,
@@ -11511,6 +11511,51 @@
         "fonte_rete_url": null
       },
       "nota_acquisto": "L’acquisto è gestito da Calicantus Srl. La spedizione parte dal caseificio."
+    },
+    {
+      "id": "it_lattanzi_franco",
+      "nome": "Antica Norcineria Lattanzi Franco & Figli",
+      "categorie": [
+        "norcinerie_e_salumifici"
+      ],
+      "sede": {
+        "paese": "Italia",
+        "regione": "Lazio",
+        "comune": "Monte Compatri",
+        "provincia": "RM",
+        "indirizzo_pubblico": "Via Casilina km 21,600, 00077 Monte Compatri (RM)",
+        "fonte_url": "https://www.anticanorcinerialattanzifranco.it/"
+      },
+      "ruolo_nella_vendita": "produttore_o_bottega",
+      "profilo": "familiare_dichiarata",
+      "prodotti_indicativi": [
+        "porchetta",
+        "guanciale",
+        "lonza",
+        "salumi",
+        "cesti regalo"
+      ],
+      "sito_di_riferimento": "https://www.anticanorcinerialattanzifranco.it/",
+      "url_ordini": "https://www.anticanorcinerialattanzifranco.it/negozio/",
+      "canale": "ecommerce_con_riscontro_di_acquisto",
+      "spedizione": {
+        "copertura": "multiregionale",
+        "area_dichiarata": "Italia, esclusi Roma e provincia",
+        "fonte_url": "https://www.anticanorcinerialattanzifranco.it/",
+        "refrigerata": {
+          "url": "https://www.anticanorcinerialattanzifranco.it/",
+          "riscontro": "trasporto_refrigerato_o_a_temperatura_controllata_dichiarato"
+        }
+      },
+      "verifica": {
+        "data": "2026-11-06",
+        "riscontro": "comando_aggiungi_al_carrello",
+        "pagina_riferimento_letta": true,
+        "fonte_identita_url": "https://www.anticanorcinerialattanzifranco.it/",
+        "fonte_ordine_url": "https://www.anticanorcinerialattanzifranco.it/negozio/",
+        "fonte_rete_url": null
+      },
+      "nota_acquisto": "Corriere refrigerato, spedizione gratuita sopra 150 €. Non consegna a Roma e provincia: lì si compra in negozio a Monte Compatri."
     }
   ],
   "reti_e_negozi_multimarca": [
