@@ -92,6 +92,31 @@ data class Shop(
     val place: String? get() = comune?.let { c -> provincia?.let { "$c ($it)" } ?: c }
 }
 
+/** Bottega o produttore italiano che vende online o accetta ordini a distanza. */
+data class OnlineShop(
+    val id: String,
+    val name: String,
+    val categories: List<ShopCategory>,
+    val region: String,
+    val place: String?,
+    val products: List<String>,
+    /** Pagina del negozio o degli ordini. */
+    val shopUrl: String,
+    val website: String,
+    val channel: String,
+    val shipping: String,
+    val nationwide: Boolean,
+    /** Spedizione refrigerata dichiarata. */
+    val chilled: Boolean,
+    val family: Boolean,
+    val note: String?,
+) {
+    val category: ShopCategory get() = categories.first()
+}
+
+/** Shop collettivo o multimarca di più produttori. */
+data class OnlineNetwork(val name: String, val url: String, val description: String)
+
 /**
  * Tutte le botteghe: quartiere 00138 (OpenStreetMap), mappatura del Lazio e mappatura di Roma.
  * Le schede di Roma sono le più recenti e complete: sostituiscono i doppioni delle altre due.

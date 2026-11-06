@@ -191,6 +191,7 @@ fun ShopsScreen(
     permissionGranted: Boolean,
     onRequestPermission: () -> Unit,
     onFullscreenChange: (Boolean) -> Unit = {},
+    onOpenOnline: () -> Unit = {},
 ) {
     val context = LocalContext.current
     val dark = isSystemInDarkTheme()
@@ -329,6 +330,8 @@ fun ShopsScreen(
                                 color = Color.White.copy(alpha = 0.88f),
                             )
                         }
+                        Spacer(Modifier.height(12.dp))
+                        ShopsModeSwitch(online = false) { if (it) onOpenOnline() }
                     }
                 }
             }
@@ -621,7 +624,7 @@ private fun BoxScope.MapControls(
 }
 
 @Composable
-private fun FilterChip(@DrawableRes icon: Int?, text: String, selected: Boolean, onClick: () -> Unit) {
+internal fun FilterChip(@DrawableRes icon: Int?, text: String, selected: Boolean, onClick: () -> Unit) {
     val bg by animateColorAsState(
         if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceContainer,
         tween(250), label = "chip",
@@ -947,7 +950,12 @@ private fun ShopSheet(shop: Shop, dist: Float, fromUser: Boolean, context: Conte
 
 /** Campo di ricerca a pillola: nome, comune, prodotti o categoria. */
 @Composable
-private fun SearchField(value: String, onChange: (String) -> Unit, modifier: Modifier = Modifier) {
+internal fun SearchField(
+    value: String,
+    onChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    placeholder: String = "Cerca per nome, comune o prodotto",
+) {
     Row(
         modifier
             .fillMaxWidth()
@@ -961,7 +969,7 @@ private fun SearchField(value: String, onChange: (String) -> Unit, modifier: Mod
         Spacer(Modifier.width(10.dp))
         Box(Modifier.weight(1f)) {
             if (value.isEmpty()) {
-                Text("Cerca per nome, comune o prodotto", color = MaterialTheme.colorScheme.onSurfaceVariant, style = MaterialTheme.typography.bodyMedium)
+                Text(placeholder, color = MaterialTheme.colorScheme.onSurfaceVariant, style = MaterialTheme.typography.bodyMedium)
             }
             BasicTextField(
                 value = value,
@@ -984,7 +992,7 @@ private fun SearchField(value: String, onChange: (String) -> Unit, modifier: Mod
 
 private val accents = Regex("\\p{M}+")
 
-private fun String.normalized(): String =
+internal fun String.normalized(): String =
     java.text.Normalizer.normalize(lowercase(), java.text.Normalizer.Form.NFD).replace(accents, "")
 
 private val searchCache = HashMap<String, String>()
@@ -996,7 +1004,7 @@ private val Shop.searchText: String
     }
 
 @Composable
-private fun InfoLine(icon: androidx.compose.ui.graphics.vector.ImageVector, text: String) {
+internal fun InfoLine(icon: androidx.compose.ui.graphics.vector.ImageVector, text: String) {
     Row(Modifier.padding(vertical = 6.dp), verticalAlignment = Alignment.CenterVertically) {
         Icon(icon, null, tint = MaterialTheme.colorScheme.secondary, modifier = Modifier.size(20.dp))
         Spacer(Modifier.width(12.dp))

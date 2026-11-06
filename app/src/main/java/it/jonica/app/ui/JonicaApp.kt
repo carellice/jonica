@@ -69,7 +69,9 @@ import it.jonica.app.ui.aware.AwareScreen
 import it.jonica.app.ui.components.bouncyClick
 import it.jonica.app.ui.season.ProductSheet
 import it.jonica.app.ui.season.SeasonScreen
+import it.jonica.app.ui.shops.OnlineScreen
 import it.jonica.app.ui.shops.ShopsScreen
+import androidx.compose.animation.Crossfade
 import it.jonica.app.ui.today.TodayScreen
 import kotlinx.coroutines.delay
 import androidx.compose.animation.core.animateFloatAsState
@@ -101,6 +103,7 @@ fun JonicaApp() {
     var permissionGranted by remember { mutableStateOf(hasLocationPermission(context)) }
     var selectedProduct by remember { mutableStateOf<Product?>(null) }
     var mapFullscreen by remember { mutableStateOf(false) }
+    var shopsOnline by rememberSaveable { mutableStateOf(false) }
     val scope = androidx.compose.runtime.rememberCoroutineScope()
     val updates = remember { UpdateController(scope) }
     val prefs = remember { context.getSharedPreferences("jonica", android.content.Context.MODE_PRIVATE) }
@@ -144,14 +147,21 @@ fun JonicaApp() {
                     onOpenShops = { tab = Tab.BOTTEGHE.ordinal },
                 )
                 Tab.STAGIONI -> SeasonScreen(onProduct = { selectedProduct = it })
-                Tab.BOTTEGHE -> ShopsScreen(
-                    location = location,
-                    permissionGranted = permissionGranted,
-                    onRequestPermission = {
-                        permissionLauncher.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION))
-                    },
-                    onFullscreenChange = { mapFullscreen = it },
-                )
+                Tab.BOTTEGHE -> Crossfade(shopsOnline, label = "shopsMode") { online ->
+                    if (online) {
+                        OnlineScreen(onOpenNearby = { shopsOnline = false })
+                    } else {
+                        ShopsScreen(
+                            location = location,
+                            permissionGranted = permissionGranted,
+                            onRequestPermission = {
+                                permissionLauncher.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION))
+                            },
+                            onFullscreenChange = { mapFullscreen = it },
+                            onOpenOnline = { shopsOnline = true },
+                        )
+                    }
+                }
                 Tab.FILIERA -> AwareScreen(updates, onShowOnboarding = { showOnboarding = true })
             }
         }

@@ -38,7 +38,9 @@ e a chi vende nel quartiere.
 - **Botteghe**: mappa e lista di oltre 500 botteghe e piccoli produttori di
   Roma e del Lazio, con un focus su Colle Salario e il quadrante nord (fruttivendoli, macellerie, forni, caseifici, frantoi, norcinerie,
   cantine, mulini, apicoltori…), con ricerca, filtri per categoria e distanza
-  dalla tua posizione.
+  dalla tua posizione. Con l'interruttore **Online** trovi oltre 260 produttori e
+  botteghe italiane con negozio online o ordini a distanza (frantoi, caseifici,
+  forni, norcinerie, ortofrutta…), filtrabili per categoria e spedizione in Italia.
 - **Filiera**: dove va 1 € della spesa, perché la stagionalità conta, come
   leggere le etichette e una lista di piccoli impegni da spuntare.
 - **Introduzione animata** al primo avvio, rivedibile da Filiera, e
@@ -91,6 +93,9 @@ quando l'indirizzo non si trova usa il centro del comune e l'app lo segnala.
 Le botteghe di Roma (priorità Colle Salario 00138) vengono da
 `scripts/data/botteghe_alimentari_roma_00138.json`: `python scripts/gen_roma.py` le genera e
 sostituisce i doppioni già presenti nelle altre due fonti.
+
+I negozi online vengono da `scripts/data/botteghe_alimentari_italiane_online.json`:
+`python scripts/gen_online.py` genera `ShopsOnline.kt`.
 
 ## Crediti
 
