@@ -328,6 +328,7 @@ fun ShopsScreen(
                                 else "${allShops.size} botteghe nel Lazio · attiva la posizione per ordinarle in base a dove sei.",
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = Color.White.copy(alpha = 0.88f),
+                                minLines = 2,
                             )
                         }
                         Spacer(Modifier.height(12.dp))

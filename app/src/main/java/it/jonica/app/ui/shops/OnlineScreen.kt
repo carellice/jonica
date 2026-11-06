@@ -3,7 +3,7 @@ package it.jonica.app.ui.shops
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -48,6 +48,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -105,9 +106,11 @@ fun OnlineScreen(onOpenNearby: () -> Unit) {
             Column(Modifier.statusBarsPadding().padding(start = 20.dp, end = 20.dp, top = 20.dp, bottom = 44.dp)) {
                 Text("Botteghe online", style = MaterialTheme.typography.headlineMedium, color = Color.White)
                 Text(
-                    "${onlineShops.size} produttori e botteghe italiane: compra direttamente da chi produce, anche da lontano.",
+                    "${onlineShops.size} produttori e botteghe italiane: compra da chi produce, anche da lontano.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color.White.copy(alpha = 0.88f),
+                    // stesse righe del sottotitolo "Vicino a te": l'interruttore non salta
+                    minLines = 2,
                 )
                 Spacer(Modifier.height(12.dp))
                 ShopsModeSwitch(online = true) { if (!it) onOpenNearby() }
@@ -191,10 +194,20 @@ fun OnlineScreen(onOpenNearby: () -> Unit) {
     selected?.let { s -> OnlineSheet(s, context) { selected = null } }
 }
 
+/** Ultima modalità mostrata dall'interruttore, per animarlo solo quando cambia davvero. */
+private var lastShopsMode: Boolean? = null
+
+private fun Boolean.toFloat() = if (this) 1f else 0f
+
 /** Interruttore "Vicino a te / Online" nell'intestazione delle botteghe. */
 @Composable
 internal fun ShopsModeSwitch(online: Boolean, onChange: (Boolean) -> Unit) {
-    val pos by animateFloatAsState(if (online) 1f else 0f, spring(dampingRatio = 0.7f, stiffness = 500f), label = "mode")
+    // ogni schermata ha il suo interruttore: dopo un cambio di modalità la pillola parte dal lato opposto e scivola al suo posto
+    val pos = remember { Animatable(if (online != (lastShopsMode ?: online)) 1f - online.toFloat() else online.toFloat()) }
+    LaunchedEffect(online) {
+        lastShopsMode = online
+        pos.animateTo(online.toFloat(), spring(dampingRatio = 0.7f, stiffness = 500f))
+    }
     BoxWithConstraints(
         Modifier
             .fillMaxWidth()
@@ -206,7 +219,7 @@ internal fun ShopsModeSwitch(online: Boolean, onChange: (Boolean) -> Unit) {
         val half = maxWidth / 2
         Box(
             Modifier
-                .offset(x = half * pos)
+                .offset(x = half * pos.value)
                 .width(half)
                 .fillMaxSize()
                 .clip(RoundedCornerShape(50))
