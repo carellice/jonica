@@ -19,8 +19,8 @@ android {
         applicationId = "it.jonica.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 13
-        versionName = "1.8.1"
+        versionCode = 14
+        versionName = "1.8.2"
         // MapLibre è nativo: solo telefoni a 64 bit (arm64) ed emulatore (x86_64), per non gonfiare l'APK
         ndk { abiFilters += listOf("arm64-v8a", "x86_64") }
     }
