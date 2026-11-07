@@ -70,6 +70,7 @@ import androidx.compose.ui.unit.sp
 import it.jonica.app.R
 import it.jonica.app.data.allShops
 import it.jonica.app.data.monthNames
+import it.jonica.app.ui.aware.euros
 import it.jonica.app.ui.theme.Cream
 import it.jonica.app.ui.theme.Mustard
 import it.jonica.app.ui.theme.Olive
@@ -467,7 +468,7 @@ private fun EuroArt(enter: Float) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Image(painterResource(R.drawable.ic_contadino), null, Modifier.size(56.dp).graphicsLayer { translationY = float; alpha = enter })
             Text(
-                "${(20 * ((enter - 0.25f) / 0.75f).coerceIn(0f, 1f)).toInt()}¢",
+                euros((20 * ((enter - 0.25f) / 0.75f).coerceIn(0f, 1f)).toInt()),
                 color = Cream,
                 fontWeight = FontWeight.ExtraBold,
                 fontSize = 44.sp,

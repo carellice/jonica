@@ -217,7 +217,7 @@ private fun EuroBreakdown() {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     androidx.compose.foundation.Image(androidx.compose.ui.res.painterResource(slices[selected].icon), null, Modifier.size(34.dp))
                     Text(
-                        "${(slices[selected].cents * progress.value).toInt()}¢",
+                        euros((slices[selected].cents * progress.value).toInt()),
                         fontWeight = FontWeight.Bold,
                         fontSize = 22.sp,
                         color = slices[selected].color.readable(),
@@ -385,3 +385,6 @@ private fun OnboardingCard(onClick: () -> Unit) {
         }
     }
 }
+
+/** Centesimi scritti in euro, come sullo scontrino: 20 → "0,20 €". */
+internal fun euros(cents: Int): String = String.format(java.util.Locale.ITALY, "%.2f €", cents / 100.0)
