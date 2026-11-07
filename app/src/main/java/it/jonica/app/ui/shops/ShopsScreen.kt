@@ -147,35 +147,20 @@ import it.jonica.app.ui.theme.Sky
 import it.jonica.app.ui.theme.readable
 import it.jonica.app.ui.components.bouncyClick
 import it.jonica.app.ui.components.staggeredEnter
-import android.graphics.ColorMatrix
-import android.graphics.ColorMatrixColorFilter
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+import org.osmdroid.tileprovider.tilesource.XYTileSource
 import org.osmdroid.views.CustomZoomButtonsController
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 import org.osmdroid.util.GeoPoint as OsmPoint
 
-/** Tinta calda "carta da pacchi" sulle tile OSM; in tema scuro inverte e scalda i colori. */
-private fun tileFilter(dark: Boolean): ColorMatrixColorFilter {
-    val m = if (dark) {
-        ColorMatrix(floatArrayOf(
-            -0.85f, 0f, 0f, 0f, 235f,
-            0f, -0.85f, 0f, 0f, 230f,
-            0f, 0f, -0.85f, 0f, 205f,
-            0f, 0f, 0f, 1f, 0f,
-        )).apply { postConcat(ColorMatrix().apply { setSaturation(0.35f) }) }
-    } else {
-        ColorMatrix().apply { setSaturation(0.55f) }.apply {
-            postConcat(ColorMatrix(floatArrayOf(
-                1.02f, 0f, 0f, 0f, 8f,
-                0f, 1f, 0f, 0f, 2f,
-                0f, 0f, 0.9f, 0f, -6f,
-                0f, 0f, 0f, 1f, 0f,
-            )))
-        }
-    }
-    return ColorMatrixColorFilter(m)
-}
+/** Tile CARTO in stile Google Maps: Voyager di giorno, Dark Matter in tema scuro. */
+private fun tileSource(dark: Boolean) = XYTileSource(
+    if (dark) "CartoDark" else "CartoVoyager", 1, 20, 256, ".png",
+    arrayOf("a", "b", "c", "d").map {
+        "https://$it.basemaps.cartocdn.com/" + if (dark) "dark_all/" else "rastertiles/voyager/"
+    }.toTypedArray(),
+    "© OpenStreetMap contributors © CARTO",
+)
 
 private val CardMapHeight = 230.dp
 
@@ -608,7 +593,7 @@ private fun BoxScope.MapControls(
     }
 
     Text(
-        "© OpenStreetMap contributors",
+        "© OpenStreetMap contributors © CARTO",
         fontSize = 9.sp,
         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
         modifier = Modifier
@@ -706,9 +691,8 @@ private fun OsmMap(
     val lifecycle = LocalLifecycleOwner.current.lifecycle
     val map = remember {
         MapView(context).apply {
-            setTileSource(TileSourceFactory.MAPNIK)
-            overlayManager.tilesOverlay.setColorFilter(tileFilter(dark))
-            overlayManager.tilesOverlay.loadingBackgroundColor = if (dark) 0xFF1C1E15.toInt() else 0xFFF1EBDD.toInt()
+            setTileSource(tileSource(dark))
+            overlayManager.tilesOverlay.loadingBackgroundColor = if (dark) 0xFF262626.toInt() else 0xFFF5F3F0.toInt()
             setMultiTouchControls(true)
             zoomController.setVisibility(CustomZoomButtonsController.Visibility.NEVER)
             isTilesScaledToDpi = true
