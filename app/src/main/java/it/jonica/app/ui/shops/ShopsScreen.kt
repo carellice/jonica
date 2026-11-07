@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
@@ -147,61 +146,22 @@ import it.jonica.app.ui.theme.Sky
 import it.jonica.app.ui.theme.readable
 import it.jonica.app.ui.components.bouncyClick
 import it.jonica.app.ui.components.staggeredEnter
-import org.osmdroid.tileprovider.tilesource.OnlineTileSourceBase
-import org.osmdroid.util.MapTileIndex
-import org.osmdroid.views.CustomZoomButtonsController
-import org.osmdroid.views.MapView
-import org.osmdroid.views.overlay.Marker
-import org.osmdroid.util.GeoPoint as OsmPoint
-
-/** Tile Esri World Street Map, colori simili a Google Maps e nessuna API key (CARTO ora la richiede). */
-private val EsriStreets = object : OnlineTileSourceBase(
-    "EsriStreets", 1, 19, 256, "",
-    arrayOf("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/"),
-    "Tiles © Esri",
-) {
-    // Esri vuole z/y/x, osmdroid di default costruisce z/x/y
-    override fun getTileURLString(index: Long) =
-        baseUrl + MapTileIndex.getZoom(index) + "/" + MapTileIndex.getY(index) + "/" + MapTileIndex.getX(index)
-}
-
-/** Esri Canvas scura (senza API key): fondo e nomi su due livelli, fino allo zoom 16 (oltre si ingrandisce). */
-private fun esriCanvas(layer: String) = object : OnlineTileSourceBase(
-    "EsriDark$layer", 1, 16, 256, "",
-    arrayOf("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_$layer/MapServer/tile/"),
-    "Tiles © Esri",
-) {
-    override fun getTileURLString(index: Long) =
-        baseUrl + MapTileIndex.getZoom(index) + "/" + MapTileIndex.getY(index) + "/" + MapTileIndex.getX(index)
-}
-
-/** Tinta blu notte sul fondo grigio di Esri, come il tema scuro di Google Maps. */
-private fun nightTint() = android.graphics.ColorMatrixColorFilter(
-    floatArrayOf(
-        0.72f, 0f, 0f, 0f, -4f,
-        0f, 0.84f, 0f, 0f, 4f,
-        0f, 0f, 1.08f, 0f, 16f,
-        0f, 0f, 0f, 1f, 0f,
-    )
-)
-
-/** Mappa in stile Google Maps senza API key: Esri stradale di giorno, Esri scura con i nomi in tema scuro. */
-private fun MapView.useGoogleLikeTiles(dark: Boolean) {
-    if (!dark) {
-        setTileSource(EsriStreets)
-        return
-    }
-    setTileSource(esriCanvas("Base"))
-    overlayManager.tilesOverlay.setColorFilter(nightTint())
-    val labels = org.osmdroid.views.overlay.TilesOverlay(
-        org.osmdroid.tileprovider.MapTileProviderBasic(context, esriCanvas("Reference")), context,
-    ).apply {
-        loadingBackgroundColor = android.graphics.Color.TRANSPARENT
-        loadingLineColor = android.graphics.Color.TRANSPARENT
-    }
-    overlays.add(0, labels) // sotto i pin
-}
-
+import android.annotation.SuppressLint
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.rememberUpdatedState
+import org.maplibre.android.camera.CameraPosition
+import org.maplibre.android.camera.CameraUpdateFactory
+import org.maplibre.android.geometry.LatLng
+import org.maplibre.android.maps.MapLibreMap
+import org.maplibre.android.maps.MapView
+import org.maplibre.android.maps.Style
+import org.maplibre.android.style.expressions.Expression
+import org.maplibre.android.style.layers.PropertyFactory
+import org.maplibre.android.style.layers.SymbolLayer
+import org.maplibre.android.style.sources.GeoJsonSource
+import org.maplibre.geojson.Feature
+import org.maplibre.geojson.FeatureCollection
+import org.maplibre.geojson.Point
 
 private val CardMapHeight = 230.dp
 
@@ -227,7 +187,7 @@ fun ShopsScreen(
     var onlyVerified by remember { mutableStateOf(false) }
     var query by remember { mutableStateOf("") }
     var selected by remember { mutableStateOf<Shop?>(null) }
-    var mapView by remember { mutableStateOf<MapView?>(null) }
+    var mapView by remember { mutableStateOf<MapLibreMap?>(null) }
     val here = location ?: Default00138
 
     val visible = remember(filter, onlyVerified, query, here) {
@@ -425,7 +385,7 @@ fun ShopsScreen(
                     onToggle = { setExpanded(!expanded) },
                     onLocate = {
                         if (!permissionGranted) onRequestPermission()
-                        mapView?.controller?.animateTo(OsmPoint(here.lat, here.lon), 14.6, 700L)
+                        mapView?.flyTo(here.lat, here.lon, 13.6)
                     },
                 )
             }
@@ -520,7 +480,7 @@ fun ShopsScreen(
                 itemsIndexed(visible, key = { _, it -> it.first.id }) { i, (shop, dist) ->
                     ShopRow(shop, dist, Modifier.animateItem().staggeredEnter(i, filter to onlyVerified)) {
                         selected = shop
-                        mapView?.controller?.animateTo(OsmPoint(shop.lat, shop.lon), if (shop.approximate) 14.0 else 17.0, 700L)
+                        mapView?.flyTo(shop.lat, shop.lon, if (shop.approximate) 13.0 else 16.0)
                     }
                 }
                 item {
@@ -634,7 +594,7 @@ private fun BoxScope.MapControls(
     }
 
     Text(
-        "© Esri · © OpenStreetMap contributors",
+        "© OpenFreeMap · © OpenStreetMap contributors",
         fontSize = 9.sp,
         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
         modifier = Modifier
@@ -719,6 +679,11 @@ private fun ShopRow(shop: Shop, dist: Float, modifier: Modifier, onClick: () -> 
     }
 }
 
+/**
+ * Mappa vettoriale in stile Google Maps (MapLibre + tile OpenFreeMap, nessuna API key).
+ * Stili chiaro e scuro in assets/map_light.json e map_dark.json.
+ */
+@SuppressLint("ClickableViewAccessibility")
 @Composable
 private fun OsmMap(
     dark: Boolean,
@@ -726,81 +691,113 @@ private fun OsmMap(
     userLocation: GeoPoint?,
     shops: List<Shop>,
     onShopClick: (Shop) -> Unit,
-    onReady: (MapView) -> Unit,
+    onReady: (MapLibreMap) -> Unit,
 ) {
     val context = LocalContext.current
     val lifecycle = LocalLifecycleOwner.current.lifecycle
-    val map = remember {
+    val shopClick by rememberUpdatedState(onShopClick)
+    val currentShops by rememberUpdatedState(shops)
+    var ready by remember { mutableStateOf<Pair<MapLibreMap, Style>?>(null) }
+    val view = remember {
         MapView(context).apply {
-            useGoogleLikeTiles(dark)
-            overlayManager.tilesOverlay.loadingBackgroundColor = if (dark) 0xFF262626.toInt() else 0xFFF5F3F0.toInt()
-            setMultiTouchControls(true)
-            zoomController.setVisibility(CustomZoomButtonsController.Visibility.NEVER)
-            isTilesScaledToDpi = true
-            controller.setZoom(14.6)
-            controller.setCenter(OsmPoint(center.lat, center.lon))
-            minZoomLevel = 7.0
+            onCreate(null)
+            getMapAsync { map ->
+                map.uiSettings.apply {
+                    isLogoEnabled = false
+                    isAttributionEnabled = false
+                    isCompassEnabled = false
+                    isRotateGesturesEnabled = false
+                    isTiltGesturesEnabled = false
+                }
+                map.setMinZoomPreference(6.0)
+                map.cameraPosition = CameraPosition.Builder().target(LatLng(center.lat, center.lon)).zoom(13.6).build()
+                map.addOnMapClickListener { at ->
+                    val hit = map.queryRenderedFeatures(map.projection.toScreenLocation(at), SHOPS_LAYER).firstOrNull()
+                    val i = hit?.getNumberProperty("i")?.toInt() ?: return@addOnMapClickListener false
+                    currentShops.getOrNull(i)?.let(shopClick)
+                    true
+                }
+                map.setStyle(Style.Builder().fromUri("asset://map_${if (dark) "dark" else "light"}.json")) { style ->
+                    style.addImage("__user", userIcon(context))
+                    style.addSource(GeoJsonSource(SHOPS_SOURCE))
+                    style.addSource(GeoJsonSource(USER_SOURCE))
+                    style.addLayer(
+                        SymbolLayer(SHOPS_LAYER, SHOPS_SOURCE).withProperties(
+                            PropertyFactory.iconImage(Expression.get("icon")),
+                            PropertyFactory.iconAllowOverlap(true),
+                            PropertyFactory.iconIgnorePlacement(true),
+                        )
+                    )
+                    style.addLayer(
+                        SymbolLayer("user-layer", USER_SOURCE).withProperties(
+                            PropertyFactory.iconImage("__user"),
+                            PropertyFactory.iconAllowOverlap(true),
+                            PropertyFactory.iconIgnorePlacement(true),
+                        )
+                    )
+                    ready = map to style
+                    onReady(map)
+                }
+            }
         }
     }
     DisposableEffect(lifecycle) {
         val obs = LifecycleEventObserver { _, e ->
             when (e) {
-                Lifecycle.Event.ON_RESUME -> map.onResume()
-                Lifecycle.Event.ON_PAUSE -> map.onPause()
+                Lifecycle.Event.ON_START -> view.onStart()
+                Lifecycle.Event.ON_RESUME -> view.onResume()
+                Lifecycle.Event.ON_PAUSE -> view.onPause()
+                Lifecycle.Event.ON_STOP -> view.onStop()
                 else -> Unit
             }
         }
         lifecycle.addObserver(obs)
-        map.onResume()
-        onReady(map)
+        view.onStart()
+        if (lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) view.onResume()
         onDispose {
             lifecycle.removeObserver(obs)
-            map.onPause()
-            map.onDetach()
+            view.onPause()
+            view.onStop()
+            view.onDestroy()
         }
     }
     var centeredOnUser by remember { mutableStateOf(false) }
-    LaunchedEffect(userLocation) {
+    LaunchedEffect(userLocation, ready) {
+        val map = ready?.first ?: return@LaunchedEffect
         if (userLocation != null && !centeredOnUser) {
             centeredOnUser = true
-            map.controller.animateTo(OsmPoint(userLocation.lat, userLocation.lon), 14.6, 900L)
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(userLocation.lat, userLocation.lon), 13.6), 900)
         }
     }
-    AndroidView(
-        factory = { map },
-        modifier = Modifier.fillMaxSize(),
-        update = { m ->
-            m.overlays.clear()
-            shops.forEach { s ->
-                m.overlays.add(
-                    Marker(m).apply {
-                        position = OsmPoint(s.lat, s.lon)
-                        setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
-                        icon = markerIcon(context, s.category.icon, s.category.color.toArgb())
-                        title = s.name
-                        setOnMarkerClickListener { _, _ -> onShopClick(s); true }
-                    },
-                )
+    ready?.let { (_, style) ->
+        SideEffect {
+            val features = shops.mapIndexed { i, s ->
+                val key = "m${s.category.icon}"
+                if (style.getImage(key) == null) style.addImage(key, markerIcon(context, s.category.icon, s.category.color.toArgb()))
+                Feature.fromGeometry(Point.fromLngLat(s.lon, s.lat)).apply {
+                    addNumberProperty("i", i)
+                    addStringProperty("icon", key)
+                }
             }
-            userLocation?.let { u ->
-                m.overlays.add(
-                    Marker(m).apply {
-                        position = OsmPoint(u.lat, u.lon)
-                        setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
-                        icon = userIcon(context)
-                        setInfoWindow(null)
-                        setOnMarkerClickListener { _, _ -> true }
-                    },
-                )
-            }
-            m.invalidate()
-        },
-    )
+            style.getSourceAs<GeoJsonSource>(SHOPS_SOURCE)?.setGeoJson(FeatureCollection.fromFeatures(features))
+            val user = userLocation?.let { listOf(Feature.fromGeometry(Point.fromLngLat(it.lon, it.lat))) }.orEmpty()
+            style.getSourceAs<GeoJsonSource>(USER_SOURCE)?.setGeoJson(FeatureCollection.fromFeatures(user))
+        }
+    }
+    AndroidView(factory = { view }, modifier = Modifier.fillMaxSize())
 }
 
-private val iconCache = HashMap<String, BitmapDrawable>()
+private const val SHOPS_SOURCE = "shops"
+private const val SHOPS_LAYER = "shops-layer"
+private const val USER_SOURCE = "user"
 
-private fun markerIcon(context: Context, @DrawableRes res: Int, color: Int): BitmapDrawable = iconCache.getOrPut("m$res") {
+/** Zoom MapLibre (tile da 512 px): uno in meno rispetto alla vecchia mappa a tile da 256 px. */
+private fun MapLibreMap.flyTo(lat: Double, lon: Double, zoom: Double) =
+    animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat, lon), zoom), 700)
+
+private val iconCache = HashMap<String, Bitmap>()
+
+private fun markerIcon(context: Context, @DrawableRes res: Int, color: Int): Bitmap = iconCache.getOrPut("m$res") {
     val d = context.resources.displayMetrics.density
     val size = (44 * d).toInt()
     val bmp = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
@@ -815,10 +812,10 @@ private fun markerIcon(context: Context, @DrawableRes res: Int, color: Int): Bit
     val art = BitmapFactory.decodeResource(context.resources, res)
     val inset = (10 * d).toInt()
     c.drawBitmap(art, null, android.graphics.Rect(inset, inset, size - inset, size - inset), Paint(Paint.FILTER_BITMAP_FLAG))
-    BitmapDrawable(context.resources, bmp)
+    bmp
 }
 
-private fun userIcon(context: Context): BitmapDrawable = iconCache.getOrPut("__user") {
+private fun userIcon(context: Context): Bitmap = iconCache.getOrPut("__user") {
     val d = context.resources.displayMetrics.density
     val size = (30 * d).toInt()
     val bmp = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
@@ -830,7 +827,7 @@ private fun userIcon(context: Context): BitmapDrawable = iconCache.getOrPut("__u
     c.drawCircle(size / 2f, size / 2f, 8 * d, p)
     p.color = 0xFF2E7DD6.toInt()
     c.drawCircle(size / 2f, size / 2f, 6 * d, p)
-    BitmapDrawable(context.resources, bmp)
+    bmp
 }
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)

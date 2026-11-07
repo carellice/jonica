@@ -7,16 +7,12 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import it.jonica.app.ui.JonicaApp
 import it.jonica.app.ui.theme.JonicaTheme
-import org.osmdroid.config.Configuration
+import org.maplibre.android.MapLibre
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Configuration.getInstance().apply {
-            userAgentValue = "Jonica/1.0 (it.jonica.app)"
-            osmdroidBasePath = cacheDir.resolve("osmdroid")
-            osmdroidTileCache = cacheDir.resolve("osmdroid/tiles")
-        }
+        MapLibre.getInstance(this)
         enableEdgeToEdge(statusBarStyle = SystemBarStyle.dark(android.graphics.Color.TRANSPARENT))
         setContent {
             JonicaTheme {

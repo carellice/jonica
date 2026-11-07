@@ -19,9 +19,12 @@ android {
         applicationId = "it.jonica.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 12
-        versionName = "1.8.0"
+        versionCode = 13
+        versionName = "1.8.1"
+        // MapLibre è nativo: solo telefoni a 64 bit (arm64) ed emulatore (x86_64), per non gonfiare l'APK
+        ndk { abiFilters += listOf("arm64-v8a", "x86_64") }
     }
+    packaging { jniLibs { useLegacyPackaging = true } } // librerie native compresse nell'APK
 
     signingConfigs {
         if (keystoreProps.isNotEmpty()) {
@@ -70,5 +73,5 @@ dependencies {
     implementation("androidx.compose.animation:animation")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
-    implementation("org.osmdroid:osmdroid-android:6.1.20")
+    implementation("org.maplibre.gl:android-sdk:13.7.1")
 }
