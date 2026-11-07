@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -22,6 +23,7 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -56,12 +58,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
+import androidx.compose.ui.input.nestedscroll.NestedScrollSource
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.Velocity
 import androidx.compose.ui.unit.sp
 import it.jonica.app.data.OnlineShop
 import it.jonica.app.data.ShopCategory
@@ -101,9 +110,35 @@ fun OnlineScreen(onOpenNearby: () -> Unit) {
             .map { it.first }
     }
 
-    Column(Modifier.fillMaxSize()) {
-        WavyHeader(color = Color(0xFF5E8A3C), secondColor = Color(0xFF3E6B8C), floating = categories.take(6).map { it.icon }) {
-            Column(Modifier.statusBarsPadding().padding(start = 20.dp, end = 20.dp, top = 20.dp, bottom = 44.dp)) {
+    // come in "Vicino a te": scorrendo la lista l'intestazione si ritira e la lista va a tutto schermo
+    val header = remember { HeaderCollapse() }
+    val statusPx = WindowInsets.statusBars.getTop(LocalDensity.current)
+    val nested = remember {
+        object : NestedScrollConnection {
+            override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset =
+                if (available.y < 0f) Offset(0f, -header.consume(-available.y)) else Offset.Zero
+
+            override fun onPostScroll(consumed: Offset, available: Offset, source: NestedScrollSource): Offset =
+                if (available.y > 0f) Offset(0f, -header.consume(-available.y)) else Offset.Zero
+
+            override suspend fun onPostFling(consumed: Velocity, available: Velocity): Velocity {
+                header.settle(consumed.y + available.y)
+                return Velocity.Zero
+            }
+        }
+    }
+
+    Column(Modifier.fillMaxSize().nestedScroll(nested)) {
+        WavyHeader(
+            color = Color(0xFF5E8A3C), secondColor = Color(0xFF3E6B8C), floating = categories.take(6).map { it.icon },
+            modifier = Modifier.collapsingHeader(header, statusPx),
+        ) {
+            Column(
+                Modifier
+                    .graphicsLayer { alpha = 1f - header.fraction }
+                    .statusBarsPadding()
+                    .padding(start = 20.dp, end = 20.dp, top = 20.dp, bottom = 44.dp),
+            ) {
                 Text("Botteghe online", style = MaterialTheme.typography.headlineMedium, color = Color.White)
                 Text(
                     "${onlineShops.size} produttori e botteghe italiane: compra da chi produce, anche da lontano.",

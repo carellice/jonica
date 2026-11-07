@@ -217,6 +217,10 @@ fun ShopsScreen(
     val cardPx = with(density) { CardMapHeight.toPx() }
     val collapse = remember { mutableFloatStateOf(0f) }
     val collapsedFraction by remember { derivedStateOf { collapse.floatValue / cardPx } }
+    // letto nella composizione: un booleano, così lo scroll non ricompone la schermata a ogni frame
+    val mapHidden by remember { derivedStateOf { collapse.floatValue / cardPx > 0.85f } }
+    val header = remember { HeaderCollapse() }
+    val statusPx = WindowInsets.statusBars.getTop(density)
 
     fun setExpanded(value: Boolean) {
         if (expanded == value) return
@@ -233,31 +237,34 @@ fun ShopsScreen(
     BackHandler(enabled = expanded) { setExpanded(false) }
     DisposableEffect(Unit) { onDispose { onFullscreenChange(false) } }
 
-    // La lista "spinge" via la mappa mentre scorre verso l'alto e la riporta giù solo quando
-    // torna in cima; al rilascio la mappa si aggancia aperta o chiusa con una molla.
+    // La lista "spinge" via prima la mappa e poi l'intestazione mentre scorre verso l'alto, così
+    // resta a tutto schermo; le riporta giù solo quando torna in cima. Al rilascio si agganciano
+    // aperte o chiuse con una molla.
     val nested = remember(cardPx) {
         object : NestedScrollConnection {
             override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
+                if (available.y >= 0f) return Offset.Zero
                 val c = collapse.floatValue
-                if (available.y < 0f && c < cardPx) {
-                    val next = (c - available.y).coerceAtMost(cardPx)
-                    collapse.floatValue = next
-                    return Offset(0f, -(next - c))
-                }
-                return Offset.Zero
+                val next = (c - available.y).coerceAtMost(cardPx)
+                collapse.floatValue = next
+                val used = next - c
+                return Offset(0f, -(used + header.consume(-available.y - used)))
             }
 
             override fun onPostScroll(consumed: Offset, available: Offset, source: NestedScrollSource): Offset {
+                if (available.y <= 0f) return Offset.Zero
+                val shown = -header.consume(-available.y)
                 val c = collapse.floatValue
-                if (available.y > 0f && c > 0f) {
-                    val next = (c - available.y).coerceAtLeast(0f)
-                    collapse.floatValue = next
-                    return Offset(0f, c - next)
-                }
-                return Offset.Zero
+                val next = (c - (available.y - shown)).coerceAtLeast(0f)
+                collapse.floatValue = next
+                return Offset(0f, shown + c - next)
             }
 
             override suspend fun onPostFling(consumed: Velocity, available: Velocity): Velocity {
+                if (header.partial) {
+                    header.settle(consumed.y + available.y)
+                    return Velocity.Zero
+                }
                 val c = collapse.floatValue
                 if (c > 0f && c < cardPx) {
                     val velocity = consumed.y + available.y
@@ -288,16 +295,15 @@ fun ShopsScreen(
         ) {
             // l'intestazione scivola verso l'alto quando la mappa va a schermo intero
             Box(
-                Modifier
-                    .layout { m, c ->
-                        val p = m.measure(c)
-                        val e = expand.value.coerceIn(0f, 1f)
-                        val h = (p.height * (1f - e)).roundToInt()
-                        layout(p.width, h) { p.placeRelativeWithLayer(0, h - p.height) }
-                    },
+                Modifier.collapsingHeader(header, statusPx) { 1f - expand.value.coerceIn(0f, 1f) },
             ) {
                 WavyHeader(color = Sky, secondColor = Color(0xFF5E93A6), floating = ShopCategory.entries.take(6).map { it.icon }) {
-                    Column(Modifier.statusBarsPadding().padding(start = 20.dp, end = 20.dp, top = 20.dp, bottom = 44.dp)) {
+                    Column(
+                        Modifier
+                            .graphicsLayer { alpha = 1f - header.fraction }
+                            .statusBarsPadding()
+                            .padding(start = 20.dp, end = 20.dp, top = 20.dp, bottom = 44.dp),
+                    ) {
                         Text("Botteghe e produttori", style = MaterialTheme.typography.headlineMedium, color = Color.White)
                         // il sottotitolo si richiude insieme alla mappa durante lo scroll
                         Box(
@@ -369,7 +375,7 @@ fun ShopsScreen(
                         dark = dark,
                         center = here,
                         userLocation = location,
-                        shops = visible.map { it.first },
+                        shops = remember(visible) { visible.map { it.first } },
                         onShopClick = { selected = it },
                         onReady = { mapView = it },
                     )
@@ -399,7 +405,7 @@ fun ShopsScreen(
                 SearchField(query, { query = it }, Modifier.weight(1f))
                 // quando la mappa è richiusa compare un pulsante per riaprirla
                 AnimatedVisibility(
-                    visible = collapsedFraction > 0.85f,
+                    visible = mapHidden,
                     enter = fadeIn(tween(220)) + scaleIn(spring(dampingRatio = 0.5f, stiffness = 500f), initialScale = 0.4f) +
                         expandHorizontally(spring(stiffness = 500f)),
                     exit = fadeOut(tween(150)) + scaleOut(tween(150), targetScale = 0.4f) + shrinkHorizontally(tween(200)),
@@ -769,8 +775,9 @@ private fun OsmMap(
             map.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(userLocation.lat, userLocation.lon), 13.6), 900)
         }
     }
+    // solo quando cambiano botteghe o posizione: ricaricare il GeoJSON a ogni ricomposizione fa scattare lo scroll
     ready?.let { (_, style) ->
-        SideEffect {
+        LaunchedEffect(style, shops, userLocation) {
             val features = shops.mapIndexed { i, s ->
                 val key = "m${s.category.icon}"
                 if (style.getImage(key) == null) style.addImage(key, markerIcon(context, s.category.icon, s.category.color.toArgb()))
