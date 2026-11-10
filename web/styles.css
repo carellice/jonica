@@ -61,6 +61,31 @@ p { margin: 0; }
   .get-app:hover { transform: translateY(-2px); }
 }
 
+/* Bottone "?" nella barra: in fondo alle sezioni sul telefono, accanto a "Scarica l'app" su desktop. */
+.actions { display: flex; align-items: center; gap: 8px; flex: none; margin-left: 4px; }
+.help { width: 46px; height: 46px; border: 0; border-radius: 50%; cursor: pointer; font-size: 20px; font-weight: 800;
+  background: var(--primary-c); color: var(--on-primary-c); transition: transform .3s var(--spring); }
+.help:hover { transform: rotate(-12deg) scale(1.06); }
+.help:active { transform: scale(.92); }
+
+/* Foglio "Cos'è Jonica" */
+.about .intro { display: flex; gap: 16px; align-items: center; margin-top: 4px; }
+.about .intro img { border-radius: 20px; flex: none; }
+.about .intro p { margin-top: 4px; color: var(--muted); font-weight: 600; }
+.about .why { margin-top: 18px; padding: 18px 20px; border-radius: 22px; background: var(--secondary-c); color: var(--on-secondary-c); }
+.about h3 { margin: 24px 0 10px; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.about .feats { display: grid; gap: 10px; }
+@media (min-width: 560px) { .about .feats { grid-template-columns: 1fr 1fr; } }
+.about .feat { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border-radius: 20px; background: var(--surface-c); text-decoration: none; transition: transform .3s var(--spring), background .3s; }
+.about a.feat:hover { transform: translateY(-2px); background: var(--surface-ch); }
+.about .feat .bubble { width: 48px; height: 48px; }
+.about .feat b { display: block; }
+.about .feat span { font-size: 14px; color: var(--muted); }
+.about ol { margin: 0; padding: 0; list-style: none; counter-reset: step; display: grid; gap: 10px; }
+.about li { counter-increment: step; display: flex; gap: 12px; align-items: baseline; }
+.about li::before { content: counter(step); flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 14px; background: var(--olive); color: #fff; }
+.about .note { margin-top: 18px; font-size: 14px; color: var(--muted); }
+
 main { padding-bottom: calc(var(--nav-h) + 40px); outline: none; }
 @media (min-width: 900px) { main { padding-bottom: 60px; } }
 .wrap { width: min(var(--max), 100%); margin: 0 auto; padding: 0 20px; }

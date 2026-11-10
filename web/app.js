@@ -447,6 +447,37 @@ function openSheet(html) {
 }
 
 function closeSheet() { $('#sheet').hidden = true; }
+
+// ---------- "?": cos'è Jonica ----------
+
+function aboutSheet() {
+  const feats = [
+    ['oggi', SEASONS[seasonOf(month)].icon, 'Oggi', 'Cosa succede nei campi questo mese, frutta, verdura e pesce al meglio adesso, le novità e gli ultimi giorni.'],
+    ['stagioni', 'ic_cassetta', 'Stagioni', 'Il calendario mese per mese di frutta, verdura, pesce del Tirreno e dispensa, con un consiglio per ogni prodotto.'],
+    ['botteghe', 'ic_bancarella', 'Botteghe', `${D.shops.length} botteghe e piccoli produttori di Roma e del Lazio sulla mappa, più ${D.online.length} che spediscono in tutta Italia.`],
+    ['filiera', 'ic_contadino', 'Filiera', 'Dove va 1 € della spesa, perché la stagionalità conta, come leggere le etichette e piccoli impegni da prendere.'],
+  ];
+  openSheet(`<div class="about">
+    <div class="intro"><img src="logo.png" alt="" width="72" height="72"><div><h2>Cos'è Jonica</h2><p>Mangia di stagione. Compra vicino.</p></div></div>
+    <p style="margin-top:16px">Jonica ti aiuta a fare una spesa più consapevole: scoprire cosa è <b>davvero di stagione</b>,
+      capire <b>dove vanno i soldi</b> che spendi e trovare le <b>botteghe di quartiere</b> e i piccoli produttori vicino a te.</p>
+    <div class="why"><b>Perché esiste</b><p style="margin-top:6px">Agricoltori e trasportatori sono schiacciati tra prezzi bassi all'origine e costi alti del carburante.
+      Comprare di stagione e dalle botteghe locali accorcia la filiera: lascia più valore a chi produce e a chi vende nel quartiere,
+      e a te porta in tavola prodotti più buoni, a un prezzo più giusto.</p></div>
+    <h3>Cosa trovi</h3>
+    <div class="feats">${feats.map(([tab, ic, t, s]) => `<a class="feat" href="#${tab}"><span class="bubble">${img(ic)}</span><div><b>${t}</b><span>${s}</span></div></a>`).join('')}</div>
+    <h3>Come usarla</h3>
+    <ol>
+      <li><span>Apri <b>Oggi</b> prima di fare la spesa: vedi subito cosa conviene comprare questo mese.</span></li>
+      <li><span>Tocca un prodotto per scoprire i mesi in cui è al meglio e come sceglierlo.</span></li>
+      <li><span>In <b>Botteghe</b> usa la tua posizione per trovare il fruttivendolo, il forno o la macelleria più vicini.</span></li>
+      <li><span>In <b>Filiera</b> spunta i tuoi impegni: piccoli gesti che, sommati, fanno la differenza.</span></li>
+    </ol>
+    <p class="note">Gratis, senza pubblicità e senza account. La posizione resta nel tuo browser e serve solo a ordinare le botteghe per distanza;
+      gli impegni sono salvati su questo dispositivo. C'è anche l'<a href="https://github.com/carellice/jonica/releases/latest">app Android</a>, che funziona offline.</p>
+  </div>`);
+}
+$('#help').addEventListener('click', () => D && aboutSheet());
 addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSheet(); });
 
 const footer = () => `<footer>Jonica · Mangia di stagione, compra vicino · Dati delle botteghe © OpenStreetMap contributors e mappature di Jonica ·
