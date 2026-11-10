@@ -66,10 +66,10 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import it.jonica.app.ui.components.bouncyClick
 import it.jonica.app.ui.components.staggeredEnter
 
-private data class Slice(val label: String, val cents: Int, val color: Color, @DrawableRes val icon: Int)
+internal data class Slice(val label: String, val cents: Int, val color: Color, @DrawableRes val icon: Int)
 
 // Ripartizione indicativa di 1 € di frutta e verdura fresca acquistata nella grande distribuzione.
-private val slices = listOf(
+internal val slices = listOf(
     Slice("Agricoltore", 20, Color(0xFF5C8A3A), R.drawable.ic_contadino),
     Slice("Trasporto e logistica", 15, Color(0xFFE3A93B), R.drawable.ic_camion),
     Slice("Intermediari e ingrosso", 15, Color(0xFF3E6B8C), R.drawable.ic_cassetta),
@@ -77,7 +77,7 @@ private val slices = listOf(
     Slice("Imballaggi e altro", 10, Color(0xFF8C7A6B), R.drawable.ic_cesto),
 )
 
-private val pledges = listOf(
+internal val pledges = listOf(
     R.drawable.ic_pane to "Questa settimana faccio almeno una spesa in una bottega di quartiere",
     R.drawable.ic_arance to "Compro solo frutta e verdura di stagione",
     R.drawable.ic_contadino to "Chiedo da dove arrivano i prodotti che compro",
@@ -87,7 +87,7 @@ private val pledges = listOf(
     R.drawable.ic_cesto to "Porto la mia borsa e scelgo prodotti sfusi",
 )
 
-private val labelTips = listOf(
+internal val labelTips = listOf(
     "Frutta e verdura" to "Il Paese d'origine è obbligatorio sul cartellino. Se manca, chiedilo.",
     "Olio" to "'Extravergine 100% italiano' è diverso da 'miscela di oli comunitari'.",
     "Pesce" to "Cerca zona FAO 37 (Mediterraneo) e il metodo: pescato o allevato.",

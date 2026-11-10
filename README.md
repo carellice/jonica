@@ -6,7 +6,8 @@
 
 <p align="center">
   <b>Mangia di stagione. Compra vicino.</b><br>
-  <a href="../../releases/latest">Scarica l'ultima versione</a>
+  <a href="../../releases/latest">Scarica l'ultima versione</a> ·
+  <a href="https://carellice.github.io/jonica/">Apri la versione web</a>
 </p>
 
 <p align="center">
@@ -45,6 +46,15 @@ e a chi vende nel quartiere.
   leggere le etichette e una lista di piccoli impegni da spuntare.
 - **Introduzione animata** al primo avvio, rivedibile da Filiera, e
   **aggiornamenti dall'app** tramite le release di GitHub.
+
+## Versione web
+
+[carellice.github.io/jonica](https://carellice.github.io/jonica/) porta nel browser le stesse quattro sezioni
+dell'app (Oggi, Stagioni, Botteghe con la mappa, Filiera), responsive da telefono a desktop, con tema chiaro e
+scuro. È HTML, CSS e JavaScript senza build, nella cartella `web/`; GitHub Pages la pubblica a ogni push.
+
+I dati del sito (`web/data.json`) li scrive il test `WebDataExport` dagli stessi elenchi dell'app: dopo aver
+cambiato prodotti o botteghe basta lanciare `gradlew :app:testDebugUnitTest` e committare il file aggiornato.
 
 ## Screenshot
 

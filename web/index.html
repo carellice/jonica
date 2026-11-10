@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Jonica · Mangia di stagione. Compra vicino.</title>
+  <meta name="description" content="Cosa è di stagione questo mese, dove vanno i soldi della spesa e oltre 500 botteghe e piccoli produttori di Roma e del Lazio.">
+  <meta name="theme-color" content="#3E5A2C">
+  <link rel="icon" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#oggi"><img src="logo.png" alt="" width="36" height="36"><span>Jonica</span></a>
+    <nav class="nav" aria-label="Sezioni">
+      <a href="#oggi" data-tab="oggi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg><span>Oggi</span></a>
+      <a href="#stagioni" data-tab="stagioni"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4M7.5 14h1M11.5 14h1M15.5 14h1M7.5 17.5h1M11.5 17.5h1"/></svg><span>Stagioni</span></a>
+      <a href="#botteghe" data-tab="botteghe"><svg viewBox="0 0 24 24"><path d="M4 10v10h16V10M3 4h18l-1.5 6h-15zM9 20v-5h6v5"/></svg><span>Botteghe</span></a>
+      <a href="#filiera" data-tab="filiera"><svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></svg><span>Filiera</span></a>
+    </nav>
+    <a class="get-app" href="https://github.com/carellice/jonica/releases/latest">Scarica l'app</a>
+  </header>
+  <main id="view" tabindex="-1"></main>
+  <div id="sheet" class="sheet" hidden></div>
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>

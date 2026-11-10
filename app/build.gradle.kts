@@ -74,4 +74,10 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
     implementation("org.maplibre.gl:android-sdk:13.7.1")
+    testImplementation("junit:junit:4.13.2")
+}
+
+// I test scrivono anche i dati del sito (web/data.json) dagli stessi elenchi dell'app.
+tasks.withType<Test>().configureEach {
+    systemProperty("jonica.webData", rootProject.file("web/data.json").absolutePath)
 }
